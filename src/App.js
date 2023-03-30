@@ -70,25 +70,29 @@ function App() {
         "Content-Type": "application/json",
       },
     });
+    const responseFromBackEnd = await response.json();
+    console.log({ responseFromBackEnd });
 
-    return await response.json();
+    return responseFromBackEnd;
   }
 
   async function handleFetch(action, value) {
     const JsonValue = JSON.stringify(value);
     switch (action) {
       case "AddUser":
-        if (FetchPost(action, JsonValue)) {
+        if (await FetchPost(action, JsonValue)) {
           alert("User added");
+          setActualLocation("PROFIL");
         } else {
           alert("Error User already exist");
         }
         break;
 
       case "GetUser":
-        if (FetchPost(action, value)) {
+        if (await FetchPost(action, JsonValue)) {
           alert("Logged in !!!");
           localStorage.setItem("Logged", true);
+          setActualLocation("PROFIL");
         } else {
           alert("Error User don't exist");
         }
