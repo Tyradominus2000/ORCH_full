@@ -29,7 +29,7 @@ export default function Header({ BtnClicked, location }) {
               location !== "LOGIN" ? (
                 location !== "REGISTER" ? (
                   <button
-                    //to add condition if user is connected or not in the function
+                    //condition if user is connected or not that change the location if needed
                     onClick={() => {
                       if (Logged === true) {
                         handleClick("PROFIL");

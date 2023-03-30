@@ -68,7 +68,7 @@ function App() {
         return "error";
     }
   }
-  //Function that handle all the backend call
+  //Function that handle all the backend call using the methode POST
   async function FetchPost(action, JsonValue) {
     const response = await fetch(`${USER_API}/${action}`, {
       method: "POST",
@@ -82,7 +82,7 @@ function App() {
 
     return responseFromBackEnd;
   }
-  //Function interm
+  //Function intermediate between the child and the FetchPost 
   async function handleFetch(action, value) {
     const JsonValue = JSON.stringify(value);
     switch (action) {
