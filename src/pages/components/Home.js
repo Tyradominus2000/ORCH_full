@@ -1,8 +1,17 @@
 export default function Home({ handleClick }) {
+  const Logged = localStorage.getItem("Logged");
+
+
   return (
     <>
       <button
-        onClick={() => handleClick("PROFIL")}
+        onClick={() => {
+          if (Logged === true) {
+            handleClick("PROFIL");
+          } else {
+            handleClick("LOGIN");
+          }
+        }}
         className={`btn btn-primary`}
       >
         Go to Profil

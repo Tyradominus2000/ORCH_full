@@ -1,6 +1,8 @@
 import styles from "./Header.module.scss";
 
 export default function Header({ BtnClicked, location }) {
+  const Logged = localStorage.getItem("Logged");
+
   function handleClick(value) {
     console.log({ location });
     console.log({ value });
@@ -27,8 +29,14 @@ export default function Header({ BtnClicked, location }) {
               location !== "LOGIN" ? (
                 location !== "REGISTER" ? (
                   <button
-                  //to add condition if user is connected or not in the function
-                    onClick={() => handleClick("PROFIL")}
+                    //to add condition if user is connected or not in the function
+                    onClick={() => {
+                      if (Logged === true) {
+                        handleClick("PROFIL");
+                      } else {
+                        handleClick("LOGIN");
+                      }
+                    }}
                     className={`btn btn-primary`}
                   >
                     Profils
