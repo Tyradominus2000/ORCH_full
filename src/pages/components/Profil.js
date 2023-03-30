@@ -32,12 +32,12 @@ export default function Profil({ handleClick }) {
         <div className={`${styles.ProfilContent} my10`}>
           <p>Content Profiles</p>
         </div>
-        <button
+        {/* <button
           onClick={() => handleClick("LOGIN")}
           className={`btn btn-primary`}
         >
           Go to login my Dude
-        </button>
+        </button> */}
       </div>
     </>
   );
