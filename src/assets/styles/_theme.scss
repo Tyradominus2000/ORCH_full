@@ -1,0 +1,78 @@
+.btn {
+  padding: 7.5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: var(--box-shadow);
+    transition: 0.2s box-shadow;
+    transition: 0.5s background-color;
+  }
+  &-primary {
+    background-color: var(--blue-2);
+    color: white;
+    border: 2px solid var(--blue-2);
+    border-radius: 15px;
+    &:hover {
+      background-color: var(--text-color);
+      color: var(--blue-2);
+      border: 2px solid var(--blue-2);
+    }
+  }
+  &-primary-reverse {
+    background-color: var(--blue-1);
+    color: var(--text-color);
+    border: 2px solid var(--blue-2);
+    border-radius: 15px;
+  }
+  &-error{
+    background-color: var(--error-light);
+    color: var(--text-color);
+    border: 2px solid var(--error);
+    border-radius: 15px;
+    &:hover{
+      transition: 0.2s box-shadow;
+      transition: 0.5s background-color;
+      transition: 0.2s color;
+      box-shadow: var(--box-shadow);
+      color: var(--error);
+      background-color: var(--text-color);
+    }
+  }
+}
+
+input {
+  text-align: center;
+  padding: 7.5px 15px;
+  border-radius: 10px;
+  border: 2px solid var(--hard-blue);
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.171);
+  color: var(--text-color);
+  &:hover {
+    border: 2px solid var(--divider);
+    transition: 0.2s border;
+    box-shadow: var(--box-shadow);
+    transition: 0.2s box-shadow;
+  }
+  &::placeholder {
+    color: var(--text-color);
+    opacity: 75%;
+  }
+}
+
+.card {
+  border-radius: 10px;
+  background-color: var(--primary);
+}
+
+.fa-eye-slash {
+  display: none;
+  max-width: 15px;
+  cursor: pointer;
+}
+
+.fa-eye {
+  display: block;
+  max-width: 15px;
+  cursor: pointer;
+}

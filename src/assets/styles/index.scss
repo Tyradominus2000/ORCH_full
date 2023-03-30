@@ -1,0 +1,20 @@
+@use "./variables";
+@use "./base";
+@use "./flex";
+@use "./theme";
+@use "./utils";
+@use "./debug";
+@use "./classe";
+
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid: "header" auto "content" 1fr "footer" auto;
+}
+
+
+body {
+  margin: 0;
+  font-family: "Roboto Slab", serif;
+}

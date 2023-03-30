@@ -1,0 +1,30 @@
+.Login {
+  .Username {
+    font-weight: 700;
+    width: 500px;
+  }
+  .Email {
+    font-weight: 700;
+    width: 500px;
+  }
+  .Password {
+    font-weight: 700;
+    width: 500px;
+  }
+}
+.Register {
+  border: 2px solid var(--divider);
+  background-color: var(--text-color);
+  cursor: pointer;
+  &:hover {
+    h2 {
+      transition: 0.5s scale;
+      scale: (1.5);
+    }
+  }
+  h2 {
+    transition: 0.4s scale;
+    scale: (1);
+    color: var(--hard-blue);
+  }
+}
