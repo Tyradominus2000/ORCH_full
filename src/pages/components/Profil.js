@@ -8,14 +8,19 @@ export default function Profil({ handleClick, handleFetch }) {
   const [email, setEmail] = useState("");
   async function getInfoUser() {
     infoUser = await handleFetch("GetUser", idUser);
-    console.log({ infoUser });
-    console.log(infoUser[0]);
-    console.log(infoUser[0].id);
     setUsername(infoUser[0].name);
     setEmail(infoUser[0].email);
   }
   getInfoUser();
-  console.log("render");
+  let form;
+  useEffect(() => {
+    form = document.getElementById("image-form");
+  }, [handleChange]);
+
+  function handleChange() {
+    form.submit();
+  }
+
   return (
     <>
       <div
@@ -25,7 +30,29 @@ export default function Profil({ handleClick, handleFetch }) {
           <div
             className={`${styles.ProfilInfo} d-flex flex-fill justify-content-start`}
           >
-            <img src="./images/server/pp.jpg" alt="profile" />
+            <div>
+              <img className={``} src="./images/server/pp.jpg" alt="profile" />
+              <form
+                id="image-form"
+                action="your-upload-script.php"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <input
+                  type="file"
+                  id="image-upload"
+                  onChange={() => handleChange()}
+                  name="image"
+                  className="dnone"
+                />
+                <label for="image-upload">
+                  <i
+                    className={`d-flex justify-content-center fa-sharp fa-solid fa-pen ${styles.editContainer}`}
+                    type="submit"
+                  ></i>
+                </label>
+              </form>
+            </div>
             <div className={`m5`}>
               <ul>
                 <li>{username}</li>
@@ -47,12 +74,6 @@ export default function Profil({ handleClick, handleFetch }) {
         <div className={`${styles.ProfilContent} my10`}>
           <p>Content Profiles</p>
         </div>
-        {/* <button
-          onClick={() => handleClick("LOGIN")}
-          className={`btn btn-primary`}
-        >
-          Go to login my Dude
-        </button> */}
       </div>
     </>
   );
