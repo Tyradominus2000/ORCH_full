@@ -1,6 +1,21 @@
 import styles from "./Profil.module.scss";
+import { useEffect, useState } from "react";
 
-export default function Profil({ handleClick }) {
+export default function Profil({ handleClick, handleFetch }) {
+  const idUser = localStorage.getItem("id");
+  let infoUser;
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  async function getInfoUser() {
+    infoUser = await handleFetch("GetUser", idUser);
+    console.log({ infoUser });
+    console.log(infoUser[0]);
+    console.log(infoUser[0].id);
+    setUsername(infoUser[0].name);
+    setEmail(infoUser[0].email);
+  }
+  getInfoUser();
+  console.log("render");
   return (
     <>
       <div
@@ -13,9 +28,9 @@ export default function Profil({ handleClick }) {
             <img src="./images/pp.jpg" alt="profile" />
             <div className={`m5`}>
               <ul>
-                <li>Username</li>
+                <li>{username}</li>
                 <hr />
-                <li>Email</li>
+                <li>{email}</li>
                 <hr />
               </ul>
             </div>

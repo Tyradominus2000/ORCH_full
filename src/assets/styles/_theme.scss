@@ -1,4 +1,6 @@
 .btn {
+  width: 150px;
+  height: 40px;
   padding: 7.5px 15px;
   border-radius: 10px;
   cursor: pointer;
@@ -24,12 +26,23 @@
     border: 2px solid var(--blue-2);
     border-radius: 15px;
   }
-  &-error{
+  &-primary-home {
+    background-color: var(--primary);
+    color: var(--text-color);
+    border: 1px solid var(--blue-2);
+    border-radius: 30px;
+    &:hover {
+      background-color: var(--blue-2);
+      color: white;
+      border: 2px solid var(--blue-2);
+    }
+  }
+  &-error {
     background-color: var(--error-light);
     color: var(--text-color);
     border: 2px solid var(--error);
     border-radius: 15px;
-    &:hover{
+    &:hover {
       transition: 0.2s box-shadow;
       transition: 0.5s background-color;
       transition: 0.2s color;

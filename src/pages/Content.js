@@ -5,11 +5,10 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 
 export default function Content({ BtnClicked, location, handleFetch }) {
-
   //Function that handleClick and Send it to the Parent function BtnClicked in App.js
   function handleClick(value) {
     console.log(value);
-    BtnClicked(value); 
+    BtnClicked(value);
   }
 
   return (
@@ -23,7 +22,11 @@ export default function Content({ BtnClicked, location, handleFetch }) {
           alt="Publicité"
         ></img>
         {location === "HOME" ? <Home handleClick={handleClick} /> : <></>}
-        {location === "PROFIL" ? <Profil handleClick={handleClick} /> : <></>}
+        {location === "PROFIL" ? (
+          <Profil handleClick={handleClick} handleFetch={handleFetch} />
+        ) : (
+          <></>
+        )}
         {location === "LOGIN" ? (
           <Login handleClick={handleClick} handleFetch={handleFetch} />
         ) : (

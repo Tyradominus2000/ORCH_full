@@ -61,6 +61,7 @@ function App() {
         break;
       case "LOGOUT":
         localStorage.removeItem("Logged");
+        localStorage.removeItem("id");
         setActualLocation("LOGIN");
         break;
       default:
@@ -82,9 +83,17 @@ function App() {
 
     return responseFromBackEnd;
   }
-  //Function intermediate between the child and the FetchPost 
+  //Function intermediate between the child and the FetchPost
   async function handleFetch(action, value) {
+    //Creat on obj if value isn't one
+    const obj = {};
+    obj.id = value;
+    console.log({ value });
+    //Stringify the value/object
     const JsonValue = JSON.stringify(value);
+    const JsonObj = JSON.stringify(obj);
+    console.log({ JsonValue });
+    //Call Fetch
     switch (action) {
       case "AddUser":
         if (await FetchPost(action, JsonValue)) {
@@ -95,35 +104,54 @@ function App() {
         }
         break;
 
-      case "GetUser":
-        if (await FetchPost(action, JsonValue)) {
+      case "VerifyUser":
+        const VerifyUser = await FetchPost(action, JsonValue);
+        console.log(VerifyUser);
+        if (VerifyUser.logged) {
           alert("Logged in !!!");
           localStorage.setItem("Logged", true);
+          localStorage.setItem("id", VerifyUser.id);
           setActualLocation("PROFIL");
         } else {
           alert("Error User don't exist");
         }
         break;
 
+      case "GetUser":
+        const GetUser = await FetchPost(action, JsonObj);
+        console.log(GetUser);
+
+        return GetUser;
       default:
         console.log("error");
     }
   }
 
   return (
-    <div className={`d-flex flex-column ${styles.appContainer}`}>
+    <>
       {actualLocation !== "HOME" ? (
-        <Header BtnClicked={BtnLocationClicked} location={actualLocation} />
+        <div className={`d-flex flex-column header ${styles.appContainer}`}>
+          <Header BtnClicked={BtnLocationClicked} location={actualLocation} />
+          <Content
+            BtnClicked={BtnLocationClicked}
+            location={actualLocation}
+            handleFetch={handleFetch}
+          />
+          <Footer />
+        </div>
       ) : (
-        <></>
+        <div
+          className={`d-flex flex-column header ${styles.appContainernoHeader}`}
+        >
+          <Content
+            BtnClicked={BtnLocationClicked}
+            location={actualLocation}
+            handleFetch={handleFetch}
+          />
+          <Footer />
+        </div>
       )}
-      <Content
-        BtnClicked={BtnLocationClicked}
-        location={actualLocation}
-        handleFetch={handleFetch}
-      />
-      <Footer />
-    </div>
+    </>
   );
 }
 

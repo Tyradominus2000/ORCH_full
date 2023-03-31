@@ -39,7 +39,7 @@ export default function Login({ handleClick, handleFetch }) {
   } = useForm();
 
   function submit(values) {
-    handleFetch("GetUser", values);
+    handleFetch("VerifyUser", values);
     console.log(values);
   }
   return (

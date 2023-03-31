@@ -1,23 +1,26 @@
 import styles from "./Home.module.scss";
+import { useEffect } from "react";
 
 export default function Home({ handleClick }) {
   const Logged = localStorage.getItem("Logged");
 
   return (
     <>
-      <div>
+      <div
+        className={`d-flex flex-column justify-content-center align-items-center`}
+      >
         <img
-          className={styles.logo}
-          src="images/orchLogo.Png"
+          className={`${styles.logo} mb50`}
+          src="images/orchlogohome.png"
           alt="ORCH logo"
         />
-        <div>
+        <div className={`${styles.form} d-flex justify-content-evenly`}>
           <form>
             <input type="text" placeholder="Search" />
             <i className={`fas fa-magnifying-glass ml10 mr10`}></i>
           </form>
         </div>
-        <div>
+        <div className={`d-flex justify-content-evenly my20`}>
           <button
             onClick={() => {
               if (Logged === true) {
@@ -26,25 +29,25 @@ export default function Home({ handleClick }) {
                 handleClick("LOGIN");
               }
             }}
-            className={`btn btn-primary`}
+            className={`btn btn-primary-home mr20 ml20`}
           >
             PROFIL
           </button>
           <button
             onClick={() => handleClick("COMPARATOR")}
-            className={`btn btn-primary`}
+            className={`btn btn-primary-home mr20 ml20`}
           >
             COMPARATOR
           </button>
           <button
             onClick={() => handleClick("BUILDER")}
-            className={`btn btn-primary`}
+            className={`btn btn-primary-home mr20 ml20`}
           >
             BUILDER
           </button>
           <button
             onClick={() => handleClick("LEADERBOARD")}
-            className={`btn btn-primary`}
+            className={`btn btn-primary-home mr20 ml20`}
           >
             LEADERBOARD
           </button>
