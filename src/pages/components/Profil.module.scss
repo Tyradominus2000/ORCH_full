@@ -1,15 +1,25 @@
-.Profil{
-    .ProfilInfo{
-      img{
-        max-width: 100px;
-        max-height: 100px;
-      }
-    }
-    .ProfilContent{
-      color: var(--hard-blue);
-      padding: 150px 250px;
-      background-color: white;
-      opacity: 50%;
-      border: 3px solid var(--hard-blue);
+.Profil {
+  .ProfilInfo {
+    img {
+      max-width: 100px;
+      max-height: 100px;
     }
   }
+  .ProfilContent {
+    color: var(--hard-blue);
+    padding: 150px 250px;
+    background-color: white;
+    opacity: 50%;
+    border: 3px solid var(--hard-blue);
+  }
+}
+
+.image-container {
+  position: relative;
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

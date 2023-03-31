@@ -25,7 +25,7 @@ export default function Profil({ handleClick, handleFetch }) {
           <div
             className={`${styles.ProfilInfo} d-flex flex-fill justify-content-start`}
           >
-            <img src="./images/pp.jpg" alt="profile" />
+            <img src="./images/server/pp.jpg" alt="profile" />
             <div className={`m5`}>
               <ul>
                 <li>{username}</li>

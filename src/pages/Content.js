@@ -18,7 +18,7 @@ export default function Content({ BtnClicked, location, handleFetch }) {
       >
         <img
           className={`flex-fill ${styles.Pub} ml2-100`}
-          src="./images/pub.png"
+          src="./images/server/pub.png"
           alt="Publicité"
         ></img>
         {location === "HOME" ? <Home handleClick={handleClick} /> : <></>}
@@ -39,7 +39,7 @@ export default function Content({ BtnClicked, location, handleFetch }) {
         )}
         <img
           className={`flex-fill ${styles.Pub} mr2-100`}
-          src="./images/pub.png"
+          src="./images/server/pub.png"
           alt="Publicité"
         ></img>
       </div>

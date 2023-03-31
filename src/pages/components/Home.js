@@ -11,7 +11,7 @@ export default function Home({ handleClick }) {
       >
         <img
           className={`${styles.logo} mb50`}
-          src="images/orchlogohome.png"
+          src="images/server/orchlogohome.png"
           alt="ORCH logo"
         />
         <div className={`${styles.form} d-flex justify-content-evenly`}>

@@ -13,10 +13,10 @@ function App() {
   const stateUserLogged = localStorage.getItem("Logged");
   console.log(actualLocation);
   //Make sure that a logged user can go to the Login and Register content
-  if (stateUserLogged && actualLocation === "LOGIN") {
-    setActualLocation("PROFIL");
-  }
-  if (stateUserLogged && actualLocation === "REGISTER") {
+  if (
+    (stateUserLogged && actualLocation === "LOGIN") ||
+    (stateUserLogged && actualLocation === "REGISTER")
+  ) {
     setActualLocation("PROFIL");
   }
   //Function that get when an header button is click and change the variable actualLocation
