@@ -122,6 +122,11 @@ function App() {
         console.log(GetUser);
 
         return GetUser;
+      case "UploadPP":
+        const UploadPP = await FetchPost(action, JsonValue);
+        console.log(UploadPP)
+        break;
+
       default:
         console.log("error");
     }

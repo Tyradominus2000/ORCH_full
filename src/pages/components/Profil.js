@@ -34,7 +34,7 @@ export default function Profil({ handleClick, handleFetch }) {
               <img className={``} src="./images/server/pp.jpg" alt="profile" />
               <form
                 id="image-form"
-                action="your-upload-script.php"
+                action="http://localhost:8000/UploadPP"
                 method="post"
                 enctype="multipart/form-data"
               >
