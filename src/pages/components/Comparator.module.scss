@@ -1,0 +1,48 @@
+.Comparator {
+  margin: 50px;
+  .ImgComparator {
+    max-width: 50px;
+    max-height: 50px;
+  }
+  .ComparatorSelec {
+    color: var(--grey);
+    background-color: var(--text-color);
+    border: 2px solid var(--grey);
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
+  }
+  .Spec {
+    box-sizing: border-box;
+    overflow-y: hidden;
+    &:hover {
+      overflow-y: auto;
+    }
+    &::-webkit-scrollbar {
+      width: 15px;
+    }
+    &::-webkit-scrollbar-track {
+      background: var(--hard-blue);
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 15px;
+    }
+    max-height: 500px;
+    width: 90%;
+    margin: 50px;
+    background-color: var(--grey);
+    border: 2px solid var(--hard-blue);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    .InnerSpec {
+      color: var(--text-color-2);
+    }
+    .Mediant {
+      padding-left: 10px;
+      padding-right: 10px;
+      border-left: 1px solid var(--hard-blue);
+      border-right: 1px solid var(--hard-blue);
+    }
+  }
+}
