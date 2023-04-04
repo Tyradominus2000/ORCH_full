@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import styles from "./Comparator.module.scss";
 
 export default function Comparator({ handleClick, handleFetch }) {
+  useEffect(() => {
+    const parent = document.querySelector(".spec");
+    const child = document.querySelector(".mediant");
+
+    child.style.height = parent.scrollHeight + "px";
+  }, []);
+
   return (
     <>
       <div
@@ -24,7 +32,9 @@ export default function Comparator({ handleClick, handleFetch }) {
           </div>
         </div>
         <div className={`d-flex justify-content-between ${styles.Spec}`}>
-          <div className={`flex-fill d-flex flex-column justify-content-start ml10 mr10 ${styles.InnerSpec}`}>
+          <div
+            className={`spec flex-fill d-flex flex-column justify-content-start ml10 mr10 ${styles.InnerSpec}`}
+          >
             <h2>Spec1</h2>
             <p>blo</p>
             <p>blo</p>
@@ -41,8 +51,10 @@ export default function Comparator({ handleClick, handleFetch }) {
             <p>blo</p>
             <p>blo</p>
           </div>
-          <div className={`${styles.InnerSpec} ${styles.Mediant}`}>mediant</div>
-          <div className={`flex-fill d-flex justify-content-start ml10 mr10 ${styles.InnerSpec}`}>
+          <div className={`mediant ${styles.InnerSpec} ${styles.Mediant}`}>mediant</div>
+          <div
+            className={`mediant flex-fill d-flex justify-content-start ml10 mr10 ${styles.InnerSpec}`}
+          >
             <h3>Spec2</h3>
           </div>
         </div>
