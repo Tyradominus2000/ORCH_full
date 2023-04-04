@@ -120,13 +120,15 @@ function App() {
       case "GetUser":
         const GetUser = await FetchPost(action, JsonObj);
         console.log(GetUser);
-
         return GetUser;
       case "UploadPP":
         const UploadPP = await FetchPost(action, JsonValue);
-        console.log(UploadPP)
+        console.log(UploadPP);
         break;
-
+      case "GetUserEmail":
+        const GetUserEmail = await FetchPost(action, JsonValue);
+        console.log(GetUserEmail);
+        return GetUserEmail;
       default:
         console.log("error");
     }

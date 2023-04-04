@@ -103,6 +103,7 @@ export default function Login({ handleClick, handleFetch }) {
           </div>
           <div className={`d-flex justify-content-end ${styles.Btn}`}>
             <button
+              type="button"
               onClick={() => handleClick("HOME")}
               className={`m5 btn btn-primary-reverse`}
             >

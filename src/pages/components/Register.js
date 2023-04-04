@@ -1,51 +1,83 @@
 import styles from "./Register.module.scss";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function Register({ handleClick, handleFetch }) {
-  //Get the password and eye tag
-  let eye;
-  let eyeoff;
-  let passwordField;
+  const yupSchema = yup.object({
+    username: yup.string().required("This field must not be empty"),
+    email: yup
+      .string()
+      .email("Use a valid email")
+      .required("This field must not be empty")
+      .test("isYes", "User already exist", async (value) => {
+        const response = handleFetch("GetUserEmail", yup.ref(value));
+        return response;
+      }),
+    password: yup
+      .string()
+      .required("This field must not be empty")
+      .min(3, "At least 3 charachter"),
+    confirmPassword: yup
+      .string()
+      .required("You have to confirm your password")
+      .oneOf([yup.ref("password"), null], "Password must be the same"),
+  });
+
+  //Create the password and eye tag
+  const [eye, setEye] = useState("");
+  const [eyeOff, setEyeOff] = useState("");
+  const [passwordField, setPasswordField] = useState("");
+
   //By using useEffect im sure that the react as finish loading and actualising it every time the ClickPasswordOn/Off is call
   useEffect(() => {
-    eye = document.querySelector(".fa-eye");
-    eyeoff = document.querySelector(".fa-eye-slash");
-    passwordField = document.querySelector("#password");
+    //Get the password and eye tag
+    setEye(document.querySelector(".fa-eye"));
+    setEyeOff(document.querySelector(".fa-eye-slash"));
+    setPasswordField(document.querySelector("#password"));
   }, [clickPasswordOn, clickPasswordOff]);
 
   //If you click on the eye change the input password to text to be visible by user
   function clickPasswordOn() {
     eye.classList.add("dnone");
     eye.classList.remove("dblock");
-    eyeoff.classList.add("dblock");
-    eyeoff.classList.remove("dnone");
+    eyeOff.classList.add("dblock");
+    eyeOff.classList.remove("dnone");
     passwordField.type = "text";
   }
   //If you click on the close eye change the input password to password to be invisible by user
   function clickPasswordOff() {
     eye.classList.add("dblock");
     eye.classList.remove("dnone");
-    eyeoff.classList.add("dnone");
-    eyeoff.classList.remove("dblock");
+    eyeOff.classList.add("dnone");
+    eyeOff.classList.remove("dblock");
     passwordField.type = "password";
   }
-
+  const defaultValues = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(yupSchema),
+  });
 
   function submit(values) {
-    handleFetch("AddUser", values);
+    //handleFetch("AddUser", values);
+    console.log(values);
   }
 
   return (
     <>
       <div className="m10">
-        <form className={`d-flex flex-column`} onSubmit={handleSubmit(submit, "GET", errors)}>
+        <form className={`d-flex flex-column`} onSubmit={handleSubmit(submit)}>
           <div className={`${styles.Register}`}>
             <div>
               <h2 className={`my20`}>Register</h2>
@@ -59,16 +91,7 @@ export default function Register({ handleClick, handleFetch }) {
                 type="text"
                 id="username"
                 placeholder="Username"
-                {...register("username", {
-                  minLength: {
-                    value: 3,
-                    message: "Must have 3 charactere",
-                  },
-                  required: {
-                    value: true,
-                    message: "This field must not be empty",
-                  },
-                })}
+                {...register("username")}
               />
               {errors?.username && <p>{errors.username.message}</p>}
               <label className="mb5" htmlFor="email">
@@ -79,12 +102,7 @@ export default function Register({ handleClick, handleFetch }) {
                 type="email"
                 id="email"
                 placeholder="Email"
-                {...register("email", {
-                  required: {
-                    value: true,
-                    message: "This field must not be empty",
-                  },
-                })}
+                {...register("email")}
               />
               {errors?.email && <p>{errors.email.message}</p>}
               <label className="mb5" htmlFor="password">
@@ -97,12 +115,7 @@ export default function Register({ handleClick, handleFetch }) {
                     type="password"
                     id="password"
                     placeholder="Password"
-                    {...register("password", {
-                      required: {
-                        value: true,
-                        message: "This field must not be empty",
-                      },
-                    })}
+                    {...register("password")}
                   />
                   <i
                     onClick={() => clickPasswordOn()}
@@ -125,17 +138,7 @@ export default function Register({ handleClick, handleFetch }) {
                     type="password"
                     id="confirmPassword"
                     placeholder="Confirm Password"
-                    {...register("confirmPassword", {
-                      required: {
-                        value: true,
-                        message: "This field must not be empty",
-                      },
-                      validate: {
-                        value: (value) =>
-                          value === getValues("password") ||
-                          "Password are not the same",
-                      },
-                    })}
+                    {...register("confirmPassword")}
                   />
                 </div>
                 {errors?.confirmPassword && (
@@ -146,6 +149,7 @@ export default function Register({ handleClick, handleFetch }) {
           </div>
           <div className={`d-flex justify-content-end ${styles.Btn}`}>
             <button
+              type="button"
               onClick={() => handleClick("LOGIN")}
               className={`m5 btn btn-primary-reverse`}
             >
