@@ -70,7 +70,7 @@ export default function Register({ handleClick, handleFetch }) {
   });
 
   function submit(values) {
-    //handleFetch("AddUser", values);
+    handleFetch("AddUser", values);
     console.log(values);
   }
 

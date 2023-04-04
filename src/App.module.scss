@@ -1,10 +1,10 @@
 .appContainer {
   min-height: 100vh;
   display: grid;
-  grid: "header" 150px "content" 1fr "footer" 100px;
+  grid: "header" 150px "content" 1fr "footer" 10%;
 }
 .appContainernoHeader {
   min-height: 100vh;
   display: grid;
-  grid: "header" 0px "content" 1fr "footer" 100px;
+  grid: "header" 0px "content" 1fr "footer" 75px;
 }

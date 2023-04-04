@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import Profil from "./components/Profil";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Comparator from "./components/Comparator";
 
 export default function Content({ BtnClicked, location, handleFetch }) {
   //Function that handleClick and Send it to the Parent function BtnClicked in App.js
@@ -34,6 +35,11 @@ export default function Content({ BtnClicked, location, handleFetch }) {
         )}
         {location === "REGISTER" ? (
           <Register handleClick={handleClick} handleFetch={handleFetch} />
+        ) : (
+          <></>
+        )}
+        {location === "COMPARATOR" ? (
+          <Comparator handleClick={handleClick} handleFetch={handleFetch} />
         ) : (
           <></>
         )}
