@@ -16,7 +16,7 @@ export default function Header({ BtnClicked, location }) {
         <img
           onClick={() => handleClick("HOME")}
           className={styles.logo}
-          src="images/server/orchLogo.Png"
+          src="images/server/orchLogo.png"
           alt="ORCH logo"
         />
         <div
