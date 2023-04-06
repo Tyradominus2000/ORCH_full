@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 
 export default function Register({ handleClick, handleFetch }) {
   const yupSchema = yup.object({

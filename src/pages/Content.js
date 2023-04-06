@@ -1,9 +1,9 @@
 import styles from "./Content.module.scss";
-import Home from "./pages/Home";
-import Profil from "./pages/Profil";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Comparator from "./pages/Comparator";
+import Home from "./pages/Home/Home";
+import Profil from "./pages/Profil/Profil";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import Comparator from "./pages/Comparator/Comparator";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header/Header";
 
