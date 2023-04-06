@@ -4,8 +4,6 @@ import Profil from "./pages/Profil";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Comparator from "./pages/Comparator";
-import { Outlet } from "react-router-dom";
-import Header from "../components/Header/Header";
 
 export default function Content({ BtnClicked, location, handleFetch }) {
   //Function that handleClick and Send it to the Parent function BtnClicked in App.js
@@ -16,19 +14,38 @@ export default function Content({ BtnClicked, location, handleFetch }) {
 
   return (
     <>
-      <Header />
       <div
         className={`d-flex flex-fill flex-row flex-warp justify-content-between align-items-center ${styles.Content}`}
       >
         <img
           className={`flex-fill ${styles.Pub} ml2-100`}
-          src="http://localhost:3000/images/server/pub.png"
+          src="./images/server/pub.png"
           alt="Publicité"
         ></img>
-        <Outlet />
+        {location === "HOME" ? <Home handleClick={handleClick} /> : <></>}
+        {location === "PROFIL" ? (
+          <Profil handleClick={handleClick} handleFetch={handleFetch} />
+        ) : (
+          <></>
+        )}
+        {location === "LOGIN" ? (
+          <Login handleClick={handleClick} handleFetch={handleFetch} />
+        ) : (
+          <></>
+        )}
+        {location === "REGISTER" ? (
+          <Register handleClick={handleClick} handleFetch={handleFetch} />
+        ) : (
+          <></>
+        )}
+        {location === "COMPARATOR" ? (
+          <Comparator handleClick={handleClick} handleFetch={handleFetch} />
+        ) : (
+          <></>
+        )}
         <img
           className={`flex-fill ${styles.Pub} mr2-100`}
-          src="http://localhost:3000/images/server/pub.png"
+          src="./images/server/pub.png"
           alt="Publicité"
         ></img>
       </div>

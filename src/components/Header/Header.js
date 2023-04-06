@@ -1,85 +1,43 @@
+import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Header.module.scss";
 
-export default function Header({ BtnClicked, location }) {
+export default function Header({  }) {
   const Logged = localStorage.getItem("Logged");
-
-  function handleClick(value) {
-    console.log({ location });
-    console.log({ value });
-    BtnClicked(value);
-    console.log({ location });
-  }
 
   return (
     <>
       <div className={`d-flex flex-row  ${styles.Header}`}>
-        <img
-          onClick={() => handleClick("HOME")}
-          className={styles.logo}
-          src="images/server/orchLogo.png"
-          alt="ORCH logo"
-        />
+        <NavLink to={"../"}>
+          <img
+            className={`d-flex ${styles.logo}`}
+            src="http://localhost:3000/images/server/orchLogo.png"
+            alt="ORCH logo"
+          />
+        </NavLink>
         <div
           className={`d-flex flex-fill justify-content-between align-items-center`}
         >
           <div
             className={`d-flex flex-fill justify-content-evenly ml10 mr5-100`}
           >
-            {location !== "PROFIL" ? (
-              location !== "LOGIN" ? (
-                location !== "REGISTER" ? (
-                  <button
-                    //condition if user is connected or not that change the location if needed
-                    onClick={() => {
-                      if (Logged === true) {
-                        handleClick("PROFIL");
-                      } else {
-                        handleClick("LOGIN");
-                      }
-                    }}
-                    className={`btn btn-primary`}
-                  >
-                    Profils
-                  </button>
-                ) : (
-                  <></>
-                )
-              ) : (
-                <></>
-              )
+            {Logged ? (
+              <NavLink to={"profil"}>
+                <button className={`btn btn-primary`}>Profils</button>
+              </NavLink>
             ) : (
-              <></>
+              <NavLink to={"login"}>
+                <button className={`btn btn-primary`}>Profils</button>
+              </NavLink>
             )}
-            {location !== "COMPARATOR" ? (
-              <button
-                onClick={() => handleClick("COMPARATOR")}
-                className={`btn btn-primary`}
-              >
-                Comparateur
-              </button>
-            ) : (
-              <></>
-            )}
-            {location !== "BUILDER" ? (
-              <button
-                onClick={() => handleClick("BUILDER")}
-                className={`btn btn-primary`}
-              >
-                Builder
-              </button>
-            ) : (
-              <></>
-            )}
-            {location !== "LEADERBOARD" ? (
-              <button
-                onClick={() => handleClick("LEADERBOARD")}
-                className={`btn btn-primary`}
-              >
-                LeaderBoard
-              </button>
-            ) : (
-              <></>
-            )}
+            <NavLink to={"comparator"}>
+              <button className={`btn btn-primary`}>Comparateur</button>
+            </NavLink>
+            <NavLink to={"builder"}>
+              <button className={`btn btn-primary`}>Builder</button>
+            </NavLink>
+            <NavLink to={"leaderboard"}>
+              <button className={`btn btn-primary`}>LeaderBoard</button>
+            </NavLink>
           </div>
           <div className={`d-flex flex-nowrap m10`}>
             <form>

@@ -1,6 +1,7 @@
 import styles from "./Login.module.scss";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Login({ handleClick, handleFetch }) {
   //Get the password and eye tag
@@ -102,22 +103,21 @@ export default function Login({ handleClick, handleFetch }) {
             </div>
           </div>
           <div className={`d-flex justify-content-end ${styles.Btn}`}>
-            <button
-              type="button"
-              onClick={() => handleClick("HOME")}
-              className={`m5 btn btn-primary-reverse`}
-            >
-              Cancel
-            </button>
+            <NavLink to={"../../"}>
+              <button type="button" className={`m5 btn btn-primary-reverse`}>
+                Cancel
+              </button>
+            </NavLink>
             <button className={`m5 btn btn-primary`}>Log in</button>
           </div>
         </form>
-        <div
-          onClick={() => handleClick("REGISTER")}
-          className={`p20 my30 d-flex justify-content-center align-items-center ${styles.Register}`}
-        >
-          <h2>Not Register DO IT KNOW !!!</h2>
-        </div>
+        <NavLink to={"../register"}>
+          <div
+            className={`p20 my30 d-flex justify-content-center align-items-center ${styles.Register}`}
+          >
+            <h2>Not Register DO IT KNOW !!!</h2>
+          </div>
+        </NavLink>
       </div>
     </>
   );

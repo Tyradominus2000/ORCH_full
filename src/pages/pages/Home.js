@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styles from "./Home.module.scss";
 import { useEffect } from "react";
 
@@ -14,6 +15,7 @@ export default function Home({ handleClick }) {
           src="images/server/orchlogohome.png"
           alt="ORCH logo"
         />
+
         <div className={`${styles.form} d-flex justify-content-evenly`}>
           <form>
             <input type="text" placeholder="Search" />
@@ -21,36 +23,24 @@ export default function Home({ handleClick }) {
           </form>
         </div>
         <div className={`d-flex justify-content-evenly my20`}>
-          <button
-            onClick={() => {
-              if (Logged === true) {
-                handleClick("PROFIL");
-              } else {
-                handleClick("LOGIN");
-              }
-            }}
-            className={`btn btn-primary-home mr20 ml20`}
-          >
-            PROFIL
-          </button>
-          <button
-            onClick={() => handleClick("COMPARATOR")}
-            className={`btn btn-primary-home mr20 ml20`}
-          >
-            COMPARATOR
-          </button>
-          <button
-            onClick={() => handleClick("BUILDER")}
-            className={`btn btn-primary-home mr20 ml20`}
-          >
-            BUILDER
-          </button>
-          <button
-            onClick={() => handleClick("LEADERBOARD")}
-            className={`btn btn-primary-home mr20 ml20`}
-          >
-            LEADERBOARD
-          </button>
+          <NavLink to={"content/profil"}>
+            <button className={`btn btn-primary-home mr20 ml20`}>PROFIL</button>
+          </NavLink>
+          <NavLink to={"content/comparator"}>
+            <button className={`btn btn-primary-home mr20 ml20`}>
+              COMPARATOR
+            </button>
+          </NavLink>
+          <NavLink to={"content/builder"}>
+            <button className={`btn btn-primary-home mr20 ml20`}>
+              BUILDER
+            </button>
+          </NavLink>
+          <NavLink to={"content/leaderboard"}>
+            <button className={`btn btn-primary-home mr20 ml20`}>
+              LEADERBOARD
+            </button>
+          </NavLink>
         </div>
       </div>
     </>

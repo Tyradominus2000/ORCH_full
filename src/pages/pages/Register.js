@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { NavLink } from "react-router-dom";
 
 export default function Register({ handleClick, handleFetch }) {
   const yupSchema = yup.object({
@@ -148,13 +149,11 @@ export default function Register({ handleClick, handleFetch }) {
             </div>
           </div>
           <div className={`d-flex justify-content-end ${styles.Btn}`}>
-            <button
-              type="button"
-              onClick={() => handleClick("LOGIN")}
-              className={`m5 btn btn-primary-reverse`}
-            >
-              Cancel
-            </button>
+            <NavLink to={"../login"}>
+              <button type="button" className={`m5 btn btn-primary-reverse`}>
+                Cancel
+              </button>
+            </NavLink>
             <button className={`m5 btn btn-primary`}>Register</button>
           </div>
         </form>

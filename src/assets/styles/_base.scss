@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 body {
@@ -23,4 +24,8 @@ ul {
 
 img{
     max-width: 100%;
+}
+
+.active{
+  display: none;
 }

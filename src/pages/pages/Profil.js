@@ -31,7 +31,7 @@ export default function Profil({ handleClick, handleFetch }) {
             className={`${styles.ProfilInfo} d-flex flex-fill justify-content-start`}
           >
             <div>
-              <img className={``} src="./images/server/pp.jpg" alt="profile" />
+              <img className={``} src="http://localhost:3000/images/server/pp.jpg" alt="profile" />
               <form
                 id="image-form"
                 action="http://localhost:8000/UploadPP"

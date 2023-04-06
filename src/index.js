@@ -4,12 +4,14 @@ import "./assets/styles/index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ApiContext } from "./context/ApiContext";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/router";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ApiContext.Provider value="http://localhost:8000">
-      <App />
+      <RouterProvider router={router}></RouterProvider>
     </ApiContext.Provider>
   </React.StrictMode>
 );

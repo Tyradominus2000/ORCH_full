@@ -22,7 +22,7 @@ export default function Comparator({ handleClick, handleFetch }) {
           </div>
           <img
             className={`mr20 ml20 ${styles.ImgComparator}`}
-            src="./images/server/compare.png"
+            src="http://localhost:3000/images/server/compare.png"
             alt="compare"
           />
           <div
