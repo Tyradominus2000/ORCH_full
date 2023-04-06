@@ -7,6 +7,7 @@ import Comparator from "../pages/pages/Comparator/Comparator";
 import Profil from "../pages/pages/Profil/Profil";
 import Register from "../pages/pages/Register/Register";
 import Home from "../pages/pages/Home/Home";
+import Builder from "../pages/pages/Builder/Builder";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +41,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "builder",
-            element: <></>,
+            element: <Builder />,
           },
           {
             path: "leaderboard",
