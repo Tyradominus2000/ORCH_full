@@ -17,14 +17,32 @@ export default function Comparator({ handleClick, handleFetch }) {
           >
             <p className="ml10">Recherhe..</p>
           </div>
-          <div className={`flex-fill d-flex flex-column justify-content-start ml10 mr10 ${styles.Spec}`}>
-            <div>CPU</div>
-            <div>GPU</div>
-            <div>AUtre</div>
+          <div
+            className={`flex-fill d-flex flex-column justify-content-start ml10 mr10 ${styles.Compo}`}
+          >
+            <div
+              className={`d-flex justify-content-start align-items-center ${styles.InnerCompo}`}
+            >
+              <h2 className="ml10">CPU</h2>
+            </div>
+            <div
+              className={`d-flex justify-content-start align-items-center ${styles.InnerCompo}`}
+            >
+              <h2 className="ml10">GPU</h2>
+            </div>
+            <div
+              className={`d-flex justify-content-start align-items-center ${styles.InnerCompo}`}
+            >
+              <h2 className="ml10">MotherBoard</h2>
+            </div>
           </div>
         </div>
         <div className={`d-flex flex-column`}>
-          <div className={`d-flex justify-content-center align-items-center ${styles.Price}`}>prix</div>
+          <div
+            className={`d-flex justify-content-center align-items-center ${styles.Price}`}
+          >
+            prix
+          </div>
           <div>perf</div>
         </div>
       </div>

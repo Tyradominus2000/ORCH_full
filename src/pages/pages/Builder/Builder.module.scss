@@ -6,7 +6,7 @@
   height: 40px;
   border-radius: 15px;
 }
-.Spec {
+.Compo {
   color: var(--text-color-2);
   background-color: var(--grey);
   border: 2px solid var(--hard-blue);
@@ -30,6 +30,14 @@
   &::-webkit-scrollbar-thumb {
     background: var(--primary);
     border-radius: 15px;
+  }
+  .InnerCompo{
+    border: 2px solid var(--hard-blue);
+    border-radius: 5px;
+    margin: 10px;
+    height: 40px;
+    background-color: white;
+    color: var(--text-color-3);
   }
 }
 .Price {
