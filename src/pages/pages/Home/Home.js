@@ -23,9 +23,15 @@ export default function Home({ handleClick }) {
           </form>
         </div>
         <div className={`d-flex justify-content-evenly my20`}>
-          <NavLink to={"content/profil"}>
-            <button className={`btn btn-primary-home mr20 ml20`}>PROFIL</button>
-          </NavLink>
+          {Logged ? (
+            <NavLink to={"content/profil"}>
+              <button className={`btn btn-primary-home mr20 ml20`}>Profils</button>
+            </NavLink>
+          ) : (
+            <NavLink to={"content/login"}>
+              <button className={`btn btn-primary-home mr20 ml20`}>Profils</button>
+            </NavLink>
+          )}
           <NavLink to={"content/comparator"}>
             <button className={`btn btn-primary-home mr20 ml20`}>
               COMPARATOR
