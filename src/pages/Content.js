@@ -1,9 +1,9 @@
 import styles from "./Content.module.scss";
-import Home from "./components/Home";
-import Profil from "./components/Profil";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Comparator from "./components/Comparator";
+import Home from "./pages/Home";
+import Profil from "./pages/Profil";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Comparator from "./pages/Comparator";
 
 export default function Content({ BtnClicked, location, handleFetch }) {
   //Function that handleClick and Send it to the Parent function BtnClicked in App.js
