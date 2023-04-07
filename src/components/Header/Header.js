@@ -64,8 +64,8 @@ export default function Header({}) {
               <button className={`btn btn-primary`}>LeaderBoard</button>
             </NavLink>
           </div>
-          <div className={`d-flex flex-nowrap m10`}>
-            <form>
+          <div className={`d-flex m10`}>
+            <form className={`d-flex flex-nowrap justify-conten-center align-items-center`}>
               <input type="text" placeholder="Search" onChange={handleChange} />
               <i className={`fas fa-magnifying-glass ml10 mr10`}></i>
             </form>
