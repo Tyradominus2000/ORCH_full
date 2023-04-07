@@ -11,11 +11,11 @@ export default function Register({ handleClick, handleFetch }) {
     email: yup
       .string()
       .email("Use a valid email")
-      .required("This field must not be empty")
-      .test("isYes", "User already exist", async (value) => {
-        const response = handleFetch("GetUserEmail", yup.ref(value));
-        return response;
-      }),
+      .required("This field must not be empty"),
+    // .test("isYes", "User already exist", async (value) => {
+    //   const response = handleFetch("GetUserEmail", yup.ref(value));
+    //   return response;
+    // })
     password: yup
       .string()
       .required("This field must not be empty")
@@ -70,9 +70,20 @@ export default function Register({ handleClick, handleFetch }) {
     resolver: yupResolver(yupSchema),
   });
 
-  function submit(values) {
-    handleFetch("AddUser", values);
-    console.log(values);
+  async function submit(values) {
+    // handleFetch("AddUser", values);
+    const response = await fetch(
+      "http://localhost:8000/addUser",
+      {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result);
   }
 
   return (
