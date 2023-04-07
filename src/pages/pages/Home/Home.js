@@ -10,21 +10,27 @@ export default function Home({ handleClick }) {
   const articles = article;
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
+  const [blur, setBlur] = useState(false);
 
   const handleChange = (event) => {
     setSearch(event.target.value);
+  };
+
+  const handBlur = () => {
+    setBlur(false);
   };
 
   useEffect(() => {
     console.log(search);
     if (search !== "") {
       const filteredArticles = articles.filter((articles) =>
-      articles.title.toLowerCase().startsWith(search)
+        articles.title.toLowerCase().startsWith(search)
       );
       setResult(filteredArticles);
     } else {
       setResult([]);
     }
+    setBlur(true);
     console.log(result);
   }, [search, articles]);
 
@@ -48,20 +54,21 @@ export default function Home({ handleClick }) {
                   type="text"
                   placeholder="Search"
                   onChange={handleChange}
+                  onBlur={handBlur}
                 />
                 <i className={`fas fa-magnifying-glass ml10 mr10`}></i>
               </form>
             </div>
-            {result.length > 0 ? (
+            {blur && result.length > 0 && (
               <div className={`${styles.ListContainer}`}>
                 <ul>
                   {result.map((r, i) => (
-                    <li className="ml10" key={i}>{r.title}</li>
+                    <li className="ml10" key={i}>
+                      {r.title}
+                    </li>
                   ))}
                 </ul>
               </div>
-            ) : (
-              <></>
             )}
           </div>
           <div

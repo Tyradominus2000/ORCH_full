@@ -11,9 +11,14 @@ export default function Header({}) {
   const articles = article;
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
+  const [blur, setBlur] = useState(false);
 
   const handleChange = (event) => {
     setSearch(event.target.value);
+  };
+
+  const handBlur = () => {
+    setBlur(false);
   };
 
   useEffect(() => {
@@ -26,6 +31,7 @@ export default function Header({}) {
     } else {
       setResult([]);
     }
+    setBlur(true);
     console.log(result);
   }, [search, articles]);
 
@@ -65,11 +71,18 @@ export default function Header({}) {
             </NavLink>
           </div>
           <div className={`d-flex m10`}>
-            <form className={`d-flex flex-nowrap justify-conten-center align-items-center`}>
-              <input type="text" placeholder="Search" onChange={handleChange} />
+            <form
+              className={`d-flex flex-nowrap justify-conten-center align-items-center`}
+            >
+              <input
+                type="text"
+                placeholder="Search"
+                onChange={handleChange}
+                onBlur={handBlur}
+              />
               <i className={`fas fa-magnifying-glass ml10 mr10`}></i>
             </form>
-            {result.length > 0 ? (
+            {blur && result.length > 0 && (
               <div className={`${styles.ListContainer}`}>
                 <ul>
                   {result.map((r, i) => (
@@ -79,8 +92,6 @@ export default function Header({}) {
                   ))}
                 </ul>
               </div>
-            ) : (
-              <></>
             )}
           </div>
         </div>
