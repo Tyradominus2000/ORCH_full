@@ -1,13 +1,30 @@
-.logo {
+.Logo {
   max-width: 800px;
   max-height: 600px;
 }
-
-.form {
-  form {
-    input {
-      padding: 10px;
-      width: 600px;
+.Container {
+  position: relative;
+  .FormContainer {
+    .Form {
+      form {
+        input {
+          padding: 10px;
+          width: 600px;
+        }
+      }
     }
+    .ListContainer {
+      background-color: var(--grey);
+      color: var(--text-color-3);
+      border: 2px solid var(--divider);
+      border-radius: 15px;
+      position: absolute;
+      z-index: 2;
+      top: 32%;
+      width: 640px;
+    }
+  }
+  .BtnContainer {
+    z-index: 1;
   }
 }

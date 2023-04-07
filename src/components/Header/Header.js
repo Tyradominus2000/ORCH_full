@@ -1,11 +1,33 @@
 import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Header.module.scss";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../context/ApiContext";
+import { article } from "../../assets/data/article";
 
-export default function Header({  }) {
-  const URL_API = useContext(ApiContext)
+export default function Header({}) {
+  const URL_API = useContext(ApiContext);
   const Logged = localStorage.getItem("Logged");
+
+  const articles = article;
+  const [search, setSearch] = useState("");
+  const [result, setResult] = useState([]);
+
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  useEffect(() => {
+    console.log(search);
+    if (search !== "") {
+      const filteredArticles = articles.filter((articles) =>
+        articles.title.toLowerCase().startsWith(search)
+      );
+      setResult(filteredArticles);
+    } else {
+      setResult([]);
+    }
+    console.log(result);
+  }, [search, articles]);
 
   return (
     <>
@@ -13,7 +35,7 @@ export default function Header({  }) {
         <NavLink to={"../"}>
           <img
             className={`d-flex ${styles.logo}`}
-            src={URL_API+"/images/server/orchLogo.png"}
+            src={URL_API + "/images/server/orchLogo.png"}
             alt="ORCH logo"
           />
         </NavLink>
@@ -44,9 +66,22 @@ export default function Header({  }) {
           </div>
           <div className={`d-flex flex-nowrap m10`}>
             <form>
-              <input type="text" placeholder="Search" />
+              <input type="text" placeholder="Search" onChange={handleChange} />
               <i className={`fas fa-magnifying-glass ml10 mr10`}></i>
             </form>
+            {result.length > 0 ? (
+              <div className={`${styles.ListContainer}`}>
+                <ul>
+                  {result.map((r, i) => (
+                    <li className="ml10" key={i}>
+                      {r.title}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

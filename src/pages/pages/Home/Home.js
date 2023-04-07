@@ -1,11 +1,32 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Home.module.scss";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../../context/ApiContext";
+import { article } from "../../../assets/data/article";
 
 export default function Home({ handleClick }) {
   const URL_API = useContext(ApiContext);
   const Logged = localStorage.getItem("Logged");
+  const articles = article;
+  const [search, setSearch] = useState("");
+  const [result, setResult] = useState([]);
+
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  useEffect(() => {
+    console.log(search);
+    if (search !== "") {
+      const filteredArticles = articles.filter((articles) =>
+      articles.title.toLowerCase().startsWith(search)
+      );
+      setResult(filteredArticles);
+    } else {
+      setResult([]);
+    }
+    console.log(result);
+  }, [search, articles]);
 
   return (
     <>
@@ -13,46 +34,68 @@ export default function Home({ handleClick }) {
         className={`d-flex flex-column justify-content-center align-items-center`}
       >
         <img
-          className={`${styles.logo} mb50`}
-          src={URL_API+"/images/server/orchlogohome.png"}
+          className={`${styles.Logo} mb50`}
+          src={URL_API + "/images/server/orchlogohome.png"}
           alt="ORCH logo"
         />
-
-        <div className={`${styles.form} d-flex justify-content-evenly`}>
-          <form>
-            <input type="text" placeholder="Search" />
-            <i className={`fas fa-magnifying-glass ml10 mr10`}></i>
-          </form>
-        </div>
-        <div className={`d-flex justify-content-evenly my20`}>
-          {Logged ? (
-            <NavLink to={"content/profil"}>
+        <div className={`${styles.Container}`}>
+          <div
+            className={`d-flex ${styles.FormContainer} flex-column align-items-center justify-content-center`}
+          >
+            <div className={`${styles.Form} d-flex justify-content-evenly`}>
+              <form>
+                <input
+                  type="text"
+                  placeholder="Search"
+                  onChange={handleChange}
+                />
+                <i className={`fas fa-magnifying-glass ml10 mr10`}></i>
+              </form>
+            </div>
+            {result.length > 0 ? (
+              <div className={`${styles.ListContainer}`}>
+                <ul>
+                  {result.map((r, i) => (
+                    <li className="ml10" key={i}>{r.title}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+          <div
+            className={`d-flex justify-content-evenly my20 ${styles.BtnContainer}`}
+          >
+            {Logged ? (
+              <NavLink to={"content/profil"}>
+                <button className={`btn btn-primary-home mr20 ml20`}>
+                  PROFIL
+                </button>
+              </NavLink>
+            ) : (
+              <NavLink to={"content/login"}>
+                <button className={`btn btn-primary-home mr20 ml20`}>
+                  PROFIL
+                </button>
+              </NavLink>
+            )}
+            <NavLink to={"content/comparator"}>
               <button className={`btn btn-primary-home mr20 ml20`}>
-                PROFIL
+                COMPARATOR
               </button>
             </NavLink>
-          ) : (
-            <NavLink to={"content/login"}>
+            <NavLink to={"content/builder"}>
               <button className={`btn btn-primary-home mr20 ml20`}>
-                PROFIL
+                BUILDER
               </button>
             </NavLink>
-          )}
-          <NavLink to={"content/comparator"}>
-            <button className={`btn btn-primary-home mr20 ml20`}>
-              COMPARATOR
-            </button>
-          </NavLink>
-          <NavLink to={"content/builder"}>
-            <button className={`btn btn-primary-home mr20 ml20`}>
-              BUILDER
-            </button>
-          </NavLink>
-          <NavLink to={"content/leaderboard"}>
-            <button className={`btn btn-primary-home mr20 ml20`}>
-              LEADERBOARD
-            </button>
-          </NavLink>
+            <NavLink to={"content/leaderboard"}>
+              <button className={`btn btn-primary-home mr20 ml20`}>
+                LEADERBOARD
+              </button>
+            </NavLink>
+          </div>
         </div>
       </div>
     </>

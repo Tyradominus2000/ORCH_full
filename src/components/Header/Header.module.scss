@@ -9,4 +9,14 @@
       cursor: pointer;
     }
   }
+  .ListContainer {
+    background-color: var(--grey);
+    color: var(--text-color-3);
+    border: 2px solid var(--divider);
+    border-radius: 15px;
+    position: absolute;
+    z-index: 2;
+    top: 9.75%;
+    width: 205px;
+  }
 }
