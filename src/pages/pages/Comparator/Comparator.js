@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import styles from "./Comparator.module.scss";
+import { ApiContext } from "../../../context/ApiContext";
 
 export default function Comparator({ handleClick, handleFetch }) {
+  const URL_API = useContext(ApiContext)
   useEffect(() => {
     const parent = document.querySelector(".spec");
     const child = document.querySelector(".mediant");
@@ -22,7 +24,7 @@ export default function Comparator({ handleClick, handleFetch }) {
           </div>
           <img
             className={`mr20 ml20 ${styles.ImgComparator}`}
-            src="http://localhost:3000/images/server/compare.png"
+            src={URL_API+"images/server/compare.png"}
             alt="compare"
           />
           <div

@@ -131,7 +131,7 @@ function App() {
     //     console.log("error");
     // }
   }
- 
+  console.log('URL:', window.location.href);
   return (
     <>
       {location.pathname.length > 1 ? (

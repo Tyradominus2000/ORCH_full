@@ -1,7 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Header.module.scss";
+import { useContext } from "react";
+import { ApiContext } from "../../context/ApiContext";
 
 export default function Header({  }) {
+  const URL_API = useContext(ApiContext)
   const Logged = localStorage.getItem("Logged");
 
   return (
@@ -10,7 +13,7 @@ export default function Header({  }) {
         <NavLink to={"../"}>
           <img
             className={`d-flex ${styles.logo}`}
-            src="http://localhost:3000/images/server/orchLogo.png"
+            src={URL_API+"images/server/orchLogo.png"}
             alt="ORCH logo"
           />
         </NavLink>
