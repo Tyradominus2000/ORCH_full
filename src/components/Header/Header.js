@@ -13,7 +13,7 @@ export default function Header({  }) {
         <NavLink to={"../"}>
           <img
             className={`d-flex ${styles.logo}`}
-            src={URL_API+"images/server/orchLogo.png"}
+            src={URL_API+"/images/server/orchLogo.png"}
             alt="ORCH logo"
           />
         </NavLink>

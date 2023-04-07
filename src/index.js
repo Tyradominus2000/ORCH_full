@@ -10,7 +10,7 @@ import { router } from "./router/router";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ApiContext.Provider value={window.location.href}>
+    <ApiContext.Provider value={window.location.origin}>
       <RouterProvider router={router}></RouterProvider>
     </ApiContext.Provider>
   </React.StrictMode>

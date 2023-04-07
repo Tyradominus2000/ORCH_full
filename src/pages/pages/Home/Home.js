@@ -14,7 +14,7 @@ export default function Home({ handleClick }) {
       >
         <img
           className={`${styles.logo} mb50`}
-          src={URL_API+"images/server/orchlogohome.png"}
+          src={URL_API+"/images/server/orchlogohome.png"}
           alt="ORCH logo"
         />
 

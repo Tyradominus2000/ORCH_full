@@ -131,7 +131,7 @@ function App() {
     //     console.log("error");
     // }
   }
-  console.log('URL:', window.location.href);
+  console.log('Domain:', window.location.origin);
   return (
     <>
       {location.pathname.length > 1 ? (
