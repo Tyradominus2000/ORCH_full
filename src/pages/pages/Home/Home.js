@@ -24,7 +24,7 @@ export default function Home({ handleClick }) {
     console.log(search);
     if (search !== "") {
       const filteredArticles = articles.filter((articles) =>
-        articles.title.toLowerCase().startsWith(search)
+        articles.title.toLowerCase().startsWith(search.toLowerCase())
       );
       setResult(filteredArticles);
     } else {
