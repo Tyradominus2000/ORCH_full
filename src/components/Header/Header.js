@@ -9,6 +9,7 @@ export default function Header({}) {
   const Logged = localStorage.getItem("Logged");
 
   const articles = article;
+  console.log(articles);
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const [blur, setBlur] = useState(false);
@@ -25,9 +26,10 @@ export default function Header({}) {
     console.log(search);
     if (search !== "") {
       const filteredArticles = articles.filter((articles) =>
-        articles.title.toLowerCase().startsWith(search.toLowerCase)
+        articles.title.toLowerCase().startsWith(search.toLowerCase())
       );
       setResult(filteredArticles);
+      console.log(filteredArticles);
     } else {
       setResult([]);
     }
@@ -37,7 +39,7 @@ export default function Header({}) {
 
   return (
     <>
-      <div className={`d-flex flex-row  ${styles.Header}`}>
+      <div className={`d-flex flex-row ${styles.Header}`}>
         <NavLink to={"../"}>
           <img
             className={`d-flex ${styles.logo}`}
@@ -99,8 +101,8 @@ export default function Header({}) {
               <div className={`${styles.ListContainer}`}>
                 <ul>
                   {result.map((r, i) => (
-                    <li className="ml10" key={i}>
-                      {r.title}
+                    <li className="ml10 my10 d-flex flex-nowrap" key={i}>
+                      <p className="ml10">{r.title}</p>
                     </li>
                   ))}
                 </ul>

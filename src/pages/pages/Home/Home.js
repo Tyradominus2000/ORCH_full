@@ -63,8 +63,8 @@ export default function Home({ handleClick }) {
               <div className={`${styles.ListContainer}`}>
                 <ul>
                   {result.map((r, i) => (
-                    <li className="ml10" key={i}>
-                      {r.title}
+                    <li className="ml10 my10 d-flex align-items-center" key={i}>
+                      <img src={URL_API +"/images/server/product/"+r.image}/><p className="ml10">{r.title}</p>
                     </li>
                   ))}
                 </ul>
