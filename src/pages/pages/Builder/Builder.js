@@ -15,7 +15,9 @@ export default function Comparator({ handleClick, handleFetch }) {
           <div
             className={`d-flex justify-content-start align-items-center ${styles.Search}`}
           >
-            <p className="ml10">Recherhe..</p>
+            <form>
+              <input className={`${styles.InnerSearch}`} type="text" placeholder="Search" />
+            </form>
           </div>
           <div
             className={`flex-fill d-flex flex-column justify-content-start ml10 mr10 ${styles.Compo}`}
@@ -37,13 +39,13 @@ export default function Comparator({ handleClick, handleFetch }) {
             </div>
           </div>
         </div>
-        <div className={`d-flex flex-column`}>
+        <div className={`d-flex flex-column justify-content-center align-items-center ${styles.Stat}`}>
           <div
             className={`d-flex justify-content-center align-items-center ${styles.Price}`}
           >
             prix
           </div>
-          <div>perf</div>
+          <div className={`${styles.Perf}`}><p className="ml10">Stat</p></div>
         </div>
       </div>
     </>
