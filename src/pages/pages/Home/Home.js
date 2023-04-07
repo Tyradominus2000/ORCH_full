@@ -56,7 +56,7 @@ export default function Home({ handleClick }) {
                   onChange={handleChange}
                   onBlur={handBlur}
                 />
-                <i className={`fas fa-magnifying-glass ml10 mr10`}></i>
+                <button type="submit" className={`fas fa-magnifying-glass ml10 mr10 btn-none`}></button>
               </form>
             </div>
             {blur && result.length > 0 && (
@@ -76,29 +76,29 @@ export default function Home({ handleClick }) {
           >
             {Logged ? (
               <NavLink to={"content/profil"}>
-                <button className={`btn btn-primary-home mr20 ml20`}>
+                <button type="button" className={`btn btn-primary-home mr20 ml20`}>
                   PROFIL
                 </button>
               </NavLink>
             ) : (
               <NavLink to={"content/login"}>
-                <button className={`btn btn-primary-home mr20 ml20`}>
+                <button type="button" className={`btn btn-primary-home mr20 ml20`}>
                   PROFIL
                 </button>
               </NavLink>
             )}
             <NavLink to={"content/comparator"}>
-              <button className={`btn btn-primary-home mr20 ml20`}>
+              <button type="button" className={`btn btn-primary-home mr20 ml20`}>
                 COMPARATOR
               </button>
             </NavLink>
             <NavLink to={"content/builder"}>
-              <button className={`btn btn-primary-home mr20 ml20`}>
+              <button type="button" className={`btn btn-primary-home mr20 ml20`}>
                 BUILDER
               </button>
             </NavLink>
             <NavLink to={"content/leaderboard"}>
-              <button className={`btn btn-primary-home mr20 ml20`}>
+              <button type="button" className={`btn btn-primary-home mr20 ml20`}>
                 LEADERBOARD
               </button>
             </NavLink>

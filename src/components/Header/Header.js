@@ -53,21 +53,31 @@ export default function Header({}) {
           >
             {Logged ? (
               <NavLink to={"profil"}>
-                <button className={`btn btn-primary`}>Profils</button>
+                <button type="button" className={`btn btn-primary`}>
+                  Profils
+                </button>
               </NavLink>
             ) : (
               <NavLink to={"login"}>
-                <button className={`btn btn-primary`}>Profils</button>
+                <button type="button" className={`btn btn-primary`}>
+                  Profils
+                </button>
               </NavLink>
             )}
             <NavLink to={"comparator"}>
-              <button className={`btn btn-primary`}>Comparateur</button>
+              <button type="button" className={`btn btn-primary`}>
+                Comparateur
+              </button>
             </NavLink>
             <NavLink to={"builder"}>
-              <button className={`btn btn-primary`}>Builder</button>
+              <button type="button" className={`btn btn-primary`}>
+                Builder
+              </button>
             </NavLink>
             <NavLink to={"leaderboard"}>
-              <button className={`btn btn-primary`}>LeaderBoard</button>
+              <button type="button" className={`btn btn-primary`}>
+                LeaderBoard
+              </button>
             </NavLink>
           </div>
           <div className={`d-flex m10`}>
@@ -80,7 +90,10 @@ export default function Header({}) {
                 onChange={handleChange}
                 onBlur={handBlur}
               />
-              <i className={`fas fa-magnifying-glass ml10 mr10`}></i>
+              <button
+                type="submit"
+                className={`fas fa-magnifying-glass ml10 mr10 btn-none`}
+              ></button>
             </form>
             {blur && result.length > 0 && (
               <div className={`${styles.ListContainer}`}>
