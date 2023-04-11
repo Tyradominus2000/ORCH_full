@@ -115,7 +115,7 @@ export default function Login({ handleClick, handleFetch }) {
           <div
             className={`p20 my30 d-flex justify-content-center align-items-center ${styles.Register}`}
           >
-            <h2>Not Registed DO IT NOW !!!</h2>
+            <h2>Not Registered DO IT NOW !!!</h2>
           </div>
         </NavLink>
       </div>
