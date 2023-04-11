@@ -13,12 +13,10 @@ function App() {
   const stateUserLogged = localStorage.getItem("Logged");
   const location = useLocation();
   useEffect(() => {
-    console.log(location)
+    console.log(location);
   }, [location]);
 
-
-
-  function BtnLocationClicked(value) {
+  function changeLocation(value) {
     // console.log({ value });
     // switch (value) {
     //   case "HOME":
@@ -78,7 +76,6 @@ function App() {
     // });
     // const responseFromBackEnd = await response.json();
     // console.log({ responseFromBackEnd });
-
     // return responseFromBackEnd;
   }
   //Function intermediate between the child and the FetchPost
@@ -101,7 +98,6 @@ function App() {
     //       alert("Error User already exist");
     //     }
     //     break;
-
     //   case "VerifyUser":
     //     const VerifyUser = await FetchPost(action, JsonValue);
     //     console.log(VerifyUser);
@@ -114,7 +110,6 @@ function App() {
     //       alert("Error User don't exist");
     //     }
     //     break;
-
     //   case "GetUser":
     //     const GetUser = await FetchPost(action, JsonObj);
     //     console.log(GetUser);
@@ -131,18 +126,16 @@ function App() {
     //     console.log("error");
     // }
   }
-  console.log('Domain:', window.location.origin);
+  console.log("Domain:", window.location.origin);
   return (
     <>
       {location.pathname.length > 1 ? (
         <div className={`d-flex flex-column ${styles.appContainer}`}>
-          <Outlet />
+          <Outlet context={{ changeLocation, handleFetch }} />
           <Footer />
         </div>
       ) : (
-        <div
-          className={`d-flex flex-column ${styles.appContainernoHeader}`}
-        >
+        <div className={`d-flex flex-column ${styles.appContainernoHeader}`}>
           <Outlet />
           <Footer />
         </div>
