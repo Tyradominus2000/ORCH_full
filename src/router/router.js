@@ -8,6 +8,7 @@ import Profil from "../pages/pages/Profil/Profil";
 import Register from "../pages/pages/Register/Register";
 import Home from "../pages/pages/Home/Home";
 import Builder from "../pages/pages/Builder/Builder";
+import { loginLoader } from "../loader/loginLoader";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "login",
+            loader: loginLoader,
             element: <Login />,
           },
           {
