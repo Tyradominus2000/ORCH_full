@@ -1,10 +1,10 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../context/ApiContext";
 import { article } from "../../assets/data/article";
 
-export default function Header({}) {
+export default function Header() {
   const URL_API = useContext(ApiContext);
   const Logged = localStorage.getItem("Logged");
 

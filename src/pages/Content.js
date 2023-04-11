@@ -1,16 +1,12 @@
 import styles from "./Content.module.scss";
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 import Header from "../components/Header/Header";
 import { useContext } from "react";
 import { ApiContext } from "../context/ApiContext";
 
-export default function Content({ BtnClicked, location, handleFetch }) {
-  const URL_API = useContext(ApiContext)
-  //Function that handleClick and Send it to the Parent function BtnClicked in App.js
-  function handleClick(value) {
-    console.log(value);
-    BtnClicked(value);
-  }
+export default function Content() {
+  const URL_API = useContext(ApiContext);
+  const { handleFetch } = useOutletContext();
 
   return (
     <>
@@ -20,13 +16,13 @@ export default function Content({ BtnClicked, location, handleFetch }) {
       >
         <img
           className={`flex-fill ${styles.Pub} ml2-100`}
-          src={URL_API+"/images/server/pub.png"}
+          src={URL_API + "/images/server/pub.png"}
           alt="Publicité"
         ></img>
-        <Outlet />
+        <Outlet context={{ handleFetch }} />
         <img
           className={`flex-fill ${styles.Pub} mr2-100`}
-          src={URL_API+"/images/server/pub.png"}
+          src={URL_API + "/images/server/pub.png"}
           alt="Publicité"
         ></img>
       </div>

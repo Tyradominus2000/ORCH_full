@@ -3,19 +3,20 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { NavLink } from "react-router-dom";
+import { NavLink, useOutletContext } from "react-router-dom";
 
-export default function Register({ handleClick, handleFetch }) {
+export default function Register() {
+  const { handleFetch } = useOutletContext();
   const yupSchema = yup.object({
     username: yup.string().required("This field must not be empty"),
     email: yup
       .string()
       .email("Use a valid email")
-      .required("This field must not be empty"),
-    // .test("isYes", "User already exist", async (value) => {
-    //   const response = handleFetch("GetUserEmail", yup.ref(value));
-    //   return response;
-    // })
+      .required("This field must not be empty")
+      .test("isYes", "User already exist", async (value) => {
+        const response = handleFetch("GetUserEmail", yup.ref(value));
+        return response;
+      }),
     password: yup
       .string()
       .required("This field must not be empty")
@@ -71,19 +72,7 @@ export default function Register({ handleClick, handleFetch }) {
   });
 
   async function submit(values) {
-    // handleFetch("AddUser", values);
-    const response = await fetch(
-      "http://localhost:8000/addUser",
-      {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const result = await response.json();
-    console.log(result);
+    handleFetch("AddUser", values);
   }
 
   return (

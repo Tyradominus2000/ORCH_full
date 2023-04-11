@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./assets/styles/index.scss";
-import App from "./App";
+// import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ApiContext } from "./context/ApiContext";
 import { RouterProvider } from "react-router-dom";

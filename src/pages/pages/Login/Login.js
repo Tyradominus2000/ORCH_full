@@ -1,9 +1,10 @@
 import styles from "./Login.module.scss";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useOutletContext } from "react-router-dom";
 
-export default function Login({ handleClick, handleFetch }) {
+export default function Login() {
+  const { handleFetch } = useOutletContext();
   //Get the password and eye tag
   let eye;
   let eyeoff;
