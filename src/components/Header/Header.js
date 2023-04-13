@@ -6,7 +6,6 @@ import { ApiContext } from "../../context/ApiContext";
 export default function Header({ DATA_Component }) {
   const URL_API = useContext(ApiContext);
   const Logged = localStorage.getItem("Logged");
-
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const [blur, setBlur] = useState(false);

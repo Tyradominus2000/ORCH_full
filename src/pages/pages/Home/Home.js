@@ -10,7 +10,6 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const [blur, setBlur] = useState(false);
-  console.log(DATA_Component);
   const handleChange = (event) => {
     setSearch(event.target.value);
   };

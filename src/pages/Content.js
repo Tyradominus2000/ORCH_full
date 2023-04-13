@@ -11,7 +11,7 @@ export default function Content() {
   console.log(DATA_Component);
   return (
     <>
-      <Header DATA_Compenent={DATA_Component} />
+      <Header DATA_Component={DATA_Component} />
       <div
         className={`d-flex flex-fill flex-row flex-warp justify-content-between align-items-center ${styles.Content}`}
       >
