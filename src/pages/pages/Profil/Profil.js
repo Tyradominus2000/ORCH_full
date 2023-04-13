@@ -1,22 +1,30 @@
+import { NavLink, useOutletContext, useLoaderData } from "react-router-dom";
+import { ApiBackEndContext, ApiContext } from "../../../context/ApiContext";
 import styles from "./Profil.module.scss";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-export default function Profil({ handleClick, handleFetch }) {
+export default function Profil() {
+  const { handleFetch } = useOutletContext();
   const idUser = localStorage.getItem("id");
-  let infoUser;
+  const BACKEND_API = useContext(ApiBackEndContext);
+  const USER_API = useContext(ApiContext);
+  let infoUser = useLoaderData();
+  let form;
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  async function getInfoUser() {
-    infoUser = await handleFetch("GetUser", idUser);
-    setUsername(infoUser[0].name);
-    setEmail(infoUser[0].email);
+  function getInfoUser() {
+    console.log({ infoUser });
+    setUsername(infoUser[0].Username);
+    setEmail(infoUser[0].Useremail);
+    console.log(username);
+    console.log(email);
   }
-  getInfoUser();
-  let form;
   useEffect(() => {
     form = document.getElementById("image-form");
   }, [handleChange]);
-
+  useEffect(() => {
+    getInfoUser();
+  }, []);
   function handleChange() {
     form.submit();
   }
@@ -31,10 +39,14 @@ export default function Profil({ handleClick, handleFetch }) {
             className={`${styles.ProfilInfo} d-flex flex-fill justify-content-start`}
           >
             <div>
-              <img className={``} src="http://localhost:3000/images/server/pp.jpg" alt="profile" />
+              <img
+                className={``}
+                src={`${USER_API}/images/server/pp.jpg`}
+                alt="profile"
+              />
               <form
                 id="image-form"
-                action="http://localhost:8000/UploadPP"
+                action={`${BACKEND_API}/UploadPP`}
                 method="post"
                 enctype="multipart/form-data"
               >
@@ -45,7 +57,7 @@ export default function Profil({ handleClick, handleFetch }) {
                   name="image"
                   className="dnone"
                 />
-                <label for="image-upload">
+                <label htmlFor="image-upload">
                   <i
                     className={`d-flex justify-content-center fa-sharp fa-solid fa-pen ${styles.editContainer}`}
                     type="submit"
@@ -63,12 +75,9 @@ export default function Profil({ handleClick, handleFetch }) {
             </div>
           </div>
           <div className={`d-flex justify-content-end align-items-start`}>
-            <button
-              onClick={() => handleClick("LOGOUT")}
-              className={`btn btn-error`}
-            >
-              Log out
-            </button>
+            <NavLink to={"logout"}>
+              <button className={`btn btn-error`}>Log out</button>
+            </NavLink>
           </div>
         </div>
         <div className={`${styles.ProfilContent} my10`}>
