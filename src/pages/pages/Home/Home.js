@@ -10,8 +10,8 @@ export default function Home({ handleClick }) {
   const articles = article;
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
-  const [blur, setBlur] = useState(false);
-  const DATA_Component = useLoaderData();
+  const [blur, setBlur] = useState(true);
+  const {DATA_Component} = useOutletContext();
   // console.log(DATA_Component);
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -49,35 +49,40 @@ export default function Home({ handleClick }) {
           <div
             className={`d-flex ${styles.FormContainer} flex-column align-items-center justify-content-center`}
           >
-            <div className={`${styles.Form} d-flex justify-content-evenly`}>
-              <form>
-                <input
-                  type="text"
-                  placeholder="Search"
-                  onChange={handleChange}
-                  onBlur={handBlur}
-                />
-                <button
-                  type="submit"
-                  className={`fas fa-magnifying-glass ml10 mr10 btn-none`}
-                ></button>
-              </form>
-            </div>
-            {blur && result.length > 0 && (
-              <div className={`${styles.ListContainer}`}>
-                <ul className={`${styles.List}`}>
-                  {result.map((r, i) => (
-                    <li className="ml10 my10 d-flex align-items-center" key={i}>
-                      <img
-                        src={URL_API + "/images/server/product/" + r.image}
-                        alt={`image of ` + r.ComponentName}
-                      />
-                      <p className="ml10">{r.ComponentName}</p>
-                    </li>
-                  ))}
-                </ul>
+            <div className={`d-flex justify-content-start`}>
+              <div className={`${styles.Form} d-flex justify-content-evenly`}>
+                <form>
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    onChange={handleChange}
+                    onBlur={handBlur}
+                  />
+                  <button
+                    type="submit"
+                    className={`fas fa-magnifying-glass ml10 mr10 btn-none`}
+                  ></button>
+                </form>
               </div>
-            )}
+              {blur && result.length > 0 && (
+                <div className={`${styles.ListContainer} d-flex `}>
+                  <ul className={`${styles.List}`}>
+                    {result.map((r, i) => (
+                      <li
+                        className="ml10 my10 d-flex align-items-center"
+                        key={i}
+                      >
+                        <img
+                          src={URL_API + "/images/server/product/" + r.image}
+                          alt={`image of ` + r.ComponentName}
+                        />
+                        <p className="ml10">{r.ComponentName}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
           <div
             className={`d-flex justify-content-evenly my20 ${styles.BtnContainer}`}

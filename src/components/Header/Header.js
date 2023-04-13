@@ -2,14 +2,11 @@ import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../context/ApiContext";
-import { article } from "../../assets/data/article";
 
-export default function Header() {
+export default function Header({ DATA_Compenent }) {
   const URL_API = useContext(ApiContext);
   const Logged = localStorage.getItem("Logged");
 
-  const articles = article;
-  console.log(articles);
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const [blur, setBlur] = useState(false);
@@ -25,8 +22,8 @@ export default function Header() {
   useEffect(() => {
     console.log(search);
     if (search !== "") {
-      const filteredArticles = articles.filter((articles) =>
-        articles.title.toLowerCase().startsWith(search.toLowerCase())
+      const filteredArticles = DATA_Compenent.filter((Data_C) =>
+        Data_C.ComponentName.toLowerCase().startsWith(search.toLowerCase())
       );
       setResult(filteredArticles);
       console.log(filteredArticles);
@@ -35,7 +32,7 @@ export default function Header() {
     }
     setBlur(true);
     console.log(result);
-  }, [search, articles]);
+  }, [search, DATA_Compenent]);
 
   return (
     <>
@@ -102,7 +99,7 @@ export default function Header() {
                 <ul>
                   {result.map((r, i) => (
                     <li className="ml10 my10 d-flex flex-nowrap" key={i}>
-                      <p className="ml10">{r.title}</p>
+                      <p className="ml10">{r.ComponentName}</p>
                     </li>
                   ))}
                 </ul>

@@ -14,11 +14,13 @@ import { LoginLoader } from "../loader/LoginLoader";
 import { RegisterLoader } from "../loader/RegisterLoader";
 import { ProfilLoader } from "../loader/ProfilLoader";
 import { LogoutLoader } from "../loader/LogoutLoader";
+import { AppLoader } from "../loader/AppLoader";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    loader: AppLoader,
     errorElement: <Error />,
     children: [
       {

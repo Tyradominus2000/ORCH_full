@@ -97,3 +97,14 @@ input {
   max-width: 15px;
   cursor: pointer;
 }
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  background: var(--hard-blue);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 15px;
+}

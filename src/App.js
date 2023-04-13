@@ -4,12 +4,13 @@ import { useContext } from "react";
 
 import Footer from "./components/Footer/Footer";
 import { ApiBackEndContext, ApiContext } from "./context/ApiContext";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 
 function App() {
   // const USER_API = useContext(ApiContext);
   const BACKEND_API = useContext(ApiBackEndContext);
   // const stateUserLogged = localStorage.getItem("Logged");
+  const DATA_Compenent = useLoaderData();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -81,7 +82,7 @@ function App() {
     <>
       {location.pathname.length > 1 ? (
         <div className={`d-flex flex-column ${styles.appContainer}`}>
-          <Outlet context={{ handleFetch }} />
+          <Outlet context={{ handleFetch, DATA_Compenent }} />
           <Footer />
         </div>
       ) : (
