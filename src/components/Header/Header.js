@@ -3,7 +3,7 @@ import styles from "./Header.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../context/ApiContext";
 
-export default function Header({ DATA_Compenent }) {
+export default function Header({ DATA_Component }) {
   const URL_API = useContext(ApiContext);
   const Logged = localStorage.getItem("Logged");
 
@@ -22,17 +22,16 @@ export default function Header({ DATA_Compenent }) {
   useEffect(() => {
     console.log(search);
     if (search !== "") {
-      const filteredArticles = DATA_Compenent.filter((Data_C) =>
+      const filteredArticles = DATA_Component.filter((Data_C) =>
         Data_C.ComponentName.toLowerCase().startsWith(search.toLowerCase())
       );
       setResult(filteredArticles);
-      console.log(filteredArticles);
     } else {
       setResult([]);
     }
     setBlur(true);
     console.log(result);
-  }, [search, DATA_Compenent]);
+  }, [search, DATA_Component]);
 
   return (
     <>

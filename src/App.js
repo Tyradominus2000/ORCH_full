@@ -16,7 +16,7 @@ function App() {
   const BACKEND_API = useContext(ApiBackEndContext);
   // const stateUserLogged = localStorage.getItem("Logged");
   const DATA_Component = useLoaderData();
-  console.log(DATA_Component);
+  // console.log(DATA_Component);
   const location = useLocation();
   const navigate = useNavigate();
 
