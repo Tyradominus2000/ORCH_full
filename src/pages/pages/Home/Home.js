@@ -29,7 +29,7 @@ export default function Home() {
       setResult([]);
     }
     setBlur(true);
-    console.log({ result });
+    // console.log({ result });
   }, [search, DATA_Component]);
 
   return (

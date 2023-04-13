@@ -8,7 +8,7 @@ export default function Header({ DATA_Component }) {
   const Logged = localStorage.getItem("Logged");
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
-  const [blur, setBlur] = useState(false);
+  const [blur, setBlur] = useState(true);
 
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -29,7 +29,7 @@ export default function Header({ DATA_Component }) {
       setResult([]);
     }
     setBlur(true);
-    console.log(result);
+    // console.log(result);
   }, [search, DATA_Component]);
 
   return (
@@ -85,7 +85,7 @@ export default function Header({ DATA_Component }) {
                 type="text"
                 placeholder="Search"
                 onChange={handleChange}
-                onBlur={handBlur}
+                // onBlur={handBlur}
               />
               <button
                 type="submit"
@@ -94,7 +94,7 @@ export default function Header({ DATA_Component }) {
             </form>
             {blur && result.length > 0 && (
               <div className={`${styles.ListContainer}`}>
-                <ul>
+                <ul className={`${styles.List}`}>
                   {result.map((r, i) => (
                     <li className="ml10 my10 d-flex flex-nowrap" key={i}>
                       <p className="ml10">{r.ComponentName}</p>
