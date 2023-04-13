@@ -15,6 +15,7 @@ export default function Register() {
       .required("This field must not be empty")
       .test("isYes", "User already exist", async (value) => {
         const response = handleFetch("GetUserEmail", yup.ref(value));
+        reset(defaultValues);
         return response;
       }),
     password: yup
@@ -57,7 +58,7 @@ export default function Register() {
     passwordField.type = "password";
   }
   const defaultValues = {
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -65,6 +66,7 @@ export default function Register() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues,

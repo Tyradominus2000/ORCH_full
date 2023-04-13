@@ -1,10 +1,20 @@
 import styles from "./Login.module.scss";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { NavLink, useOutletContext } from "react-router-dom";
 
 export default function Login() {
   const { handleFetch } = useOutletContext();
+
+  const yupSchema = yup.object({
+    email: yup
+      .string()
+      .email("Use a valid email")
+      .required("This field must not be empty"),
+    password: yup.string().required("This field must not be empty"),
+  });
   //Get the password and eye tag
   let eye;
   let eyeoff;
@@ -16,6 +26,7 @@ export default function Login() {
     passwordField = document.querySelector("#password");
   }, [clickPasswordOn, clickPasswordOff]);
 
+  //If you click on the eye change the input password to text to be visible by user
   function clickPasswordOn() {
     eye.classList.add("dnone");
     eye.classList.remove("dblock");
@@ -31,14 +42,19 @@ export default function Login() {
     eyeoff.classList.remove("dblock");
     passwordField.type = "password";
   }
-
-  //If you click on the eye change the input password to text to be visible by user
+  const defaultValues = {
+    email: "",
+    password: "",
+  };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(yupSchema),
+  });
 
   function submit(values) {
     handleFetch("VerifyUser", values);
@@ -53,7 +69,7 @@ export default function Login() {
               <h2 className={`my20`}>Login in</h2>
             </div>
             <div className={`d-flex flex-column`}>
-              <label className="mb5" htmlFor="mail">
+              <label className="mb5" htmlFor="email">
                 Email :
               </label>
               <input
@@ -61,16 +77,7 @@ export default function Login() {
                 type="email"
                 id="email"
                 placeholder="Email"
-                {...register("email", {
-                  minLength: {
-                    value: 3,
-                    message: "Must have 3 charactere",
-                  },
-                  required: {
-                    value: true,
-                    message: "This field must not be empty",
-                  },
-                })}
+                {...register("email")}
               />
               {errors?.email && <p>{errors.email.message}</p>}
               <label className="mb5" htmlFor="password">
