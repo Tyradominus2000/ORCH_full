@@ -1,3 +1,3 @@
 export async function HomeLoader() {
-  return true;
+  return true
 }

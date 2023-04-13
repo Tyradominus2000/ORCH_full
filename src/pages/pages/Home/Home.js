@@ -1,18 +1,16 @@
 import styles from "./Home.module.scss";
-import { NavLink, useLoaderData, useOutletContext } from "react-router-dom";
+import { NavLink, useOutletContext } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../../context/ApiContext";
-import { article } from "../../../assets/data/article";
 
-export default function Home({ handleClick }) {
+export default function Home() {
+  const { DATA_Component } = useOutletContext();
   const URL_API = useContext(ApiContext);
   const Logged = localStorage.getItem("Logged");
-  const articles = article;
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
-  const [blur, setBlur] = useState(true);
-  const {DATA_Component} = useOutletContext();
-  // console.log(DATA_Component);
+  const [blur, setBlur] = useState(false);
+  console.log(DATA_Component);
   const handleChange = (event) => {
     setSearch(event.target.value);
   };

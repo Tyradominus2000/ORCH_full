@@ -4,13 +4,19 @@ import { useContext } from "react";
 
 import Footer from "./components/Footer/Footer";
 import { ApiBackEndContext, ApiContext } from "./context/ApiContext";
-import { Outlet, useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import {
+  Outlet,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 function App() {
   // const USER_API = useContext(ApiContext);
   const BACKEND_API = useContext(ApiBackEndContext);
   // const stateUserLogged = localStorage.getItem("Logged");
-  const DATA_Compenent = useLoaderData();
+  const DATA_Component = useLoaderData();
+  console.log(DATA_Component);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -46,7 +52,7 @@ function App() {
       case "AddUser":
         if (await FetchPost(action, JsonValue)) {
           alert("User added");
-          navigate("content/profil", {replace: true})
+          navigate("content/profil", { replace: true });
         } else {
           alert("Error User already exist");
         }
@@ -56,7 +62,7 @@ function App() {
         console.log(VerifyUser);
         if (VerifyUser.logged) {
           alert("Logged in !!!");
-          navigate("content/profil", {replace: true})
+          navigate("content/profil", { replace: true });
           localStorage.setItem("Logged", true);
           localStorage.setItem("id", VerifyUser.id);
         } else if (VerifyUser.mdp) {
@@ -82,7 +88,7 @@ function App() {
     <>
       {location.pathname.length > 1 ? (
         <div className={`d-flex flex-column ${styles.appContainer}`}>
-          <Outlet context={{ handleFetch, DATA_Compenent }} />
+          <Outlet context={{ handleFetch, DATA_Component }} />
           <Footer />
         </div>
       ) : (
