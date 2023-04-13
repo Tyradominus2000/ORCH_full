@@ -1,18 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Error from "../pages/Error/Error";
+import Home from "../pages/pages/Home/Home";
 import Content from "../pages/Content";
 import Login from "../pages/pages/Login/Login";
-import Comparator from "../pages/pages/Comparator/Comparator";
-import Profil from "../pages/pages/Profil/Profil";
 import Register from "../pages/pages/Register/Register";
-import Home from "../pages/pages/Home/Home";
+import Profil from "../pages/pages/Profil/Profil";
+import Comparator from "../pages/pages/Comparator/Comparator";
 import Builder from "../pages/pages/Builder/Builder";
-import { LoginLoader } from "../loader/LoginLoader";
-import { ProfilLoader } from "../loader/ProfilLoader";
-import { RegisterLoader } from "../loader/RegisterLoader";
-import { LogoutLoader } from "../loader/LogoutLoader";
 import Logout from "../pages/Logout/Logout";
+import Error from "../pages/Error/Error";
+import { HomeLoader } from "../loader/HomeLoader";
+import { LoginLoader } from "../loader/LoginLoader";
+import { RegisterLoader } from "../loader/RegisterLoader";
+import { ProfilLoader } from "../loader/ProfilLoader";
+import { LogoutLoader } from "../loader/LogoutLoader";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        loader: HomeLoader,
         element: <Home />,
       },
       {
@@ -48,7 +50,7 @@ export const router = createBrowserRouter([
                 loader: LogoutLoader,
                 element: <Logout />,
               },
-            ]
+            ],
           },
           {
             path: "comparator",

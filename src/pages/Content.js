@@ -1,6 +1,6 @@
 import styles from "./Content.module.scss";
-import { Outlet, useOutletContext } from "react-router-dom";
 import Header from "../components/Header/Header";
+import { Outlet, useLoaderData, useOutletContext } from "react-router-dom";
 import { useContext } from "react";
 import { ApiContext } from "../context/ApiContext";
 
