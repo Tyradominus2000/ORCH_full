@@ -93,7 +93,7 @@ function App() {
         </div>
       ) : (
         <div className={`d-flex flex-column ${styles.appContainernoHeader}`}>
-          <Outlet />
+          <Outlet context={{ handleFetch, DATA_Component }} />
           <Footer />
         </div>
       )}
