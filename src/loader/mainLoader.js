@@ -1,2 +1,2 @@
-export async function mainLoader(){
+export async function MainLoader(){
 }

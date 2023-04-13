@@ -8,7 +8,9 @@ import Profil from "../pages/pages/Profil/Profil";
 import Register from "../pages/pages/Register/Register";
 import Home from "../pages/pages/Home/Home";
 import Builder from "../pages/pages/Builder/Builder";
-import { loginLoader } from "../loader/loginLoader";
+import { LoginLoader } from "../loader/LoginLoader";
+import { ProfilLoader } from "../loader/ProfilLoader";
+import { RegisterLoader } from "../loader/RegisterLoader";
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +19,7 @@ export const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path : "/",
+        path: "/",
         element: <Home />,
       },
       {
@@ -26,15 +28,17 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "login",
-            loader: loginLoader,
+            loader: LoginLoader,
             element: <Login />,
           },
           {
             path: "register",
+            loader: RegisterLoader,
             element: <Register />,
           },
           {
             path: "profil",
+            loader: ProfilLoader,
             element: <Profil />,
           },
           {
