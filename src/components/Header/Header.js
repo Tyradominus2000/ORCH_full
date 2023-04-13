@@ -8,7 +8,7 @@ export default function Header({ DATA_Component }) {
   const Logged = localStorage.getItem("Logged");
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
-  const [blur, setBlur] = useState(true);
+  const [blur, setBlur] = useState(false);
 
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -85,7 +85,7 @@ export default function Header({ DATA_Component }) {
                 type="text"
                 placeholder="Search"
                 onChange={handleChange}
-                // onBlur={handBlur}
+                onBlur={handBlur}
               />
               <button
                 type="submit"
