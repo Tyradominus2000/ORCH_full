@@ -1,22 +1,21 @@
 import styles from "./App.module.scss";
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 import Footer from "./components/Footer/Footer";
-import { ApiContext } from "./context/ApiContext";
-import { Outlet, useLocation } from "react-router-dom";
+import { ApiBackEndContext, ApiContext } from "./context/ApiContext";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 function App() {
-  const USER_API = useContext(ApiContext);
-  const stateUserLogged = localStorage.getItem("Logged");
+  // const USER_API = useContext(ApiContext);
+  const BACKEND_API = useContext(ApiBackEndContext);
+  // const stateUserLogged = localStorage.getItem("Logged");
   const location = useLocation();
-  useEffect(() => {
-    // console.log(location);
-  }, [location]);
+  const navigate = useNavigate();
 
   //Function that handle all the backend call using the methode POST
   async function FetchPost(action, JsonValue) {
-    const response = await fetch(`http://localhost:8000/${action}`, {
+    const response = await fetch(`${BACKEND_API}/${action}`, {
       method: "POST",
       body: JsonValue,
       headers: {
@@ -46,6 +45,7 @@ function App() {
       case "AddUser":
         if (await FetchPost(action, JsonValue)) {
           alert("User added");
+          navigate("content/profil", {replace: true})
         } else {
           alert("Error User already exist");
         }
@@ -55,6 +55,7 @@ function App() {
         console.log(VerifyUser);
         if (VerifyUser.logged) {
           alert("Logged in !!!");
+          navigate("content/profil", {replace: true})
           localStorage.setItem("Logged", true);
           localStorage.setItem("id", VerifyUser.id);
         } else if (VerifyUser.mdp) {
@@ -63,10 +64,6 @@ function App() {
           alert("Error User don't exist");
         }
         break;
-      case "GetUser":
-        const GetUser = await FetchPost(action, JsonObj);
-        console.log(GetUser);
-        return GetUser;
       case "UploadPP":
         const UploadPP = await FetchPost(action, JsonValue);
         console.log(UploadPP);
@@ -79,7 +76,7 @@ function App() {
         console.log("error");
     }
   }
-  console.log("Domain:", window.location.origin);
+
   return (
     <>
       {location.pathname.length > 1 ? (
