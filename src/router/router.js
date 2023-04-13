@@ -11,6 +11,8 @@ import Builder from "../pages/pages/Builder/Builder";
 import { LoginLoader } from "../loader/LoginLoader";
 import { ProfilLoader } from "../loader/ProfilLoader";
 import { RegisterLoader } from "../loader/RegisterLoader";
+import { LogoutLoader } from "../loader/LogoutLoader";
+import Logout from "../pages/Logout/Logout";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,13 @@ export const router = createBrowserRouter([
             path: "profil",
             loader: ProfilLoader,
             element: <Profil />,
+            children: [
+              {
+                path: "logout",
+                loader: LogoutLoader,
+                element: <Logout />,
+              },
+            ]
           },
           {
             path: "comparator",

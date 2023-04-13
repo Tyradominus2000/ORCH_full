@@ -4,8 +4,6 @@ import styles from "./Profil.module.scss";
 import { useContext, useEffect, useState } from "react";
 
 export default function Profil() {
-  const { handleFetch } = useOutletContext();
-  const idUser = localStorage.getItem("id");
   const BACKEND_API = useContext(ApiBackEndContext);
   const USER_API = useContext(ApiContext);
   let infoUser = useLoaderData();
@@ -44,7 +42,7 @@ export default function Profil() {
                 src={`${USER_API}/images/server/pp.jpg`}
                 alt="profile"
               />
-              <form
+              {/* <form
                 id="image-form"
                 action={`${BACKEND_API}/UploadPP`}
                 method="post"
@@ -63,7 +61,7 @@ export default function Profil() {
                     type="submit"
                   ></i>
                 </label>
-              </form>
+              </form> */}
             </div>
             <div className={`m5`}>
               <ul>
