@@ -14,8 +14,11 @@ export default function Home() {
     setSearch(event.target.value);
   };
 
-  const handBlur = () => {
+  const handBlurOff = () => {
     setBlur(false);
+  };
+  const handBlurOn = () => {
+    setBlur(true);
   };
 
   useEffect(() => {
@@ -63,7 +66,8 @@ export default function Home() {
                     type="text"
                     placeholder="Search"
                     onChange={handleChange}
-                    // onBlur={handBlur}
+                    onBlur={handBlurOff}
+                    onFocus={handBlurOn}
                   />
                   <button
                     type="submit"

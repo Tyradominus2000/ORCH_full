@@ -14,8 +14,11 @@ export default function Header({ DATA_Component }) {
     setSearch(event.target.value);
   };
 
-  const handBlur = () => {
+  const handBlurOff = () => {
     setBlur(false);
+  };
+  const handBlurOn = () => {
+    setBlur(true);
   };
 
   useEffect(() => {
@@ -95,7 +98,8 @@ export default function Header({ DATA_Component }) {
                 type="text"
                 placeholder="Search"
                 onChange={handleChange}
-                onBlur={handBlur}
+                onBlur={handBlurOff}
+                onFocus={handBlurOn}
               />
               <button
                 type="submit"
