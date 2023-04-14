@@ -28,7 +28,7 @@ export default function Header({ DATA_Component }) {
       !(search.startsWith("sort:") || search.includes("sort:"))
     ) {
       const filteredArticles = DATA_Component.filter((Data_C) =>
-        Data_C.ComponentName.toLowerCase().startsWith(search.toLowerCase())
+        Data_C.ComponentName.toLowerCase().replace("™", "").startsWith(search.toLowerCase())
       );
       setResult(filteredArticles);
     } else if (search.startsWith("sort:") || search.includes("sort:")) {
