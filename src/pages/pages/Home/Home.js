@@ -20,9 +20,19 @@ export default function Home() {
 
   useEffect(() => {
     console.log(search);
-    if (search !== "") {
+    if (
+      search !== "" &&
+      !(search.startsWith("sort:") || search.includes("sort:"))
+    ) {
       const filteredArticles = DATA_Component.filter((Data_C) =>
         Data_C.ComponentName.toLowerCase().startsWith(search.toLowerCase())
+      );
+      setResult(filteredArticles);
+    } else if (search.startsWith("sort:") || search.includes("sort:")) {
+      const filteredArticles = DATA_Component.filter(
+        (Data_C) =>
+          Data_C.ComponentType.toUpperCase() ===
+          search.replace("sort:", "").toUpperCase()
       );
       setResult(filteredArticles);
     } else {
@@ -53,7 +63,7 @@ export default function Home() {
                     type="text"
                     placeholder="Search"
                     onChange={handleChange}
-                    onBlur={handBlur}
+                    // onBlur={handBlur}
                   />
                   <button
                     type="submit"
@@ -70,7 +80,7 @@ export default function Home() {
                         key={i}
                       >
                         <img
-                          src={URL_API + "/images/server/product/" + r.image}
+                          src={r.ComponentImage}
                           alt={`image of ` + r.ComponentName}
                         />
                         <p className="ml10">{r.ComponentName}</p>

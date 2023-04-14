@@ -8,7 +8,6 @@ export default function Content() {
   const URL_API = useContext(ApiContext);
   const { handleFetch } = useOutletContext();
   const { DATA_Component } = useOutletContext();
-  console.log(DATA_Component);
   return (
     <>
       <Header DATA_Component={DATA_Component} />
