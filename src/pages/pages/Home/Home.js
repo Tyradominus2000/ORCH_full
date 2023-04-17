@@ -68,7 +68,7 @@ export default function Home() {
                     type="text"
                     placeholder="Search"
                     onChange={handleChange}
-                    // onBlur={handBlurOff}
+                    onBlur={handBlurOff}
                     onFocus={handBlurOn}
                   />
                   <NavLink to={`/content/search?${search}`}>
