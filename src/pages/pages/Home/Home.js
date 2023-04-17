@@ -68,7 +68,7 @@ export default function Home() {
                     type="text"
                     placeholder="Search"
                     onChange={handleChange}
-                    onBlur={handBlurOff}
+                    // onBlur={handBlurOff}
                     onFocus={handBlurOn}
                   />
                   <NavLink to={`/content/search?${search}`}>
@@ -80,11 +80,11 @@ export default function Home() {
                 </form>
               </div>
               {blur && result.length > 0 && (
-                <div className={`${styles.ListContainer} d-flex `}>
-                  <ul className={`${styles.List}`}>
+                <div className={`${styles.ListContainer} d-flex flex-fill`}>
+                  <ul className={`${styles.List} flex-fill d-flex flex-column`}>
                     {result.map((r, i) => (
                       <li
-                        className="ml10 my10 d-flex align-items-center"
+                        className="ml10 my10 d-flex align-items-centers"
                         key={i}
                       >
                         <img
