@@ -15,6 +15,7 @@ import { RegisterLoader } from "../loader/RegisterLoader";
 import { ProfilLoader } from "../loader/ProfilLoader";
 import { LogoutLoader } from "../loader/LogoutLoader";
 import { AppLoader } from "../loader/AppLoader";
+import Search from "../pages/pages/Search/Search";
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
             path: "leaderboard",
             element: <></>,
           },
+          {
+            path: "search/*",
+            element: <Search />
+          }
         ],
       },
     ],

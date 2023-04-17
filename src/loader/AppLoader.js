@@ -3,3 +3,4 @@ export async function AppLoader() {
   const result = await response.json();
   return result;
 }
+

@@ -28,7 +28,9 @@ export default function Header({ DATA_Component }) {
       !(search.startsWith("sort:") || search.includes("sort:"))
     ) {
       const filteredArticles = DATA_Component.filter((Data_C) =>
-        Data_C.ComponentName.toLowerCase().replace("™", "").startsWith(search.toLowerCase())
+        Data_C.ComponentName.toLowerCase()
+          .replace("™", "")
+          .startsWith(search.toLowerCase())
       );
       setResult(filteredArticles);
     } else if (search.startsWith("sort:") || search.includes("sort:")) {
@@ -101,10 +103,12 @@ export default function Header({ DATA_Component }) {
                 onBlur={handBlurOff}
                 onFocus={handBlurOn}
               />
-              <button
-                type="submit"
-                className={`fas fa-magnifying-glass ml10 mr10 btn-none`}
-              ></button>
+              <NavLink to={`/content/search?${search}`}>
+                <button
+                  type="submit"
+                  className={`fas fa-magnifying-glass ml10 mr10 btn-none`}
+                ></button>
+              </NavLink>
             </form>
             {blur && result.length > 0 && (
               <div className={`${styles.ListContainer}`}>
