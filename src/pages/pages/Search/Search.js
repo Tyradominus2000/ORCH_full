@@ -8,6 +8,7 @@ export default function Search() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const { DATA_Component } = useOutletContext();
+  const { DATA_SearchParam } = useLoaderData();
   const [selectedValue, setSelectedValue] = useState("");
   const [hoveredItem, setHoveredItem] = useState(null);
 
