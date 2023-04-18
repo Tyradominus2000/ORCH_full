@@ -18,21 +18,11 @@ export default function Search() {
   }, []);
   useEffect(() => {
     console.log(search);
-    if (
-      search !== "" &&
-      !(search.startsWith("sort:") || search.includes("sort:"))
-    ) {
+    if (search !== "") {
       const filteredArticles = DATA_Component.filter((Data_C) =>
         Data_C.ComponentName.toLowerCase()
           .replace("™", "")
           .startsWith(search.toLowerCase())
-      );
-      setResult(filteredArticles);
-    } else if (search.startsWith("sort:") || search.includes("sort:")) {
-      const filteredArticles = DATA_Component.filter(
-        (Data_C) =>
-          Data_C.ComponentType.toUpperCase() ===
-          search.replace("sort:", "").toUpperCase()
       );
       setResult(filteredArticles);
     } else {
@@ -64,7 +54,9 @@ export default function Search() {
         </form>
         <div>
           <select id="myDropdown" value={selectedValue} onChange={handleSelect}>
-            <option value="" disabled>-- Please choose an option --</option>
+            <option value="" disabled>
+              -- Please choose an option --
+            </option>
             <option value="filter1">Option 1</option>
             <option value="filter2">Option 2</option>
             <option value="filter3">Option 3</option>
@@ -77,7 +69,10 @@ export default function Search() {
         <ul className={`${styles.List} flex-fill d-flex flex-column`}>
           {result.length ? (
             result.map((r, i) => (
-              <li className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`} key={i}>
+              <li
+                className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
+                key={i}
+              >
                 <img
                   src={r.ComponentImage}
                   alt={`image of ` + r.ComponentName}
