@@ -9,6 +9,7 @@ export default function Search() {
   const [result, setResult] = useState([]);
   const { DATA_Component } = useOutletContext();
   const [selectedValue, setSelectedValue] = useState("");
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   useEffect(() => {
     if (param) {
@@ -36,6 +37,12 @@ export default function Search() {
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
+  function handleMouseEnter(index) {
+    setHoveredItem(index);
+  }
+  function handleMouseLeave() {
+    setHoveredItem(null);
+  }
 
   return (
     <div
@@ -69,16 +76,25 @@ export default function Search() {
         <ul className={`${styles.List} flex-fill d-flex flex-column`}>
           {result.length ? (
             result.map((r, i) => (
-              <li
-                className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
-                key={i}
-              >
-                <img
-                  src={r.ComponentImage}
-                  alt={`image of ` + r.ComponentName}
-                />
-                <p className="ml10">{r.ComponentName}</p>
-              </li>
+              <>
+                <li
+                  className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
+                  key={i}
+                >
+                  <img
+                    src={r.ComponentImage}
+                    alt={`image of ` + r.ComponentName}
+                  />
+                  <p className="ml10">{r.ComponentName}</p>
+                  <div className={`${styles.ListSpec}`}>
+                    <ul>
+                      <li>
+                        <h1>{r.ComponentName}</h1>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </>
             ))
           ) : (
             <li className="d-flex justify-content-center align-items-center flex-fill">
