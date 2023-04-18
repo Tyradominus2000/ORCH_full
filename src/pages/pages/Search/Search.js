@@ -1,4 +1,4 @@
-import { useSearchParams, useOutletContext } from "react-router-dom";
+import { useSearchParams, useOutletContext, useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./Search.module.scss";
 
@@ -8,7 +8,7 @@ export default function Search() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const { DATA_Component } = useOutletContext();
-  const { DATA_SearchParam } = useLoaderData();
+  // const { DATA_SearchParam } = useLoaderData();
   const [selectedValue, setSelectedValue] = useState("");
   const [hoveredItem, setHoveredItem] = useState(null);
 
