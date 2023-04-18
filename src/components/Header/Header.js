@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../context/ApiContext";
@@ -9,7 +9,7 @@ export default function Header({ DATA_Component }) {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const [blur, setBlur] = useState(false);
-
+  const location = useLocation();
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
@@ -92,36 +92,40 @@ export default function Header({ DATA_Component }) {
               </button>
             </NavLink>
           </div>
-          <div className={`d-flex m10`}>
-            <form
-              className={`d-flex flex-nowrap justify-conten-center align-items-center`}
-            >
-              <input
-                type="text"
-                placeholder="Search"
-                onChange={handleChange}
-                onBlur={handBlurOff}
-                onFocus={handBlurOn}
-              />
-              <NavLink to={`/content/search?${search}`}>
-                <button
-                  type="submit"
-                  className={`fas fa-magnifying-glass ml10 mr10 btn-none`}
-                ></button>
-              </NavLink>
-            </form>
-            {blur && result.length > 0 && (
-              <div className={`${styles.ListContainer}`}>
-                <ul className={`${styles.List}`}>
-                  {result.map((r, i) => (
-                    <li className="ml10 my10 d-flex flex-nowrap" key={i}>
-                      <p className="ml10">{r.ComponentName}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+          {location.pathname === "/content/search" ? (
+            <></>
+          ) : (
+            <div className={`d-flex m10`}>
+              <form
+                className={`d-flex flex-nowrap justify-conten-center align-items-center`}
+              >
+                <input
+                  type="text"
+                  placeholder="Search"
+                  onChange={handleChange}
+                  onBlur={handBlurOff}
+                  onFocus={handBlurOn}
+                />
+                <NavLink to={`/content/search?${search}`}>
+                  <button
+                    type="submit"
+                    className={`fas fa-magnifying-glass ml10 mr10 btn-none`}
+                  ></button>
+                </NavLink>
+              </form>
+              {blur && result.length > 0 && (
+                <div className={`${styles.ListContainer}`}>
+                  <ul className={`${styles.List}`}>
+                    {result.map((r, i) => (
+                      <li className="ml10 my10 d-flex flex-nowrap" key={i}>
+                        <p className="ml10">{r.ComponentName}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </>
