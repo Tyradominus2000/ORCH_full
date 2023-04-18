@@ -106,7 +106,7 @@ export default function Header({ DATA_Component }) {
                   onBlur={handBlurOff}
                   onFocus={handBlurOn}
                 />
-                <NavLink to={`/content/search?${search}`}>
+                <NavLink to={`/content/search?search=${search}`}>
                   <button
                     type="submit"
                     className={`fas fa-magnifying-glass ml10 mr10 btn-none`}

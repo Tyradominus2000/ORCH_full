@@ -36,3 +36,15 @@ input{
     border: 2px solid var(--text-color);
   }
 }
+
+select{
+  border: 2px solid var(--divider);
+  border-radius: 15px;
+  padding: 10px;
+  background-color: transparent;
+  color: var(--text-color);
+  option{
+    background-color: var(--primary);
+    color: var(--text-color-3);
+  }
+}
