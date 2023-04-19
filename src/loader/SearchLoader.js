@@ -9,7 +9,7 @@ export async function SearchLoader() {
       console.log("Defaut");
   }
 
-  const response = await fetch(`http://192.168.0.26:8000/GetComponentSearch`, {
+  const response = await fetch(`http://82.65.172.140:8000/GetComponentSearch`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
