@@ -1,4 +1,4 @@
-export async function SearchLoader({request}) {
+export async function SearchLoader({ request }) {
   // const queryString = window.location.search.replace("?search=", "");
   const queryParams = new URL(request.url).searchParams.get("search");
   switch (queryParams) {
@@ -10,14 +10,17 @@ export async function SearchLoader({request}) {
       const responseGPU = await fetch(`http://localhost:8000/GetComponent/GPU`);
       const resultGPU = await responseGPU.json();
       return resultGPU;
-
     case "sort:mb":
       const responseMB = await fetch(`http://localhost:8000/GetComponent/MB`);
       const resultMB = await responseMB.json();
       return resultMB;
     default:
       console.log("Defaut");
+      const responseDefault = await fetch(
+        `http://localhost:8000/getComponent/${queryParams}`
+      );
+      const resultDefault = await responseDefault.json();
+      console.log(resultDefault);
+      return resultDefault;
   }
-
-  return false;
 }
