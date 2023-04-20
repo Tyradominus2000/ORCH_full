@@ -1,21 +1,24 @@
-import { useSearchParams } from "react-router-dom";
+export async function SearchLoader({request}) {
+  // const queryString = window.location.search.replace("?search=", "");
+  const queryParams = new URL(request.url).searchParams.get("search");
+  console.log(queryParams);
+  switch (queryParams) {
+    case "sort:cpu":
+      const responseCPU = await fetch(`http://localhost:8000/GetComponent/CPU`);
+      const resultCPU = await responseCPU.json();
+      return resultCPU;
+    case "sort:gpu":
+      const responseGPU = await fetch(`http://localhost:8000/GetComponent/GPU`);
+      const resultGPU = await responseGPU.json();
+      return resultGPU;
 
-export async function SearchLoader() {
-  const [searchparam] = useSearchParams();
-  const param = searchparam.get("search");
-
-  switch (param) {
+    case "sort:mb":
+      const responseMB = await fetch(`http://localhost:8000/GetComponent/MB`);
+      const resultMB = await responseMB.json();
+      return resultMB;
     default:
       console.log("Defaut");
   }
 
-  const response = await fetch(`http://82.65.172.140:8000/GetComponentSearch`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const result = await response.json();
-
-  return true;
+  return false;
 }

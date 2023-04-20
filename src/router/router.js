@@ -16,6 +16,7 @@ import { ProfilLoader } from "../loader/ProfilLoader";
 import { LogoutLoader } from "../loader/LogoutLoader";
 import { AppLoader } from "../loader/AppLoader";
 import Search from "../pages/pages/Search/Search";
+import { SearchLoader } from "../loader/SearchLoader";
 
 export const router = createBrowserRouter([
   {
@@ -69,8 +70,9 @@ export const router = createBrowserRouter([
           },
           {
             path: "search/*",
-            element: <Search />
-          }
+            loader: SearchLoader,
+            element: <Search />,
+          },
         ],
       },
     ],

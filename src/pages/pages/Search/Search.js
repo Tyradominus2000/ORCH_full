@@ -1,4 +1,8 @@
-import { useSearchParams, useOutletContext, useLoaderData } from "react-router-dom";
+import {
+  useSearchParams,
+  useOutletContext,
+  useLoaderData,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./Search.module.scss";
 
@@ -6,44 +10,58 @@ export default function Search() {
   const [searchparam] = useSearchParams();
   const param = searchparam.get("search");
   const [search, setSearch] = useState("");
+  const [displaysearch, setDisplaySearch] = useState("");
   const [result, setResult] = useState([]);
   const { DATA_Component } = useOutletContext();
-  // const { DATA_SearchParam } = useLoaderData();
+  const SearchComponent = useLoaderData();
   const [selectedValue, setSelectedValue] = useState("");
-  const [hoveredItem, setHoveredItem] = useState(null);
 
   useEffect(() => {
     if (param) {
       setSearch(param);
+      if (!param.includes("sort:")) {
+        setDisplaySearch(param);
+      } else {
+        console.log(param.replace("sort:", ""));
+        setSelectedValue(param.replace("sort:", ""));
+      }
     }
-    console.log(param);
   }, []);
   useEffect(() => {
-    console.log(search);
-    if (search !== "") {
-      const filteredArticles = DATA_Component.filter((Data_C) =>
-        Data_C.ComponentName.toLowerCase()
-          .replace("™", "")
-          .startsWith(search.toLowerCase())
+    if (selectedValue === "") {
+      if (search !== "" && !search.includes("sort:")) {
+        const filteredArticles = DATA_Component.filter((Data_C) =>
+          Data_C.ComponentName.toLowerCase()
+            .replace("™", "")
+            .startsWith(search.toLowerCase())
+        );
+        setResult(filteredArticles);
+      } else if (search.includes("sort:")) {
+        const component = search.replace("sort:", "");
+        const filteredArticles = DATA_Component.filter(
+          (Data_C) =>
+            Data_C.ComponentType.toUpperCase() === component.toUpperCase()
+        );
+        setResult(filteredArticles);
+      } else {
+        setResult([]);
+      }
+    } else {
+      const filteredArticles = DATA_Component.filter(
+        (Data_C) =>
+          Data_C.ComponentType.toUpperCase() === selectedValue.toUpperCase()
       );
       setResult(filteredArticles);
-    } else {
-      setResult([]);
     }
-  }, [search]);
+  }, [search, selectedValue]);
 
   function handleSelect(event) {
     setSelectedValue(event.target.value);
   }
   const handleChange = (event) => {
     setSearch(event.target.value);
+    setDisplaySearch(event.target.value);
   };
-  function handleMouseEnter(index) {
-    setHoveredItem(index);
-  }
-  function handleMouseLeave() {
-    setHoveredItem(null);
-  }
 
   return (
     <div
@@ -57,7 +75,7 @@ export default function Search() {
             type="text"
             placeholder="Search"
             onChange={handleChange}
-            value={search}
+            value={displaysearch}
           />
         </form>
         <div>
@@ -65,9 +83,9 @@ export default function Search() {
             <option value="" disabled>
               -- Please choose an option --
             </option>
-            <option value="filter1">Option 1</option>
-            <option value="filter2">Option 2</option>
-            <option value="filter3">Option 3</option>
+            <option value="cpu">CPU</option>
+            <option value="gpu">GPU</option>
+            <option value="mb">MotherBoard</option>
           </select>
         </div>
       </div>

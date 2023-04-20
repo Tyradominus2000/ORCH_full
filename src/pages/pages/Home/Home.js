@@ -71,7 +71,7 @@ export default function Home() {
                     onBlur={handBlurOff}
                     onFocus={handBlurOn}
                   />
-                  <NavLink to={`/content/search?search=${search}`}>
+                  <NavLink to={`/content/search?search=${search.toLowerCase()}`}>
                     <button
                       type="submit"
                       className={`fas fa-magnifying-glass ml10 mr10 btn-none`}

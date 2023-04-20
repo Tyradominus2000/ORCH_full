@@ -12,12 +12,7 @@ export default function Register() {
     email: yup
       .string()
       .email("Use a valid email")
-      .required("This field must not be empty")
-      .test("isYes", "User already exist", async (value) => {
-        const response = handleFetch("GetUserEmail", yup.ref(value));
-        reset(defaultValues);
-        return response;
-      }),
+      .required("This field must not be empty"),
     password: yup
       .string()
       .required("This field must not be empty")
