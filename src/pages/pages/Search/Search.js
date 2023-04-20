@@ -141,14 +141,35 @@ export default function Search() {
                     <li>
                       <h2>General Information</h2>
                     </li>
-                    <li>Brand : <>{getComponentSpec(r.idComponent, "CPUbrand")}</></li>
-                    <li>Release Date : <>{getComponentSpec(r.idComponent, "CPUreleaseDate")}</></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li>
+                      Brand : <>{getComponentSpec(r.idComponent, "CPUbrand")}</>
+                    </li>
+                    <li>
+                      Release Date :{" "}
+                      <>{getComponentSpec(r.idComponent, "CPUreleaseDate")}</>
+                    </li>
+                    <li>
+                      Price : <>{getComponentSpec(r.idComponent, "CPUprice")}</>
+                    </li>
+                    <li>
+                      CodeName :{" "}
+                      <>{getComponentSpec(r.idComponent, "CPUcodeName")}</>
+                    </li>
+                    <li>
+                      <h2>Specification</h2>
+                    </li>
+                    <li>
+                      Lithography :{" "}
+                      <>{getComponentSpec(r.idComponent, "CPUlithograph")}</>
+                    </li>
+                    <li>
+                      Number Of Core :{" "}
+                      <>{getComponentSpec(r.idComponent, "CPUcoreCount")}</>
+                    </li>
+                    <li>
+                      Number Of Thread :
+                      <>{getComponentSpec(r.idComponent, "CPUthreadCount")}</>
+                    </li>
                     <li></li>
                   </ul>
                 </div>

@@ -41,7 +41,7 @@
         background-color: var(--text-color-3);
         position: absolute;
         width: 90%;
-        max-height: 150px;
+        min-height: 150px;
         border: 2px solid var(--divider);
         position: relative;
         top: 0px;
@@ -51,6 +51,7 @@
           li{
             color: var(--text-color);
             font-size: 10px;
+            margin-left: 5px;
           }
         }
       }
