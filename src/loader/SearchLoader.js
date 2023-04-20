@@ -1,7 +1,6 @@
 export async function SearchLoader({request}) {
   // const queryString = window.location.search.replace("?search=", "");
   const queryParams = new URL(request.url).searchParams.get("search");
-  console.log(queryParams);
   switch (queryParams) {
     case "sort:cpu":
       const responseCPU = await fetch(`http://localhost:8000/GetComponent/CPU`);

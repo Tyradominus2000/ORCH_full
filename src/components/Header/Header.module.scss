@@ -4,37 +4,46 @@
   .logo {
     min-width: 159px;
     height: 150px;
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 0.25);
     &:hover {
       cursor: pointer;
     }
   }
-  .ListContainer {
-    background-color: var(--grey);
-    color: var(--text-color-3);
-    border: 2px solid var(--divider);
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    position: absolute;
-    z-index: 2;
-    top: 7.5%;
-    width: 205px;
-    max-height: 25%;
-    overflow-y: auto;
-    .List {
-      max-height: 100%;
-    }
-    p {
-      background-color: var(--blue-2);
-      border: 2px solid var(--divider);
-      color: var(--text-color);
-      border-radius: 15px;
-      padding: 5px;
-      width: 80%;
-      &:hover {
-        transition: 0.2s all;
-        background-color: var(--text-color);
-        color: var(--blue-2);
+  .Container {
+    width: 200px;
+    form {
+      width: 100%;
+      input {
+        width: 75%;
+      }
+      .ListContainer {
+        background-color: var(--grey);
+        color: var(--text-color-3);
+        border: 2px solid var(--divider);
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        position: absolute;
+        width: 200px;
+        z-index: 2;
+        top: 10%;
+        max-height: 25%;
+        overflow-y: auto;
+        .List {
+          max-height: 100%;
+        }
+        p {
+          background-color: var(--blue-2);
+          border: 2px solid var(--divider);
+          color: var(--text-color);
+          border-radius: 15px;
+          padding: 5px;
+          width: 80%;
+          &:hover {
+            transition: 0.2s all;
+            background-color: var(--text-color);
+            color: var(--blue-2);
+          }
+        }
       }
     }
   }

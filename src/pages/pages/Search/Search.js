@@ -17,15 +17,17 @@ export default function Search() {
   const [selectedValue, setSelectedValue] = useState("");
   //First use effect only execute at the first render
   useEffect(() => {
-    if (param) {
-      setSearch(param);
-      if (!param.includes("sort:")) {
-        setDisplaySearch(param);
-      } else {
-        console.log(param.replace("sort:", ""));
-        setSelectedValue(param.replace("sort:", ""));
+    function handleParam() {
+      if (param) {
+        setSearch(param);
+        if (!param.includes("sort:")) {
+          setDisplaySearch(param);
+        } else {
+          setSelectedValue(param.replace("sort:", ""));
+        }
       }
     }
+    handleParam();
   }, []);
   //Handle all the change to search (probably need to make it a function and make it own file)
   useEffect(() => {
@@ -53,22 +55,35 @@ export default function Search() {
           (Data_C) =>
             Data_C.ComponentType.toUpperCase() === selectedValue.toUpperCase()
         );
-        setResult(filteredArticles);
-        if (search !== "") {
+        if (displaysearch !== "") {
           const filteredArticlesSearch = filteredArticles.filter((Data_C) =>
             Data_C.ComponentName.toLowerCase()
               .replace("™", "")
               .startsWith(search.toLowerCase())
           );
           setResult(filteredArticlesSearch);
+        } else {
+          setResult(filteredArticles);
         }
       }
     }
     handleSearch();
   }, [search, selectedValue]);
 
+  function getComponentSpec(id, attribute) {
+    for (const component of SearchComponent) {
+      if (component.idComponent === id) {
+        return component[attribute];
+      }
+    }
+  }
+
   function handleSelect(event) {
     setSelectedValue(event.target.value);
+    if (event.target.value === "reset") {
+      setSelectedValue("");
+      setSearch("");
+    }
   }
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -98,6 +113,7 @@ export default function Search() {
             <option value="cpu">CPU</option>
             <option value="gpu">GPU</option>
             <option value="mb">MotherBoard</option>
+            <option value="reset">Reset</option>
           </select>
         </div>
       </div>
@@ -121,6 +137,19 @@ export default function Search() {
                     <li>
                       <h1>{r.ComponentName}</h1>
                     </li>
+                    {/* Spec Principal */}
+                    <li>
+                      <h2>General Information</h2>
+                    </li>
+                    <li>Brand : <>{getComponentSpec(r.idComponent, "CPUbrand")}</></li>
+                    <li>Release Date : <>{getComponentSpec(r.idComponent, "CPUreleaseDate")}</></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
                   </ul>
                 </div>
               </li>

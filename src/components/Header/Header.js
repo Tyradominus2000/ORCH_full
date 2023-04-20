@@ -8,7 +8,7 @@ export default function Header({ DATA_Component }) {
   const Logged = localStorage.getItem("Logged");
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
-  const [blur, setBlur] = useState(false);
+  const [blur, setBlur] = useState(true);
   const location = useLocation();
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -22,7 +22,6 @@ export default function Header({ DATA_Component }) {
   };
 
   useEffect(() => {
-    console.log(search);
     if (
       search !== "" &&
       !(search.startsWith("sort:") || search.includes("sort:"))
@@ -61,33 +60,33 @@ export default function Header({ DATA_Component }) {
           className={`d-flex flex-fill justify-content-between align-items-center`}
         >
           <div
-            className={`d-flex flex-fill justify-content-evenly ml10 mr5-100`}
+            className={`d-flex flex-fill m10 mr5-100`}
           >
             {Logged ? (
               <NavLink to={"profil"}>
-                <button type="button" className={`btn btn-primary`}>
+                <button type="button" className={`btn btn-primary m10`}>
                   Profils
                 </button>
               </NavLink>
             ) : (
               <NavLink to={"login"}>
-                <button type="button" className={`btn btn-primary`}>
+                <button type="button" className={`btn btn-primary m10`}>
                   Profils
                 </button>
               </NavLink>
             )}
             <NavLink to={"comparator"}>
-              <button type="button" className={`btn btn-primary`}>
+              <button type="button" className={`btn btn-primary m10`}>
                 Comparateur
               </button>
             </NavLink>
             <NavLink to={"builder"}>
-              <button type="button" className={`btn btn-primary`}>
+              <button type="button" className={`btn btn-primary m10`}>
                 Builder
               </button>
             </NavLink>
             <NavLink to={"leaderboard"}>
-              <button type="button" className={`btn btn-primary`}>
+              <button type="button" className={`btn btn-primary m10`}>
                 LeaderBoard
               </button>
             </NavLink>
@@ -95,7 +94,7 @@ export default function Header({ DATA_Component }) {
           {location.pathname === "/content/search" ? (
             <></>
           ) : (
-            <div className={`d-flex m10`}>
+            <div className={`d-flex m10 ${styles.Container}`}>
               <form
                 className={`d-flex flex-nowrap justify-conten-center align-items-center`}
               >
@@ -103,8 +102,8 @@ export default function Header({ DATA_Component }) {
                   type="text"
                   placeholder="Search"
                   onChange={handleChange}
-                  onBlur={handBlurOff}
-                  onFocus={handBlurOn}
+                  // onBlur={handBlurOff}
+                  // onFocus={handBlurOn}
                 />
                 <NavLink to={`/content/search?search=${search.toLowerCase()}`}>
                   <button
@@ -112,7 +111,6 @@ export default function Header({ DATA_Component }) {
                     className={`fas fa-magnifying-glass ml10 mr10 btn-none`}
                   ></button>
                 </NavLink>
-              </form>
               {blur && result.length > 0 && (
                 <div className={`${styles.ListContainer}`}>
                   <ul className={`${styles.List}`}>
@@ -124,6 +122,7 @@ export default function Header({ DATA_Component }) {
                   </ul>
                 </div>
               )}
+              </form>
             </div>
           )}
         </div>
