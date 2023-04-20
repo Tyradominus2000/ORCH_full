@@ -15,7 +15,7 @@ export default function Search() {
   const { DATA_Component } = useOutletContext();
   const SearchComponent = useLoaderData();
   const [selectedValue, setSelectedValue] = useState("");
-
+  //First use effect only execute at the first render
   useEffect(() => {
     if (param) {
       setSearch(param);
@@ -27,32 +27,44 @@ export default function Search() {
       }
     }
   }, []);
+  //Handle all the change to search (probably need to make it a function and make it own file)
   useEffect(() => {
-    if (selectedValue === "") {
-      if (search !== "" && !search.includes("sort:")) {
-        const filteredArticles = DATA_Component.filter((Data_C) =>
-          Data_C.ComponentName.toLowerCase()
-            .replace("™", "")
-            .startsWith(search.toLowerCase())
-        );
-        setResult(filteredArticles);
-      } else if (search.includes("sort:")) {
-        const component = search.replace("sort:", "");
+    function handleSearch() {
+      if (selectedValue === "") {
+        if (search !== "" && !search.includes("sort:")) {
+          const filteredArticles = DATA_Component.filter((Data_C) =>
+            Data_C.ComponentName.toLowerCase()
+              .replace("™", "")
+              .startsWith(search.toLowerCase())
+          );
+          setResult(filteredArticles);
+        } else if (search.includes("sort:")) {
+          const component = search.replace("sort:", "");
+          const filteredArticles = DATA_Component.filter(
+            (Data_C) =>
+              Data_C.ComponentType.toUpperCase() === component.toUpperCase()
+          );
+          setResult(filteredArticles);
+        } else {
+          setResult([]);
+        }
+      } else {
         const filteredArticles = DATA_Component.filter(
           (Data_C) =>
-            Data_C.ComponentType.toUpperCase() === component.toUpperCase()
+            Data_C.ComponentType.toUpperCase() === selectedValue.toUpperCase()
         );
         setResult(filteredArticles);
-      } else {
-        setResult([]);
+        if (search !== "") {
+          const filteredArticlesSearch = filteredArticles.filter((Data_C) =>
+            Data_C.ComponentName.toLowerCase()
+              .replace("™", "")
+              .startsWith(search.toLowerCase())
+          );
+          setResult(filteredArticlesSearch);
+        }
       }
-    } else {
-      const filteredArticles = DATA_Component.filter(
-        (Data_C) =>
-          Data_C.ComponentType.toUpperCase() === selectedValue.toUpperCase()
-      );
-      setResult(filteredArticles);
     }
+    handleSearch();
   }, [search, selectedValue]);
 
   function handleSelect(event) {
@@ -95,25 +107,23 @@ export default function Search() {
         <ul className={`${styles.List} flex-fill d-flex flex-column`}>
           {result.length ? (
             result.map((r, i) => (
-              <>
-                <li
-                  className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
-                  key={i}
-                >
-                  <img
-                    src={r.ComponentImage}
-                    alt={`image of ` + r.ComponentName}
-                  />
-                  <p className="ml10">{r.ComponentName}</p>
-                  <div className={`${styles.ListSpec}`}>
-                    <ul>
-                      <li>
-                        <h1>{r.ComponentName}</h1>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </>
+              <li
+                className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
+                key={r.idComponent}
+              >
+                <img
+                  src={r.ComponentImage}
+                  alt={`image of ` + r.ComponentName}
+                />
+                <p className="ml10">{r.ComponentName}</p>
+                <div className={`${styles.ListSpec}`}>
+                  <ul>
+                    <li>
+                      <h1>{r.ComponentName}</h1>
+                    </li>
+                  </ul>
+                </div>
+              </li>
             ))
           ) : (
             <li className="d-flex justify-content-center align-items-center flex-fill">
