@@ -5,7 +5,6 @@ import { ApiContext } from "../../context/ApiContext";
 
 export default function Header({ DATA_Component }) {
   const URL_API = useContext(ApiContext);
-  const Logged = localStorage.getItem("Logged");
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const [blur, setBlur] = useState(true);
@@ -62,7 +61,7 @@ export default function Header({ DATA_Component }) {
           <div
             className={`d-flex flex-fill m10 mr5-100`}
           >
-            {Logged ? (
+            {true ? (
               <NavLink to={"profil"}>
                 <button type="button" className={`btn btn-primary m10`}>
                   Profils
@@ -102,8 +101,8 @@ export default function Header({ DATA_Component }) {
                   type="text"
                   placeholder="Search"
                   onChange={handleChange}
-                  // onBlur={handBlurOff}
-                  // onFocus={handBlurOn}
+                  onBlur={handBlurOff}
+                  onFocus={handBlurOn}
                 />
                 <NavLink to={`/content/search?search=${search.toLowerCase()}`}>
                   <button

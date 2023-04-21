@@ -57,7 +57,7 @@ export default function Login() {
   });
 
   function submit(values) {
-    handleFetch("VerifyUser", values);
+    handleFetch("Signin", values);
     console.log(values);
   }
   return (

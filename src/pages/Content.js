@@ -1,7 +1,7 @@
 import styles from "./Content.module.scss";
 import Header from "../components/Header/Header";
 import { Outlet, useOutletContext } from "react-router-dom";
-import { useContext } from "react";
+import { Suspense, useContext } from "react";
 import { ApiContext } from "../context/ApiContext";
 
 export default function Content() {
@@ -19,7 +19,9 @@ export default function Content() {
           src={URL_API + "/images/server/pub.png"}
           alt="Publicité"
         ></img>
-        <Outlet context={{ handleFetch, DATA_Component }} />
+        <Suspense fallback={<h1>Chargement ...</h1>}>
+          <Outlet context={{ handleFetch, DATA_Component }} />
+        </Suspense>
         <img
           className={`flex-fill ${styles.Pub} mr2-100`}
           src={URL_API + "/images/server/pub.png"}

@@ -1,6 +1,6 @@
 import styles from "./App.module.scss";
 
-import { useContext } from "react";
+import { Suspense, useContext } from "react";
 
 import Footer from "./components/Footer/Footer";
 import { ApiBackEndContext, ApiContext } from "./context/ApiContext";
@@ -12,9 +12,7 @@ import {
 } from "react-router-dom";
 
 function App() {
-  // const USER_API = useContext(ApiContext);
   const BACKEND_API = useContext(ApiBackEndContext);
-  // const stateUserLogged = localStorage.getItem("Logged");
   const DATA_Component = useLoaderData();
   const location = useLocation();
   const navigate = useNavigate();
@@ -33,7 +31,7 @@ function App() {
       console.log({ responseFromBackEnd });
       return responseFromBackEnd;
     } else {
-      return false;
+      throw new Error(`Something when wrong with ${action}`);
     }
   }
   //Function intermediate between the child and the FetchPost
@@ -50,24 +48,22 @@ function App() {
     switch (action) {
       case "AddUser":
         if (await FetchPost(action, JsonValue)) {
-          alert("User added");
-          navigate("content/profil", { replace: true });
+          // alert("User added");
+          // navigate("content/profil", { replace: true });
         } else {
-          alert("Error User already exist");
+          // alert("Error User already exist");
         }
         break;
-      case "VerifyUser":
+      case "Signin":
         const VerifyUser = await FetchPost(action, JsonValue);
         console.log(VerifyUser);
-        if (VerifyUser.logged) {
-          alert("Logged in !!!");
-          navigate("content/profil", { replace: true });
-          localStorage.setItem("Logged", true);
-          localStorage.setItem("id", VerifyUser.id);
-        } else if (VerifyUser.mdp) {
-          alert("Invalid password");
+        if (VerifyUser) {
+          // alert("Logged in !!!");
+          console.log("Login");
+          // navigate("content/profil", { replace: true });
         } else {
-          alert("Error User don't exist");
+          console.log("Not login");
+          // alert("Error User don't exist");
         }
         break;
       case "UploadPP":
@@ -87,12 +83,16 @@ function App() {
     <>
       {location.pathname.length > 1 ? (
         <div className={`d-flex flex-column ${styles.appContainer}`}>
-          <Outlet context={{ handleFetch, DATA_Component }} />
+          <Suspense fallback={<h1>Chargement ...</h1>}>
+            <Outlet context={{ handleFetch, DATA_Component }} />
+          </Suspense>
           <Footer />
         </div>
       ) : (
         <div className={`d-flex flex-column ${styles.appContainernoHeader}`}>
-          <Outlet context={{ handleFetch, DATA_Component }} />
+          <Suspense fallback={<h1>Chargement ...</h1>}>
+            <Outlet context={{ handleFetch, DATA_Component }} />
+          </Suspense>
           <Footer />
         </div>
       )}

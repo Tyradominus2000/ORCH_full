@@ -10,7 +10,7 @@ import { router } from "./router/router";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ApiBackEndContext.Provider value={"https://backend-zuaq.onrender.com"}>
+    <ApiBackEndContext.Provider value={"http://localhost:8000"}>
       <ApiContext.Provider value={window.location.origin}>
         <RouterProvider router={router}></RouterProvider>
       </ApiContext.Provider>
