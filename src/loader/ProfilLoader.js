@@ -6,7 +6,7 @@ export async function ProfilLoader() {
   console.log(obj);
   if (obj.id) {
     const JsonValue = JSON.stringify(obj);
-    const response = await fetch(`http://localhost:8000/GetUser`, {
+    const response = await fetch(`https://backend-zuaq.onrender.com/GetUser`, {
       method: "POST",
       body: JsonValue,
       headers: {

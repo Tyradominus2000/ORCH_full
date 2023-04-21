@@ -22,7 +22,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log(search);
     if (
       search !== "" &&
       !(search.startsWith("sort:") || search.includes("sort:"))
