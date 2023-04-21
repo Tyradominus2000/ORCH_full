@@ -1,8 +1,7 @@
 import { redirect } from "react-router-dom";
 
 export function LogoutLoader() {
-  const Logged = localStorage.getItem("Logged");
-  if (Logged) {
+  if (true) {
     localStorage.removeItem("Logged");
     localStorage.removeItem("id");
     return redirect("/content/login");
