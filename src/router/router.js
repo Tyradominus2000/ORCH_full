@@ -7,7 +7,7 @@ import Register from "../pages/pages/Register/Register";
 import Profil from "../pages/pages/Profil/Profil";
 import Comparator from "../pages/pages/Comparator/Comparator";
 import Builder from "../pages/pages/Builder/Builder";
-import Logout from "../pages/pages/Logout/Logout";
+import Logout from "../pages/pages/Profil/Logout/Logout";
 import Error from "../pages/Error/Error";
 import { HomeLoader } from "../loader/HomeLoader";
 import { LoginLoader } from "../loader/LoginLoader";

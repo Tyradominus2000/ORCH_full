@@ -4,28 +4,34 @@ import styles from "./Profil.module.scss";
 import { useContext, useEffect, useState } from "react";
 
 export default function Profil() {
-  const BACKEND_API = useContext(ApiBackEndContext);
   const USER_API = useContext(ApiContext);
-  let infoUser = useLoaderData();
+  const { User } = useOutletContext();
   let form;
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   function getInfoUser() {
-    console.log({ infoUser });
-    setUsername(infoUser[0].Username);
-    setEmail(infoUser[0].Useremail);
-    console.log(username);
-    console.log(email);
+    if (User) {
+      console.log({ User });
+      setUsername(User[0].Username);
+      setEmail(User[0].Useremail);
+      console.log(username);
+      console.log(email);
+    } else {
+      setUsername("Default Username");
+      setEmail("Default Email");
+      console.log(username);
+      console.log(email);
+    }
   }
-  useEffect(() => {
-    form = document.getElementById("image-form");
-  }, [handleChange]);
+  // useEffect(() => {
+  //   form = document.getElementById("image-form");
+  // }, [handleChange]);
   useEffect(() => {
     getInfoUser();
-  }, []);
-  function handleChange() {
-    form.submit();
-  }
+  }, [username, email]);
+  // function handleChange() {
+  //   form.submit();
+  // }
 
   return (
     <>

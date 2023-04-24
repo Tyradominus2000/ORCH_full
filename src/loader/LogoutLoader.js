@@ -1,10 +1,15 @@
 import { redirect } from "react-router-dom";
+import { API_BackendURL } from "../context/ApiURL";
 
-export function LogoutLoader() {
-  const Logged = document.cookie;
-  if (Logged) {
-    return redirect("/content/login");
+export async function LogoutLoader() {
+  const response = await fetch(API_BackendURL + "/Logout", {
+    method: "DELETE",
+    credentials: "include",
+  });
+  console.log(response);
+  if (response.ok) {
+    return redirect("/content");
   } else {
-    return redirect("/content/profil");
+    throw new Error("Fail to Logout");
   }
 }

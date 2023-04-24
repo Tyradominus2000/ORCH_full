@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../../context/ApiContext";
 
 export default function Home() {
-  const { DATA_Component } = useOutletContext();
+  const DATA_Component = useOutletContext();
   const URL_API = useContext(ApiContext);
   const Logged = localStorage.getItem("Logged");
   const [search, setSearch] = useState("");
@@ -13,7 +13,6 @@ export default function Home() {
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
-
   const handBlurOff = () => {
     setBlur(false);
   };
@@ -70,7 +69,9 @@ export default function Home() {
                     onBlur={handBlurOff}
                     onFocus={handBlurOn}
                   />
-                  <NavLink to={`/content/search?search=${search.toLowerCase()}`}>
+                  <NavLink
+                    to={`/content/search?search=${search.toLowerCase()}`}
+                  >
                     <button
                       type="submit"
                       className={`fas fa-magnifying-glass ml10 mr10 btn-none`}

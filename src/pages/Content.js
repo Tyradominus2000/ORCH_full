@@ -6,8 +6,8 @@ import { ApiContext } from "../context/ApiContext";
 
 export default function Content() {
   const URL_API = useContext(ApiContext);
-  const { handleFetch } = useOutletContext();
   const { DATA_Component } = useOutletContext();
+  const { User } = useOutletContext();
   return (
     <>
       <Header DATA_Component={DATA_Component} />
@@ -20,7 +20,7 @@ export default function Content() {
           alt="Publicité"
         ></img>
         <Suspense fallback={<h1>Chargement ...</h1>}>
-          <Outlet context={{ handleFetch, DATA_Component }} />
+          <Outlet context={{ DATA_Component, User }} />
         </Suspense>
         <img
           className={`flex-fill ${styles.Pub} mr2-100`}

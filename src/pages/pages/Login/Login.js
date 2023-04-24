@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { NavLink, useOutletContext } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { FetchContext } from "../../../context/FetchContext";
+import { useContext } from "react";
 
 export default function Login() {
-  const { handleFetch } = useOutletContext();
+  const { handleFetch } = useContext(FetchContext);
 
   const yupSchema = yup.object({
     email: yup

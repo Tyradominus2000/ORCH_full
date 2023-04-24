@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./assets/styles/index.scss";
-// import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ApiBackEndContext, ApiContext } from "./context/ApiContext";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router/router";
+import { API_BackendURL } from "./context/ApiURL";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ApiBackEndContext.Provider value={"http://localhost:8000"}>
+    <ApiBackEndContext.Provider value={API_BackendURL}>
       <ApiContext.Provider value={window.location.origin}>
         <RouterProvider router={router}></RouterProvider>
       </ApiContext.Provider>
