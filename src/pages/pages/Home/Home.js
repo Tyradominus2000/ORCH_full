@@ -6,7 +6,7 @@ import { ApiContext } from "../../../context/ApiContext";
 export default function Home() {
   const DATA_Component = useOutletContext();
   const URL_API = useContext(ApiContext);
-  const Logged = localStorage.getItem("Logged");
+  const Logged = document.cookie.token;
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const [blur, setBlur] = useState(false);
@@ -117,7 +117,7 @@ export default function Home() {
                   type="button"
                   className={`btn btn-primary-home mr20 ml20`}
                 >
-                  PROFIL
+                  LOGIN
                 </button>
               </NavLink>
             )}

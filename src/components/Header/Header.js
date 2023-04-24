@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../context/ApiContext";
 
 export default function Header({ DATA_Component }) {
+  const Logged = document.cookie.token;
   const URL_API = useContext(ApiContext);
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
@@ -61,7 +62,7 @@ export default function Header({ DATA_Component }) {
           <div
             className={`d-flex flex-fill m10 mr5-100`}
           >
-            {true ? (
+            {Logged ? (
               <NavLink to={"profil"}>
                 <button type="button" className={`btn btn-primary m10`}>
                   Profils
@@ -70,7 +71,7 @@ export default function Header({ DATA_Component }) {
             ) : (
               <NavLink to={"login"}>
                 <button type="button" className={`btn btn-primary m10`}>
-                  Profils
+                  Login
                 </button>
               </NavLink>
             )}
