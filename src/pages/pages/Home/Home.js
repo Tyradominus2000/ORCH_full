@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../../context/ApiContext";
 
 export default function Home() {
-  const DATA_Component = useOutletContext();
+  const { DATA_Component } = useOutletContext();
   const URL_API = useContext(ApiContext);
   const Logged = document.cookie.token;
   const [search, setSearch] = useState("");
