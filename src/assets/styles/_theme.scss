@@ -109,7 +109,16 @@ input {
   border-radius: 15px;
 }
 
-
-.form-error{
-  color: var(--error);
+.form {
+  &-error {
+    color: var(--error);
+  }
+  &-question{
+    color: var(--text-color);
+    font-size: 75%;
+    text-decoration: underline;
+    &:hover{
+      cursor: pointer;
+    }
+  }
 }

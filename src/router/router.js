@@ -17,6 +17,7 @@ import { ProfilLoader } from "../loader/ProfilLoader";
 import { LogoutLoader } from "../loader/LogoutLoader";
 import { AppLoader } from "../loader/AppLoader";
 import { SearchLoader } from "../loader/SearchLoader";
+import Reset from "../pages/pages/Content/pages/Reset/Reset";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
             path: "login",
             loader: LoginLoader,
             element: <Login />,
+          },
+          {
+            path: "reset",
+            element: <Reset />,
           },
           {
             path: "register",

@@ -1,4 +1,4 @@
-import styles from "./Login.module.scss";
+import styles from "./Reset.module.scss";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import * as yup from "yup";
@@ -7,15 +7,15 @@ import { NavLink } from "react-router-dom";
 import { FetchContext } from "../../../../../context/FetchContext";
 import { useContext } from "react";
 
-export default function Login() {
+export default function Reset() {
   const { handleFetch } = useContext(FetchContext);
 
   const yupSchema = yup.object({
-    email: yup
-      .string()
-      .email("Use a valid email")
-      .required("This field must not be empty"),
     password: yup.string().required("This field must not be empty"),
+    confirmPassword: yup
+      .string()
+      .required("This field must not be empty")
+      .oneOf([yup.ref("password"), null], "Password must be the same"),
   });
   //Get the password and eye tag
   let eye;
@@ -45,8 +45,8 @@ export default function Login() {
     passwordField.type = "password";
   }
   const defaultValues = {
-    email: "",
     password: "",
+    confirmPassword: "",
   };
 
   const {
@@ -62,13 +62,7 @@ export default function Login() {
 
   async function submit(values) {
     console.log(values);
-    clearErrors();
-    if ((await handleFetch("Signin", values)) === false) {
-      setError("generic", {
-        type: "generic",
-        message: "Wrong password or email",
-      });
-    }
+    handleFetch("")
   }
   return (
     <>
@@ -76,20 +70,9 @@ export default function Login() {
         <form className={`d-flex flex-column`} onSubmit={handleSubmit(submit)}>
           <div className={`${styles.Login}`}>
             <div>
-              <h2 className={`my20`}>Login in</h2>
+              <h2 className={`my20`}>Reset Password</h2>
             </div>
             <div className={`d-flex flex-column`}>
-              <label className="mb5" htmlFor="email">
-                Email :
-              </label>
-              <input
-                className={`my20 p20 ${styles.Email}`}
-                type="email"
-                id="email"
-                placeholder="Email"
-                {...register("email")}
-              />
-              {errors?.email && <p>{errors.email.message}</p>}
               <label className="mb5" htmlFor="password">
                 Password :
               </label>
@@ -112,6 +95,19 @@ export default function Login() {
                   ></i>
                 </div>
                 {errors?.password && <p>{errors.password.message}</p>}
+                <label className="mb5" htmlFor="confirmPassword">
+                  Confirm Password :
+                </label>
+                <div className={`d-flex align-items-center`}>
+                  <input
+                    className={`my20 p20 ${styles.Password}`}
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm Password"
+                    {...register("confirmPassword")}
+                  />
+                </div>
+                {errors?.password && <p>{errors.confirmPassword.message}</p>}
               </div>
             </div>
           </div>
@@ -127,16 +123,9 @@ export default function Login() {
                 Cancel
               </button>
             </NavLink>
-            <button className={`m5 btn btn-primary`}>Log in</button>
+            <button className={`m5 btn btn-primary`}>Reset</button>
           </div>
         </form>
-        <NavLink to={"../register"}>
-          <div
-            className={`p20 my30 d-flex justify-content-center align-items-center ${styles.Register}`}
-          >
-            <h2>Not Registered DO IT NOW !!!</h2>
-          </div>
-        </NavLink>
       </div>
     </>
   );
