@@ -153,43 +153,156 @@ export default function Search() {
                 <p className="ml10">{r.ComponentName}</p>
                 <div className={`${styles.ListSpec}`}>
                   <ul>
-                    <li>
-                      <h1>{r.ComponentName}</h1>
-                    </li>
-                    {/* Spec Principal */}
-                    <li>
-                      <h2>General Information</h2>
-                    </li>
-                    <li>
-                      Brand : <>{getComponentSpec(r.idComponent, "CPUbrand")}</>
-                    </li>
-                    <li>
-                      Release Date :{" "}
-                      <>{getComponentSpec(r.idComponent, "CPUreleaseDate")}</>
-                    </li>
-                    <li>
-                      Price : <>{getComponentSpec(r.idComponent, "CPUprice")}</>
-                    </li>
-                    <li>
-                      CodeName :{" "}
-                      <>{getComponentSpec(r.idComponent, "CPUcodeName")}</>
-                    </li>
-                    <li>
-                      <h2>Specification</h2>
-                    </li>
-                    <li>
-                      Lithography :{" "}
-                      <>{getComponentSpec(r.idComponent, "CPUlithograph")}</>
-                    </li>
-                    <li>
-                      Number Of Core :{" "}
-                      <>{getComponentSpec(r.idComponent, "CPUcoreCount")}</>
-                    </li>
-                    <li>
-                      Number Of Thread :
-                      <>{getComponentSpec(r.idComponent, "CPUthreadCount")}</>
-                    </li>
-                    <li></li>
+                    {r.ComponentType === "CPU" ? (
+                      <>
+                        <li>
+                          <h1>{r.ComponentName}</h1>
+                        </li>
+                        <li>
+                          <h2>General Information</h2>
+                        </li>
+                        <li>
+                          Brand :{" "}
+                          <>{getComponentSpec(r.idComponent, "CPUbrand")}</>
+                        </li>
+                        <li>
+                          Release Date :{" "}
+                          <>
+                            {getComponentSpec(r.idComponent, "CPUreleaseDate")}
+                          </>
+                        </li>
+                        <li>
+                          Price :{" "}
+                          <>{getComponentSpec(r.idComponent, "CPUprice")}</>
+                        </li>
+                        <li>
+                          CodeName :{" "}
+                          <>{getComponentSpec(r.idComponent, "CPUcodeName")}</>
+                        </li>
+                        <li>
+                          <h2>Specification</h2>
+                        </li>
+                        <li>
+                          Lithography :{" "}
+                          <>
+                            {getComponentSpec(r.idComponent, "CPUlithograph")}
+                          </>
+                        </li>
+                        <li>
+                          Socket :{" "}
+                          <>{getComponentSpec(r.idComponent, "CPUSockets")}</>
+                        </li>
+                        <li>
+                          Number Of Core :{" "}
+                          <>{getComponentSpec(r.idComponent, "CPUcoreCount")}</>
+                        </li>
+                        <li>
+                          Number Of Thread :{" "}
+                          <>
+                            {getComponentSpec(r.idComponent, "CPUthreadCount")}
+                          </>
+                        </li>
+                        <li>
+                          TDP :{" "}
+                          <>{getComponentSpec(r.idComponent, "CPUmaxTDP")}</>
+                        </li>
+                        <li>
+                          Max Temp :{" "}
+                          <>{getComponentSpec(r.idComponent, "CPUmaxTemp")}</>
+                        </li>
+                        <li>
+                          <h2>Memory</h2>
+                        </li>
+                        <li>
+                          Memory Type :{" "}
+                          <>
+                            {getComponentSpec(r.idComponent, "CPUtypeMemory")}
+                          </>
+                        </li>
+                        <li>
+                          Max Memory :{" "}
+                          <>{getComponentSpec(r.idComponent, "CPUmaxMemory")}</>
+                        </li>
+                        <li>
+                          Memory Channels :{" "}
+                          <>
+                            {getComponentSpec(
+                              r.idComponent,
+                              "CPUnumberMemoryChannel"
+                            )}
+                          </>
+                        </li>
+                        <li>
+                          Memory Bandwidth :{" "}
+                          <>
+                            {getComponentSpec(
+                              r.idComponent,
+                              "CPUmaxMemoryBandwidth"
+                            )}
+                          </>
+                        </li>
+                        <li>
+                          Support ECC :{" "}
+                          <>
+                            {getComponentSpec(
+                              r.idComponent,
+                              "CPUsupportECCMemory"
+                            ) === 0 ? (
+                              "No"
+                            ) : (
+                              <></>
+                            )}
+                          </>
+                        </li>
+                        <li>
+                          <h2>Graphic</h2>
+                        </li>
+                        <li>
+                          Graphic Name :{" "}
+                          <>
+                            {getComponentSpec(r.idComponent, "CPUitgdGraphic")}
+                          </>
+                        </li>
+                        <li>
+                          Graphic Freq :{" "}
+                          <>
+                            {getComponentSpec(
+                              r.idComponent,
+                              "CPUitgdGraphicFreq"
+                            )}
+                          </>
+                        </li>
+                        <li>
+                          Graphic Max Freq :{" "}
+                          <>
+                            {getComponentSpec(
+                              r.idComponent,
+                              "CPUitgdGraphicMaxFreq"
+                            )}
+                          </>
+                        </li>
+                        <li>
+                          Graphic Memory :{" "}
+                          <>
+                            {getComponentSpec(
+                              r.idComponent,
+                              "CPUitgdGraphicMaxMemory"
+                            )}
+                          </>
+                        </li>
+                        <li>
+                          Support 4k :{" "}
+                          <>
+                            {getComponentSpec(
+                              r.idComponent,
+                              "CPUitgdGraphicSupport4K"
+                            )}
+                          </>
+                        </li>
+                      </>
+                    ) : (
+                      <></>
+                    )}
                   </ul>
                 </div>
               </li>
