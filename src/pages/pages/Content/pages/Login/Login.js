@@ -52,15 +52,23 @@ export default function Login() {
   const {
     register,
     handleSubmit,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm({
     defaultValues,
     resolver: yupResolver(yupSchema),
   });
 
-  function submit(values) {
-    handleFetch("Signin", values);
+  async function submit(values) {
     console.log(values);
+    clearErrors();
+    if ((await handleFetch("Signin", values)) === false) {
+      setError("generic", {
+        type: "generic",
+        message: "Wrong password or email",
+      });
+    }
   }
   return (
     <>
@@ -112,6 +120,9 @@ export default function Login() {
               </div>
             </div>
           </div>
+          {errors.generic && (
+            <p className="form-error">{errors.generic.message}</p>
+          )}
           <div className={`d-flex justify-content-end ${styles.Btn}`}>
             <NavLink to={"../../"}>
               <button type="button" className={`m5 btn btn-primary-reverse`}>

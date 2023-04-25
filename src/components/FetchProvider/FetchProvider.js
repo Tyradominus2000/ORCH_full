@@ -49,17 +49,17 @@ export default function FetchProvider({ children }) {
         if (await FetchPost(action, JsonValue)) {
           navigate("content/login", { replace: true });
         } else {
-          return null;
+          return false;
         }
         break;
       case "Signin":
         const VerifyUser = await FetchPost(action, JsonValue, true);
         console.log(VerifyUser);
-        if (VerifyUser) {
+        if (VerifyUser !== false) {
           navigate("content/profil", { replace: true });
           window.location.reload();
         } else {
-          return null;
+          return false;
         }
         break;
       case "UploadPP":

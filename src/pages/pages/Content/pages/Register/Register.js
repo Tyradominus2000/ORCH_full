@@ -63,7 +63,8 @@ export default function Register() {
   const {
     register,
     handleSubmit,
-    reset,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm({
     defaultValues,
@@ -71,7 +72,14 @@ export default function Register() {
   });
 
   async function submit(values) {
-    handleFetch("AddUser", values);
+    console.log(values);
+    clearErrors();
+    if ((await handleFetch("AddUser", values)) === false) {
+      setError("generic", {
+        type: "generic",
+        message: "User already in use",
+      });
+    }
   }
 
   return (
@@ -147,6 +155,9 @@ export default function Register() {
               </div>
             </div>
           </div>
+          {errors.generic && (
+            <p className="form-error">{errors.generic.message}</p>
+          )}
           <div className={`d-flex justify-content-end ${styles.Btn}`}>
             <NavLink to={"../login"}>
               <button type="button" className={`m5 btn btn-primary-reverse`}>
