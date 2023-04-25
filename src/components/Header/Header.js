@@ -1,10 +1,10 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useOutletContext } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../context/ApiContext";
 
-export default function Header({ DATA_Component }) {
-  const Logged = document.cookie.token;
+export default function Header({ DATA_Component, User }) {
+  const Logged = User;
   const URL_API = useContext(ApiContext);
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
@@ -59,9 +59,7 @@ export default function Header({ DATA_Component }) {
         <div
           className={`d-flex flex-fill justify-content-between align-items-center`}
         >
-          <div
-            className={`d-flex flex-fill m10 mr5-100`}
-          >
+          <div className={`d-flex flex-fill m10 mr5-100`}>
             {Logged ? (
               <NavLink to={"profil"}>
                 <button type="button" className={`btn btn-primary m10`}>
@@ -111,17 +109,17 @@ export default function Header({ DATA_Component }) {
                     className={`fas fa-magnifying-glass ml10 mr10 btn-none`}
                   ></button>
                 </NavLink>
-              {blur && result.length > 0 && (
-                <div className={`${styles.ListContainer}`}>
-                  <ul className={`${styles.List}`}>
-                    {result.map((r, i) => (
-                      <li className="ml10 my10 d-flex flex-nowrap" key={i}>
-                        <p className="ml10">{r.ComponentName}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                {blur && result.length > 0 && (
+                  <div className={`${styles.ListContainer}`}>
+                    <ul className={`${styles.List}`}>
+                      {result.map((r, i) => (
+                        <li className="ml10 my10 d-flex flex-nowrap" key={i}>
+                          <p className="ml10">{r.ComponentName}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </form>
             </div>
           )}

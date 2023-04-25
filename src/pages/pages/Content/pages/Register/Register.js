@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { NavLink } from "react-router-dom";
-import { FetchContext } from "../../../context/FetchContext";
+import { FetchContext } from "../../../../../context/FetchContext";
 import { useContext } from "react";
 
 export default function Register() {

@@ -1,13 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/pages/Home/Home";
-import Content from "../pages/Content";
-import Login from "../pages/pages/Login/Login";
-import Register from "../pages/pages/Register/Register";
-import Profil from "../pages/pages/Profil/Profil";
-import Comparator from "../pages/pages/Comparator/Comparator";
-import Builder from "../pages/pages/Builder/Builder";
-import Logout from "../pages/pages/Profil/Logout/Logout";
+import Content from "../pages/pages/Content/Content";
+import Login from "../pages/pages/Content/pages/Login/Login";
+import Register from "../pages/pages/Content/pages/Register/Register";
+import Profil from "../pages/pages/Content/pages/Profil/Profil";
+import Comparator from "../pages/pages/Content/pages/Comparator/Comparator";
+import Builder from "../pages/pages/Content/pages/Builder/Builder";
+import Search from "../pages/pages/Content/pages/Search/Search";
+import Logout from "../pages/pages/Content/pages/Profil/Logout/Logout";
 import Error from "../pages/Error/Error";
 import { HomeLoader } from "../loader/HomeLoader";
 import { LoginLoader } from "../loader/LoginLoader";
@@ -15,7 +16,6 @@ import { RegisterLoader } from "../loader/RegisterLoader";
 import { ProfilLoader } from "../loader/ProfilLoader";
 import { LogoutLoader } from "../loader/LogoutLoader";
 import { AppLoader } from "../loader/AppLoader";
-import Search from "../pages/pages/Search/Search";
 import { SearchLoader } from "../loader/SearchLoader";
 
 export const router = createBrowserRouter([

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import styles from "./Comparator.module.scss";
-import { ApiContext } from "../../../context/ApiContext";
+import { ApiContext } from "../../../../../context/ApiContext";
 
 export default function Comparator({ handleClick, handleFetch }) {
   const URL_API = useContext(ApiContext)

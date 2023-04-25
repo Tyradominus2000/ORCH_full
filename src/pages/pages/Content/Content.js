@@ -1,8 +1,8 @@
 import styles from "./Content.module.scss";
-import Header from "../components/Header/Header";
+import Header from "../../../components/Header/Header";
 import { Outlet, useOutletContext } from "react-router-dom";
 import { Suspense, useContext } from "react";
-import { ApiContext } from "../context/ApiContext";
+import { ApiContext } from "../../../context/ApiContext";
 
 export default function Content() {
   const URL_API = useContext(ApiContext);
@@ -10,7 +10,7 @@ export default function Content() {
   const { User } = useOutletContext();
   return (
     <>
-      <Header DATA_Component={DATA_Component} />
+      <Header DATA_Component={DATA_Component} User={User} />
       <div
         className={`d-flex flex-fill flex-row flex-warp justify-content-between align-items-center ${styles.Content}`}
       >

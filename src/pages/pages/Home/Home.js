@@ -5,8 +5,9 @@ import { ApiContext } from "../../../context/ApiContext";
 
 export default function Home() {
   const { DATA_Component } = useOutletContext();
+  const { User } = useOutletContext();
   const URL_API = useContext(ApiContext);
-  const Logged = document.cookie.token;
+  const Logged = User;
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const [blur, setBlur] = useState(false);

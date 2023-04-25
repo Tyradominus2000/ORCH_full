@@ -57,6 +57,7 @@ export default function FetchProvider({ children }) {
         console.log(VerifyUser);
         if (VerifyUser) {
           navigate("content/profil", { replace: true });
+          window.location.reload();
         } else {
           return null;
         }
