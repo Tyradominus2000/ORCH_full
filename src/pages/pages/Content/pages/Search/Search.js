@@ -110,7 +110,7 @@ export default function Search() {
 
   return (
     <div
-      className={`d-flex flex-column justify-content-center align-items-center mr10 ml10`}
+      className={`d-flex flex-column justify-content-center align-items-center mr10 ml10 ${styles.Search}`}
     >
       <div className={`d-flex`}>
         <form
@@ -151,7 +151,9 @@ export default function Search() {
                   alt={`image of ` + r.ComponentName}
                 />
                 <p className="ml10">{r.ComponentName}</p>
-                <div className={`${styles.ListSpec}`}>
+                <div
+                  className={`${styles.ListSpec}`}
+                >
                   <ul>
                     {r.ComponentType === "CPU" ? (
                       <>

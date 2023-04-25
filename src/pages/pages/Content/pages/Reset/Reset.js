@@ -118,7 +118,7 @@ export default function Reset() {
             <p className="form-error">{errors.generic.message}</p>
           )}
           <div className={`d-flex justify-content-end ${styles.Btn}`}>
-            <NavLink to={"../../"}>
+            <NavLink to={"/content/login"}>
               <button type="button" className={`m5 btn btn-primary-reverse`}>
                 Cancel
               </button>

@@ -1,79 +1,82 @@
-.ListContainer {
-  z-index: 5;
-  background-color: var(--grey);
-  color: var(--text-color-3);
-  border: 2px solid var(--divider);
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  min-width: 400px;
+.Search {
   width: 100%;
-  min-height: 600px;
-  max-height: 600px;
-  overflow-y: auto;
-  .List {
-    max-height: 100%;
-  }
-  img {
-    border: 3px solid var(--divider);
-    border-radius: 5px;
-    max-width: 64px;
-    max-height: 64px;
-    font-size: 10%;
-  }
-  .InnerList {
-    p {
-      background-color: var(--blue-2);
-      border: 2px solid var(--divider);
-      color: var(--text-color);
-      border-radius: 15px;
-      padding: 5px;
-      width: 80%;
-      &:hover {
-        transition: 0.2s all;
-        background-color: var(--text-color);
-        color: var(--blue-2);
-      }
+  .ListContainer {
+    z-index: 5;
+    background-color: var(--grey);
+    color: var(--text-color-3);
+    border: 2px solid var(--divider);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    min-width: 400px;
+    width: 90%;
+    min-height: 600px;
+    max-height: 600px;
+    overflow-y: auto;
+    .List {
+      max-height: 100%;
     }
-    &:hover {
-      .ListSpec {
-        margin-left: 5px;
-        display: block;
-        background-color: var(--text-color-3);
-        position: absolute;
-        width: 80%;
-        min-height: 150px;
+    img {
+      border: 3px solid var(--divider);
+      border-radius: 5px;
+      max-width: 64px;
+      max-height: 64px;
+      font-size: 10%;
+    }
+    .InnerList {
+      p {
+        background-color: var(--blue-2);
         border: 2px solid var(--divider);
-        position: relative;
-        top: 0px;
-        z-index: 1;
-        border-radius: 5px;
-        ul{
-          li{
-            color: var(--text-color);
-            font-size: 10px;
-            margin-left: 5px;
-            h2{
-              text-decoration: underline;
+        color: var(--text-color);
+        border-radius: 15px;
+        padding: 5px;
+        width: 80%;
+        &:hover {
+          transition: 0.2s all;
+          background-color: var(--text-color);
+          color: var(--blue-2);
+        }
+      }
+      &:hover {
+        .ListSpec {
+          margin-left: 5px;
+          display: block;
+          background-color: var(--text-color-3);
+          position: absolute;
+          width: 80%;
+          min-height: 150px;
+          border: 2px solid var(--divider);
+          position: relative;
+          top: 0px;
+          z-index: 1;
+          border-radius: 5px;
+          ul {
+            li {
+              color: var(--text-color);
+              font-size: 10px;
+              margin-left: 5px;
+              h2 {
+                text-decoration: underline;
+              }
             }
           }
         }
+        p {
+          display: none;
+        }
       }
-      p {
+      .ListSpec {
         display: none;
       }
     }
-    .ListSpec {
-      display: none;
+    .noResult {
+      color: var(--text-color-3);
+      font-weight: 900;
+      font-size: larger;
     }
   }
-  .noResult {
-    color: var(--text-color-3);
-    font-weight: 900;
-    font-size: larger;
+  input {
+    width: 500px;
+    padding: 10px;
+    border-radius: 15px;
   }
-}
-input {
-  width: 500px;
-  padding: 10px;
-  border-radius: 15px;
 }
