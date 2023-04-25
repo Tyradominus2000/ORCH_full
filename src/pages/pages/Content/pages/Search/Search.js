@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./Search.module.scss";
+import { API_BackendURL } from "../../../../../context/ApiURL";
 
 export default function Search() {
   const [searchparam] = useSearchParams();
@@ -13,7 +14,7 @@ export default function Search() {
   const [displaysearch, setDisplaySearch] = useState("");
   const [result, setResult] = useState([]);
   const { DATA_Component } = useOutletContext();
-  const SearchComponent = useLoaderData();
+  const [SearchComponent, setSearchComponent] = useState(useLoaderData());
   const [selectedValue, setSelectedValue] = useState("");
   //First use effect only execute at the first render
   useEffect(() => {
@@ -64,6 +65,7 @@ export default function Search() {
           setResult(filteredArticlesSearch);
         } else {
           setResult(filteredArticles);
+          setSearchComponent("");
         }
       }
     }
@@ -78,16 +80,32 @@ export default function Search() {
     }
   }
 
-  function handleSelect(event) {
+  //Handle When the Select change
+  const handleSelect = async (event) => {
     setSelectedValue(event.target.value);
     if (event.target.value === "reset") {
       setSelectedValue("");
       setSearch("");
     }
-  }
+    const response = await fetch(
+      API_BackendURL + "/GetComponent/" + event.target.value.toUpperCase()
+    );
+    const responseBackEnd = await response.json();
+    setSearchComponent(responseBackEnd);
+    setSearch("");
+    setDisplaySearch("");
+  };
+  //Handle the change in the input
   const handleChange = (event) => {
     setSearch(event.target.value);
     setDisplaySearch(event.target.value);
+  };
+  //Handle when the input is submit
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch(API_BackendURL + "/GetComponent/" + search);
+    const responseBackEnd = await response.json();
+    setSearchComponent(responseBackEnd);
   };
 
   return (
@@ -97,6 +115,7 @@ export default function Search() {
       <div className={`d-flex`}>
         <form
           className={`d-flex flex-nowrap justify-conten-center align-items-center`}
+          onSubmit={handleSubmit}
         >
           <input
             type="text"

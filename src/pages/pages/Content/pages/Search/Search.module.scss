@@ -6,7 +6,7 @@
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   min-width: 400px;
-  width: 150%;
+  width: 100%;
   min-height: 600px;
   max-height: 600px;
   overflow-y: auto;
@@ -40,7 +40,7 @@
         display: block;
         background-color: var(--text-color-3);
         position: absolute;
-        width: 90%;
+        width: 80%;
         min-height: 150px;
         border: 2px solid var(--divider);
         position: relative;

@@ -22,7 +22,6 @@ export async function SearchLoader({ request }) {
         `${API_BackendURL}/GetComponent/${queryParams}`
       );
       const resultDefault = await responseDefault.json();
-      console.log(resultDefault);
       return resultDefault;
   }
 }
