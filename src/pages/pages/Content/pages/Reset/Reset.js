@@ -9,7 +9,7 @@ import { useContext } from "react";
 
 export default function Reset() {
   const { handleFetch } = useContext(FetchContext);
-
+  // https://www.youtube.com/watch?v=AClnCg_WCJk
   const yupSchema = yup.object({
     password: yup.string().required("This field must not be empty"),
     confirmPassword: yup
@@ -62,13 +62,13 @@ export default function Reset() {
 
   async function submit(values) {
     console.log(values);
-    handleFetch("")
+    handleFetch("");
   }
   return (
     <>
       <div className="m10">
         <form className={`d-flex flex-column`} onSubmit={handleSubmit(submit)}>
-          <div className={`${styles.Login}`}>
+          <div className={`${styles.Register}`}>
             <div>
               <h2 className={`my20`}>Reset Password</h2>
             </div>

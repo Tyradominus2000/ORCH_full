@@ -1,4 +1,4 @@
-import { NavLink, useLocation, useOutletContext } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../context/ApiContext";
