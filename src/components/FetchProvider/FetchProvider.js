@@ -70,6 +70,10 @@ export default function FetchProvider({ children }) {
         const GetUserEmail = await FetchPost(action, JsonValue);
         console.log(GetUserEmail);
         return GetUserEmail;
+      case "Reset":
+        const ResetPassword = await FetchPost(action, JsonValue);
+        console.log(ResetPassword);
+        return ResetPassword;
       default:
         console.log("error");
     }
