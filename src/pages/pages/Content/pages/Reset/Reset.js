@@ -9,15 +9,44 @@ import { useContext } from "react";
 
 export default function Reset() {
   const { handleFetch } = useContext(FetchContext);
-  const yupSchema = yup.object({
-    email: yup
-      .string()
-      .email("Use a valid email")
-      .required("This field must not be empty"),
-  });
 
+  const yupSchema = yup.object({
+    password: yup.string().required("This field must not be empty"),
+    confirmPassword: yup
+      .string()
+      .required("This field must not be empty")
+      .oneOf([yup.ref("password"), null], "Password must be the same"),
+  });
+  //Get the password and eye tag
+  let eye;
+  let eyeoff;
+  let passwordField;
+  //By using useEffect im sure that the react as finish loading and actualising it every time the ClickPasswordOn/Off is call
+  useEffect(() => {
+    eye = document.querySelector(".fa-eye");
+    eyeoff = document.querySelector(".fa-eye-slash");
+    passwordField = document.querySelector("#password");
+  }, [clickPasswordOn, clickPasswordOff]);
+
+  //If you click on the eye change the input password to text to be visible by user
+  function clickPasswordOn() {
+    eye.classList.add("dnone");
+    eye.classList.remove("dblock");
+    eyeoff.classList.add("dblock");
+    eyeoff.classList.remove("dnone");
+    passwordField.type = "text";
+  }
+  //If you click on the close eye change the input password to password to be invisible by user
+  function clickPasswordOff() {
+    eye.classList.add("dblock");
+    eye.classList.remove("dnone");
+    eyeoff.classList.add("dnone");
+    eyeoff.classList.remove("dblock");
+    passwordField.type = "password";
+  }
   const defaultValues = {
-    email: "",
+    password: "",
+    confirmPassword: "",
   };
 
   const {
@@ -33,13 +62,7 @@ export default function Reset() {
 
   async function submit(values) {
     console.log(values);
-    clearErrors();
-    if ((await handleFetch("Reset", values)) === false) {
-      setError("generic", {
-        type: "generic",
-        message: "Wrong email",
-      });
-    }
+    handleFetch("")
   }
   return (
     <>
@@ -47,20 +70,45 @@ export default function Reset() {
         <form className={`d-flex flex-column`} onSubmit={handleSubmit(submit)}>
           <div className={`${styles.Login}`}>
             <div>
-              <h2 className={`my20`}>Login in</h2>
+              <h2 className={`my20`}>Reset Password</h2>
             </div>
             <div className={`d-flex flex-column`}>
-              <label className="mb5" htmlFor="email">
-                Email :
+              <label className="mb5" htmlFor="password">
+                Password :
               </label>
-              <input
-                className={`my20 p20 ${styles.Email}`}
-                type="email"
-                id="email"
-                placeholder="Email"
-                {...register("email")}
-              />
-              {errors?.email && <p>{errors.email.message}</p>}
+              <div className={`d-flex flex-column`}>
+                <div className={`d-flex align-items-center`}>
+                  <input
+                    className={`my20 p20 ${styles.Password}`}
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    {...register("password")}
+                  />
+                  <i
+                    onClick={() => clickPasswordOn()}
+                    className={"fa-regular fa-eye m5"}
+                  ></i>
+                  <i
+                    onClick={() => clickPasswordOff()}
+                    className="fa-regular fa-eye-slash m5"
+                  ></i>
+                </div>
+                {errors?.password && <p>{errors.password.message}</p>}
+                <label className="mb5" htmlFor="confirmPassword">
+                  Confirm Password :
+                </label>
+                <div className={`d-flex align-items-center`}>
+                  <input
+                    className={`my20 p20 ${styles.Password}`}
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm Password"
+                    {...register("confirmPassword")}
+                  />
+                </div>
+                {errors?.password && <p>{errors.confirmPassword.message}</p>}
+              </div>
             </div>
           </div>
           <NavLink to={"/content/reset"}>
@@ -70,12 +118,12 @@ export default function Reset() {
             <p className="form-error">{errors.generic.message}</p>
           )}
           <div className={`d-flex justify-content-end ${styles.Btn}`}>
-            <NavLink to={"../../"}>
+            <NavLink to={"/content/login"}>
               <button type="button" className={`m5 btn btn-primary-reverse`}>
                 Cancel
               </button>
             </NavLink>
-            <button className={`m5 btn btn-primary`}>Log in</button>
+            <button className={`m5 btn btn-primary`}>Reset</button>
           </div>
         </form>
       </div>

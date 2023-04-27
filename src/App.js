@@ -13,6 +13,7 @@ function App() {
   const location = useLocation();
   const DATA_Component = DATA.Component;
   const User = DATA.User;
+  console.log(DATA.User);
   return (
     <>
       <FetchProvider>
