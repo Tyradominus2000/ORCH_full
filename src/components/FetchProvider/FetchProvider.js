@@ -10,6 +10,7 @@ export default function FetchProvider({ children }) {
   //Function that handle all the backend call using the methode POST
   async function FetchPost(action, JsonValue, credential) {
     let response;
+    console.log(JsonValue);
     if (!credential) {
       response = await fetch(`${BACKEND_API}/${action}`, {
         method: "POST",
@@ -40,9 +41,11 @@ export default function FetchProvider({ children }) {
   //Function intermediate between the child and the FetchPost
   async function handleFetch(action, value) {
     console.log({ value });
-    //Stringify the value/object
+    const obj = { value };
+    const Jsonobj = JSON.stringify(obj)
     const JsonValue = JSON.stringify(value);
     console.log({ JsonValue });
+    console.log({ Jsonobj });
     //Call Fetch
     switch (action) {
       case "AddUser":
@@ -70,6 +73,14 @@ export default function FetchProvider({ children }) {
         const GetUserEmail = await FetchPost(action, JsonValue);
         console.log(GetUserEmail);
         return GetUserEmail;
+      case "Reset":
+        const ResetPassword = await FetchPost(action, JsonValue);
+        console.log(ResetPassword);
+        return ResetPassword;
+      case "GetUser":
+        const GetUser = await FetchPost(action, Jsonobj);
+        console.log(GetUser);
+        return GetUser;
       default:
         console.log("error");
     }

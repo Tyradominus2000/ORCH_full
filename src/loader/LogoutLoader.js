@@ -8,7 +8,7 @@ export async function LogoutLoader() {
   });
   console.log(response);
   if (response.ok) {
-    // window.location.reload();
+    window.location.reload();
     return redirect("/content/login");
   } else {
     throw new Error("Fail to Logout");
