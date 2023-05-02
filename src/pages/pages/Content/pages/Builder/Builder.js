@@ -11,7 +11,7 @@ export default function Comparator({ handleClick, handleFetch }) {
   return (
     <>
       <div className={`d-flex justify-content-evenly flex-fill`}>
-        <div className={`d-flex flex-column align-items-center`}>
+        <div className={`d-flex flex-column align-items-center ml20`}>
           <div
             className={`d-flex justify-content-start align-items-center ${styles.Search}`}
           >

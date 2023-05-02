@@ -1,4 +1,6 @@
+//Dependance
 import { createBrowserRouter } from "react-router-dom";
+//Element
 import App from "../App";
 import Home from "../pages/pages/Home/Home";
 import Content from "../pages/pages/Content/Content";
@@ -9,7 +11,10 @@ import Comparator from "../pages/pages/Content/pages/Comparator/Comparator";
 import Builder from "../pages/pages/Content/pages/Builder/Builder";
 import Search from "../pages/pages/Content/pages/Search/Search";
 import Logout from "../pages/pages/Content/pages/Profil/Logout/Logout";
+import Reset from "../pages/pages/Content/pages/Reset/Reset";
+import Change from "../pages/pages/Content/pages/Change/Change";
 import Error from "../pages/Error/Error";
+//Loader
 import { HomeLoader } from "../loader/HomeLoader";
 import { LoginLoader } from "../loader/LoginLoader";
 import { RegisterLoader } from "../loader/RegisterLoader";
@@ -17,7 +22,7 @@ import { ProfilLoader } from "../loader/ProfilLoader";
 import { LogoutLoader } from "../loader/LogoutLoader";
 import { AppLoader } from "../loader/AppLoader";
 import { SearchLoader } from "../loader/SearchLoader";
-import Reset from "../pages/pages/Content/pages/Reset/Reset";
+import { ChangeLoader } from "../loader/ChangeLoader";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +65,11 @@ export const router = createBrowserRouter([
                 element: <Logout />,
               },
             ],
+          },
+          {
+            path: "change",
+            loader: ChangeLoader,
+            element: <Change />,
           },
           {
             path: "comparator",

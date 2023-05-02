@@ -1,14 +1,17 @@
 import { NavLink, useOutletContext, useLoaderData } from "react-router-dom";
-import { ApiBackEndContext, ApiContext } from "../../../../../context/ApiContext";
+import {
+  ApiBackEndContext,
+  ApiContext,
+} from "../../../../../context/ApiContext";
 import styles from "./Profil.module.scss";
 import { useContext, useEffect, useState } from "react";
 
 export default function Profil() {
   const USER_API = useContext(ApiContext);
   const { User } = useOutletContext();
-  let form;
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+
   function getInfoUser() {
     if (User) {
       console.log({ User });
@@ -23,15 +26,10 @@ export default function Profil() {
       console.log(email);
     }
   }
-  // useEffect(() => {
-  //   form = document.getElementById("image-form");
-  // }, [handleChange]);
+
   useEffect(() => {
     getInfoUser();
   }, [username, email]);
-  // function handleChange() {
-  //   form.submit();
-  // }
 
   return (
     <>
@@ -47,27 +45,22 @@ export default function Profil() {
                 className={``}
                 src={`${USER_API}/images/server/pp.jpg`}
                 alt="profile"
+                id="output"
               />
-              {/* <form
-                id="image-form"
-                action={`${BACKEND_API}/UploadPP`}
-                method="post"
-                enctype="multipart/form-data"
-              >
+              <form id="image-form">
                 <input
                   type="file"
                   id="image-upload"
-                  onChange={() => handleChange()}
                   name="image"
                   className="dnone"
                 />
                 <label htmlFor="image-upload">
                   <i
-                    className={`d-flex justify-content-center fa-sharp fa-solid fa-pen ${styles.editContainer}`}
                     type="submit"
+                    className={`d-flex justify-content-center fa-sharp fa-solid fa-pen ${styles.editContainer}`}
                   ></i>
                 </label>
-              </form> */}
+              </form>
             </div>
             <div className={`m5`}>
               <ul>
@@ -78,10 +71,17 @@ export default function Profil() {
               </ul>
             </div>
           </div>
-          <div className={`d-flex justify-content-end align-items-start`}>
-            <NavLink to={"logout"}>
-              <button className={`btn btn-error`}>Log out</button>
-            </NavLink>
+          <div className="d-flex flex-column">
+            <div className={`d-flex justify-content-end align-items-start mb10`}>
+              <NavLink to={"logout"}>
+                <button className={`btn btn-error`}>Log out</button>
+              </NavLink>
+            </div>
+            <div className={`d-flex justify-content-end align-items-start`}>
+              <NavLink to={"/content/change"}>
+                <button className={`btn btn-primary`}>Change Info</button>
+              </NavLink>
+            </div>
           </div>
         </div>
         <div className={`${styles.ProfilContent} my10`}>

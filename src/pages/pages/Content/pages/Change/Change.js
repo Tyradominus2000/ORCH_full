@@ -1,27 +1,20 @@
-import styles from "./Register.module.scss";
+import styles from "./Change.module.scss";
 import { useForm } from "react-hook-form";
-import { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { NavLink } from "react-router-dom";
 import { FetchContext } from "../../../../../context/FetchContext";
 
-export default function Register() {
+export default function Change() {
   const { handleFetch } = useContext(FetchContext);
   const yupSchema = yup.object({
-    username: yup.string().required("This field must not be empty"),
-    email: yup
-      .string()
-      .email("Use a valid email")
-      .required("This field must not be empty"),
+    username: yup.string(),
+    email: yup.string().email("Use a valid email"),
     password: yup
       .string()
       .required("This field must not be empty")
       .min(3, "At least 3 charachter"),
-    confirmPassword: yup
-      .string()
-      .required("You have to confirm your password")
-      .oneOf([yup.ref("password"), null], "Password must be the same"),
   });
 
   //Create the password and eye tag
@@ -57,6 +50,7 @@ export default function Register() {
     username: "",
     email: "",
     password: "",
+    newPassword: "",
     confirmPassword: "",
   };
   const {
@@ -85,9 +79,9 @@ export default function Register() {
     <>
       <div className="m10">
         <form className={`d-flex flex-column`} onSubmit={handleSubmit(submit)}>
-          <div className={`${styles.Register}`}>
+          <div className={`${styles.Change}`}>
             <div>
-              <h2 className={`my20`}>Register</h2>
+              <h2 className={`my20`}>Change Personal Information</h2>
             </div>
             <div className={`d-flex flex-column`}>
               <label className="mb5" htmlFor="username">
@@ -135,35 +129,18 @@ export default function Register() {
                 </div>
                 {errors?.password && <p>{errors.password.message}</p>}
               </div>
-              <label className="mb5" htmlFor="confirmPassword">
-                Confirm Password :
-              </label>
-              <div className={`d-flex flex-column`}>
-                <div className={`d-flex align-items-center`}>
-                  <input
-                    className={`my20 p20 ${styles.Password}`}
-                    type="password"
-                    id="confirmPassword"
-                    placeholder="Confirm Password"
-                    {...register("confirmPassword")}
-                  />
-                </div>
-                {errors?.confirmPassword && (
-                  <p>{errors.confirmPassword.message}</p>
-                )}
-              </div>
             </div>
           </div>
           {errors.generic && (
             <p className="form-error">{errors.generic.message}</p>
           )}
           <div className={`d-flex justify-content-end ${styles.Btn}`}>
-            <NavLink to={"../login"}>
+            <NavLink to={"/content/profil"}>
               <button type="button" className={`m5 btn btn-primary-reverse`}>
                 Cancel
               </button>
             </NavLink>
-            <button className={`m5 btn btn-primary`}>Register</button>
+            <button className={`m5 btn btn-primary`}>Update</button>
           </div>
         </form>
       </div>
