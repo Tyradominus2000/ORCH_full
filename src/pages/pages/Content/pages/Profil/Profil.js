@@ -77,9 +77,14 @@ export default function Profil() {
                 <button className={`btn btn-error`}>Log out</button>
               </NavLink>
             </div>
-            <div className={`d-flex justify-content-end align-items-start`}>
+            <div className={`d-flex justify-content-end align-items-start mb10`}>
               <NavLink to={"/content/change"}>
-                <button className={`btn btn-primary`}>Change Info</button>
+                <button className={`btn btn-primary-reverse`}>Change Info</button>
+              </NavLink>
+            </div>
+            <div className={`d-flex justify-content-end align-items-start`}>
+              <NavLink to={"/content/password"}>
+                <button className={`btn btn-primary`}>Change Password</button>
               </NavLink>
             </div>
           </div>

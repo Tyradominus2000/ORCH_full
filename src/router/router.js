@@ -13,6 +13,7 @@ import Search from "../pages/pages/Content/pages/Search/Search";
 import Logout from "../pages/pages/Content/pages/Profil/Logout/Logout";
 import Reset from "../pages/pages/Content/pages/Reset/Reset";
 import Change from "../pages/pages/Content/pages/Change/Change";
+import Password from "../pages/pages/Content/pages/Password/Password";
 import Error from "../pages/Error/Error";
 //Loader
 import { HomeLoader } from "../loader/HomeLoader";
@@ -23,6 +24,7 @@ import { LogoutLoader } from "../loader/LogoutLoader";
 import { AppLoader } from "../loader/AppLoader";
 import { SearchLoader } from "../loader/SearchLoader";
 import { ChangeLoader } from "../loader/ChangeLoader";
+import { PasswordLoader } from "../loader/PasswordLoader";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +72,11 @@ export const router = createBrowserRouter([
             path: "change",
             loader: ChangeLoader,
             element: <Change />,
+          },
+          {
+            path: "password",
+            loader: PasswordLoader,
+            element: <Password />,
           },
           {
             path: "comparator",
