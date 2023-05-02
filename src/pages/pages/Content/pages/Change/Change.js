@@ -3,11 +3,16 @@ import { useForm } from "react-hook-form";
 import { useContext, useEffect, useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { NavLink } from "react-router-dom";
+import { NavLink, useOutletContext } from "react-router-dom";
 import { FetchContext } from "../../../../../context/FetchContext";
 
 export default function Change() {
   const { handleFetch } = useContext(FetchContext);
+  const { User } = useOutletContext();
+
+  const email = User[0].Useremail;
+  const username = User[0].Username;
+
   const yupSchema = yup.object({
     username: yup.string(),
     email: yup.string().email("Use a valid email"),
@@ -50,8 +55,6 @@ export default function Change() {
     username: "",
     email: "",
     password: "",
-    newPassword: "",
-    confirmPassword: "",
   };
   const {
     register,
@@ -63,14 +66,19 @@ export default function Change() {
     defaultValues,
     resolver: yupResolver(yupSchema),
   });
-
   async function submit(values) {
     console.log(values);
     clearErrors();
-    if ((await handleFetch("AddUser", values)) === false) {
+    const update = await handleFetch("UpdateUser", values);
+    if (update === "Invalid") {
       setError("generic", {
         type: "generic",
-        message: "User already in use",
+        message: "Invalid Password",
+      });
+    } else if (update === false) {
+      setError("generic", {
+        type: "generic",
+        message: "Failed to Update",
       });
     }
   }
@@ -91,7 +99,7 @@ export default function Change() {
                 className={`my20 p20 ${styles.Username}`}
                 type="text"
                 id="username"
-                placeholder="Username"
+                placeholder={`${username}`}
                 {...register("username")}
               />
               {errors?.username && <p>{errors.username.message}</p>}
@@ -102,7 +110,7 @@ export default function Change() {
                 className={`my20 p20 ${styles.Email}`}
                 type="email"
                 id="email"
-                placeholder="Email"
+                placeholder={`${email}`}
                 {...register("email")}
               />
               {errors?.email && <p>{errors.email.message}</p>}

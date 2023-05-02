@@ -42,7 +42,7 @@ export default function FetchProvider({ children }) {
   async function handleFetch(action, value) {
     console.log({ value });
     const obj = { value };
-    const Jsonobj = JSON.stringify(obj)
+    const Jsonobj = JSON.stringify(obj);
     const JsonValue = JSON.stringify(value);
     console.log({ JsonValue });
     console.log({ Jsonobj });
@@ -69,6 +69,12 @@ export default function FetchProvider({ children }) {
         const UploadPP = await FetchPost(action, JsonValue);
         console.log(UploadPP);
         break;
+      case "UpdateUser":
+        const UpdateUser = await FetchPost(action, JsonValue, true);
+        if (UpdateUser === true) {
+          navigate("content/profil", { replace: true });
+        }
+        return UpdateUser;
       case "GetUserEmail":
         const GetUserEmail = await FetchPost(action, JsonValue);
         console.log(GetUserEmail);
