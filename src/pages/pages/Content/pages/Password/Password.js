@@ -71,10 +71,16 @@ export default function Password() {
   async function submit(values) {
     console.log(values);
     clearErrors();
-    if ((await handleFetch("UpdatePassword", values)) === false) {
+    const ResponseFromBackEnd = await handleFetch("UpdatePassword", values);
+    if (ResponseFromBackEnd === "Invalid") {
       setError("generic", {
         type: "generic",
         message: "Incorect Password",
+      });
+    } else if (ResponseFromBackEnd === false) {
+      setError("generic", {
+        type: "generic",
+        message: "Something went wrong",
       });
     }
   }

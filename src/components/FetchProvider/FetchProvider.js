@@ -69,12 +69,6 @@ export default function FetchProvider({ children }) {
         const UploadPP = await FetchPost(action, JsonValue);
         console.log(UploadPP);
         break;
-      case "UpdateUser":
-        const UpdateUser = await FetchPost(action, JsonValue, true);
-        if (UpdateUser === true) {
-          navigate("content/profil", { replace: true });
-        }
-        return UpdateUser;
       case "GetUserEmail":
         const GetUserEmail = await FetchPost(action, JsonValue);
         console.log(GetUserEmail);
@@ -87,6 +81,18 @@ export default function FetchProvider({ children }) {
         const GetUser = await FetchPost(action, Jsonobj);
         console.log(GetUser);
         return GetUser;
+      case "UpdateUser":
+        const UpdateUser = await FetchPost(action, JsonValue, true);
+        if (UpdateUser === true) {
+          navigate("content/profil", { replace: true });
+        }
+        return UpdateUser;
+      case "UpdatePassword":
+        const UpdatePassword = await FetchPost(action, JsonValue, true);
+        if (UpdatePassword === true) {
+          navigate("content/profil", { replace: true });
+        }
+        return UpdatePassword;
       default:
         console.log("error");
     }
