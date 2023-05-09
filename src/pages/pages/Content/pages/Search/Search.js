@@ -74,7 +74,6 @@ export default function Search() {
       }
     }
     handleSearch();
-    console.log({ result });
   }, [DATA_Component, displaysearch, search, selectedValue]);
 
   function getComponentSpec(id, attribute) {

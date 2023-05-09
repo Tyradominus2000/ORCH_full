@@ -14,13 +14,15 @@ export default function Product() {
           <button className="btn btn-primary ml10 mr10">
             {component[0].name}
           </button>
-          <Link to={"/content/comparator"}>
+          <Link to={`/content/comparator?id=${component[0].idComponent}`}>
             <button className="btn btn-primary">Compare</button>
           </Link>
         </div>
-        <div>
-          <span className={`${styles.Warning}`}>&#9888;</span>
-        </div>
+        <Link to={`/content/report?id=${component[0].idComponent}`}>
+          <div>
+            <span className={`${styles.Warning}`}>&#9888;</span>
+          </div>
+        </Link>
       </div>
       <div className={`d-flex justify-content-between ${styles.Spec}`}>
         <div

@@ -15,6 +15,8 @@ import Reset from "../pages/pages/Content/pages/Reset/Reset";
 import Change from "../pages/pages/Content/pages/Change/Change";
 import Password from "../pages/pages/Content/pages/Password/Password";
 import Error from "../pages/Error/Error";
+import Report from "../pages/pages/Content/pages/Report/Report";
+import Product from "../pages/pages/Content/pages/Product/Product";
 //Loader
 import { HomeLoader } from "../loader/HomeLoader";
 import { LoginLoader } from "../loader/LoginLoader";
@@ -25,9 +27,9 @@ import { AppLoader } from "../loader/AppLoader";
 import { SearchLoader } from "../loader/SearchLoader";
 import { ChangeLoader } from "../loader/ChangeLoader";
 import { PasswordLoader } from "../loader/PasswordLoader";
-import Product from "../pages/pages/Content/pages/Product/Product";
 import { ProductLoader } from "../loader/ProductLoader";
 import { ContentLoader } from "../loader/ContentLoader";
+import { ReportLoader } from "../loader/ReportLoader";
 
 export const router = createBrowserRouter([
   {
@@ -103,6 +105,11 @@ export const router = createBrowserRouter([
             path: "product/*",
             loader: ProductLoader,
             element: <Product />,
+          },
+          {
+            path: "report/*",
+            loader: ReportLoader,
+            element: <Report />,
           },
         ],
       },

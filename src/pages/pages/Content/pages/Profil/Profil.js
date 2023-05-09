@@ -2,14 +2,27 @@ import { NavLink, useOutletContext } from "react-router-dom";
 import { ApiContext } from "../../../../../context/ApiContext";
 import styles from "./Profil.module.scss";
 import { useContext, useEffect, useState } from "react";
+import { FetchContext } from "../../../../../context/FetchContext";
 
 export default function Profil() {
   const USER_API = useContext(ApiContext);
+  const { handleFetch } = useContext(FetchContext);
   const { User } = useOutletContext();
+  const [imagesrc, setImageSrc] = useState(`${USER_API}/images/server/pp.jpg`);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [imageSubmit, setImageSubmit] = useState();
+  const [image, setImage] = useState();
+  useEffect(() => {
+    if (User[0].Userimage === null) {
+    } else {
+      setImageSrc(User[0].Userimage);
+    }
+  }, [User]);
 
   useEffect(() => {
+    setImageSubmit(document.getElementById("image-upload"));
+    setImage(document.getElementById("output"));
     function getInfoUser() {
       if (User) {
         console.log({ User });
@@ -26,6 +39,24 @@ export default function Profil() {
     }
     getInfoUser();
   }, [User, email, username]);
+  if (imageSubmit !== undefined) {
+    imageSubmit.addEventListener("change", handleFiles, false);
+    function handleFiles() {
+      const fileList = this.files; /* now you can work with the file list */
+      console.log("in handle");
+      const reader = new FileReader();
+
+      reader.onload = async function (event) {
+        const imageData = event.target.result;
+        console.log("in reader");
+        image.src = imageData;
+        await handleFetch("UploadPP", imageData);
+        console.log({ imageData });
+      };
+
+      reader.readAsDataURL(fileList[0]);
+    }
+  }
 
   return (
     <>
@@ -37,21 +68,18 @@ export default function Profil() {
             className={`${styles.ProfilInfo} d-flex flex-fill justify-content-start`}
           >
             <div>
-              <img
-                className={``}
-                src={`${USER_API}/images/server/pp.jpg`}
-                alt="profile"
-                id="output"
-              />
+              <img className={``} src={imagesrc} alt="profile" id="output" />
               <form id="image-form">
                 <input
                   type="file"
                   id="image-upload"
                   name="image"
                   className="dnone"
+                  accept="image/*"
                 />
                 <label htmlFor="image-upload">
                   <i
+                    id="image-submit"
                     type="submit"
                     className={`d-flex justify-content-center fa-sharp fa-solid fa-pen ${styles.editContainer}`}
                   ></i>
