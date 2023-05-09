@@ -27,6 +27,7 @@ import { ChangeLoader } from "../loader/ChangeLoader";
 import { PasswordLoader } from "../loader/PasswordLoader";
 import Product from "../pages/pages/Content/pages/Product/Product";
 import { ProductLoader } from "../loader/ProductLoader";
+import { ContentLoader } from "../loader/ContentLoader";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/content",
+        loader: ContentLoader,
         element: <Content />,
         children: [
           {

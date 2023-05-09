@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../context/ApiContext";
@@ -15,7 +15,10 @@ export default function Header({ DATA_Component, User }) {
   };
 
   const handBlurOff = () => {
-    setBlur(false);
+    setTimeout(() => {
+      setBlur(false);
+      setSearch("");
+    }, 100);
   };
   const handBlurOn = () => {
     setBlur(true);
@@ -62,29 +65,49 @@ export default function Header({ DATA_Component, User }) {
           <div className={`d-flex flex-fill m10 mr5-100`}>
             {Logged ? (
               <NavLink to={"profil"}>
-                <button type="button" className={`btn btn-primary m10`}>
+                <button
+                  onClick={handBlurOff}
+                  type="button"
+                  className={`btn btn-primary m10`}
+                >
                   Profils
                 </button>
               </NavLink>
             ) : (
               <NavLink to={"login"}>
-                <button type="button" className={`btn btn-primary m10`}>
+                <button
+                  onClick={handBlurOff}
+                  type="button"
+                  className={`btn btn-primary m10`}
+                >
                   Login
                 </button>
               </NavLink>
             )}
             <NavLink to={"comparator"}>
-              <button type="button" className={`btn btn-primary m10`}>
+              <button
+                onClick={handBlurOff}
+                type="button"
+                className={`btn btn-primary m10`}
+              >
                 Comparateur
               </button>
             </NavLink>
             <NavLink to={"builder"}>
-              <button type="button" className={`btn btn-primary m10`}>
+              <button
+                onClick={handBlurOff}
+                type="button"
+                className={`btn btn-primary m10`}
+              >
                 Builder
               </button>
             </NavLink>
             <NavLink to={"leaderboard"}>
-              <button type="button" className={`btn btn-primary m10`}>
+              <button
+                onClick={handBlurOff}
+                type="button"
+                className={`btn btn-primary m10`}
+              >
                 LeaderBoard
               </button>
             </NavLink>
@@ -99,6 +122,7 @@ export default function Header({ DATA_Component, User }) {
                 <input
                   type="text"
                   placeholder="Search"
+                  value={search}
                   onChange={handleChange}
                   onBlur={handBlurOff}
                   onFocus={handBlurOn}
@@ -113,8 +137,14 @@ export default function Header({ DATA_Component, User }) {
                   <div className={`${styles.ListContainer}`}>
                     <ul className={`${styles.List}`}>
                       {result.map((r, i) => (
-                        <li className="ml10 my10 d-flex flex-nowrap" key={i}>
-                          <p className="ml10">{r.ComponentName}</p>
+                        <li key={i} className="ml10 my10 d-flex flex-nowrap">
+                          <Link
+                            onClick={handBlurOff}
+                            className="d-flex flex-fill"
+                            to={`/content/product?id=${r.idComponent}`}
+                          >
+                            <p className="ml10">{r.ComponentName}</p>
+                          </Link>
                         </li>
                       ))}
                     </ul>

@@ -15,7 +15,9 @@ export default function Home() {
     setSearch(event.target.value);
   };
   const handBlurOff = () => {
-    setBlur(false);
+    setTimeout(() => {
+      setBlur(false);
+    }, 100);
   };
   const handBlurOn = () => {
     setBlur(true);
@@ -85,14 +87,18 @@ export default function Home() {
                   <ul className={`${styles.List} flex-fill d-flex flex-column`}>
                     {result.map((r, i) => (
                       <li
-                        className="ml10 my10 d-flex align-items-centers"
                         key={i}
+                        className="ml10 my10 d-flex align-items-centers"
                       >
-                        <img
-                          src={r.ComponentImage}
-                          alt={`image of ` + r.ComponentName}
-                        />
-                        <p className="ml10">{r.ComponentName}</p>
+                        <NavLink to={`/content/product?id=${r.idComponent}`}>
+                          <img
+                            src={r.ComponentImage}
+                            alt={`image of ` + r.ComponentName}
+                          />
+                        </NavLink>
+                        <NavLink className={`d-flex flex-fill`} to={`/content/product?id=${r.idComponent}`}>
+                          <p className="ml10">{r.ComponentName}</p>
+                        </NavLink>
                       </li>
                     ))}
                   </ul>

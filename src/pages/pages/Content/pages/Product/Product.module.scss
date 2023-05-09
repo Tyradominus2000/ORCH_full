@@ -1,4 +1,8 @@
 .Title {
+  button{
+    width: max-content;
+    font-size: 120%;
+  }
   img {
     width: 150px;
     border: 3px solid var(--grey-hard);
@@ -36,5 +40,12 @@
   .InnerSpec {
     color: var(--text-color-2);
     height: 100%;
+    .InnerList{
+      margin-left: 40%;
+    }
+    hr{
+      width: 100%;
+      border: 2px solid var(--divider);
+    }
   }
 }

@@ -14,6 +14,5 @@ export async function AppLoader() {
 
   const obj = { Component: result, User: resultAuth };
 
-  console.log("AppLoader");
   return obj;
 }

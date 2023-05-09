@@ -1,9 +1,9 @@
 import styles from "./Product.module.scss";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import CPU from "./components/CPU";
 
 export default function Product() {
   const component = useLoaderData();
-  console.log(component);
   return (
     <div className="f-flex flex-fill flex-column ml10 mr10">
       <div
@@ -14,7 +14,9 @@ export default function Product() {
           <button className="btn btn-primary ml10 mr10">
             {component[0].name}
           </button>
-          <button className="btn btn-primary">Compare</button>
+          <Link to={"/content/comparator"}>
+            <button className="btn btn-primary">Compare</button>
+          </Link>
         </div>
         <div>
           <span className={`${styles.Warning}`}>&#9888;</span>
@@ -24,34 +26,8 @@ export default function Product() {
         <div
           className={`spec flex-fill d-flex flex-column justify-content-start ml10 mr10 ${styles.InnerSpec}`}
         >
-          <ul>
-            <li>Brand : {component[0].CPUbrand}</li>
-            <li>Release Date : {component[0].CPUreleaseDate}</li>
-            <li>Price : {component[0].CPUprice}</li>
-            <li>Lithography : {component[0].CPUlithograph}</li>
-            <li>Core : {component[0].CPUcoreCount}</li>
-            <li>Thread : {component[0].CPUthreadCount}</li>
-            <li>Clock Speed : {component[0].CPUclockSpeed} gHz</li>
-            <li>Max Clock Speed : {component[0].CPUmaxClockSpeed} gHz</li>
-            <li>Cache : {component[0].CPUcache}</li>
-            <li>Bus : {component[0].CPUbus}</li>
-            <li>TDP : {component[0].CPUmaxTDP}</li>
-            <li>Max Memory : {component[0].CPUmaxMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
-            <li>Memory Type : {component[0].CPUtypeMemory}</li>
+          <ul className="mb10">
+            <CPU component={component} />
           </ul>
         </div>
       </div>
