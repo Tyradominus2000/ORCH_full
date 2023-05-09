@@ -1,8 +1,5 @@
-import { NavLink, useOutletContext, useLoaderData } from "react-router-dom";
-import {
-  ApiBackEndContext,
-  ApiContext,
-} from "../../../../../context/ApiContext";
+import { NavLink, useOutletContext } from "react-router-dom";
+import { ApiContext } from "../../../../../context/ApiContext";
 import styles from "./Profil.module.scss";
 import { useContext, useEffect, useState } from "react";
 
@@ -12,24 +9,23 @@ export default function Profil() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
 
-  function getInfoUser() {
-    if (User) {
-      console.log({ User });
-      setUsername(User[0].Username);
-      setEmail(User[0].Useremail);
-      console.log(username);
-      console.log(email);
-    } else {
-      setUsername("Default Username");
-      setEmail("Default Email");
-      console.log(username);
-      console.log(email);
-    }
-  }
-
   useEffect(() => {
+    function getInfoUser() {
+      if (User) {
+        console.log({ User });
+        setUsername(User[0].Username);
+        setEmail(User[0].Useremail);
+        console.log(username);
+        console.log(email);
+      } else {
+        setUsername("Default Username");
+        setEmail("Default Email");
+        console.log(username);
+        console.log(email);
+      }
+    }
     getInfoUser();
-  }, [username, email]);
+  }, [User, email, username]);
 
   return (
     <>
@@ -72,14 +68,20 @@ export default function Profil() {
             </div>
           </div>
           <div className="d-flex flex-column">
-            <div className={`d-flex justify-content-end align-items-start mb10`}>
+            <div
+              className={`d-flex justify-content-end align-items-start mb10`}
+            >
               <NavLink to={"logout"}>
                 <button className={`btn btn-error`}>Log out</button>
               </NavLink>
             </div>
-            <div className={`d-flex justify-content-end align-items-start mb10`}>
+            <div
+              className={`d-flex justify-content-end align-items-start mb10`}
+            >
               <NavLink to={"/content/change"}>
-                <button className={`btn btn-primary-reverse`}>Change Info</button>
+                <button className={`btn btn-primary-reverse`}>
+                  Change Info
+                </button>
               </NavLink>
             </div>
             <div className={`d-flex justify-content-end align-items-start`}>

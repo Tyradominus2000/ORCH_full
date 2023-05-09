@@ -33,9 +33,9 @@ export default function Change() {
     setEye(document.querySelector(".fa-eye"));
     setEyeOff(document.querySelector(".fa-eye-slash"));
     setPasswordField(document.querySelector("#password"));
-  }, [clickPasswordOn, clickPasswordOff]);
-
-  //If you click on the eye change the input password to text to be visible by user
+    //If you click on the eye change the input password to text to be visible by user
+  }, []);
+  
   function clickPasswordOn() {
     eye.classList.add("dnone");
     eye.classList.remove("dblock");
@@ -51,6 +51,7 @@ export default function Change() {
     eyeOff.classList.remove("dblock");
     passwordField.type = "password";
   }
+
   const defaultValues = {
     username: "",
     email: "",

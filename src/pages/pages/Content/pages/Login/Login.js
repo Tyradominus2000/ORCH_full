@@ -1,6 +1,6 @@
 import styles from "./Login.module.scss";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { NavLink } from "react-router-dom";
@@ -17,16 +17,18 @@ export default function Login() {
       .required("This field must not be empty"),
     password: yup.string().required("This field must not be empty"),
   });
-  //Get the password and eye tag
-  let eye;
-  let eyeoff;
-  let passwordField;
+
+  //Create the password and eye tag
+  const [eye, setEye] = useState();
+  const [eyeoff, setEyeOff] = useState();
+  const [passwordField, setPasswordField] = useState();
+  
   //By using useEffect im sure that the react as finish loading and actualising it every time the ClickPasswordOn/Off is call
   useEffect(() => {
-    eye = document.querySelector(".fa-eye");
-    eyeoff = document.querySelector(".fa-eye-slash");
-    passwordField = document.querySelector("#password");
-  }, [clickPasswordOn, clickPasswordOff]);
+    setEye(document.querySelector(".fa-eye"));
+    setEyeOff(document.querySelector(".fa-eye-slash"));
+    setPasswordField(document.querySelector("#password"));
+  }, []);
 
   //If you click on the eye change the input password to text to be visible by user
   function clickPasswordOn() {

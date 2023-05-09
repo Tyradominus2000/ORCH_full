@@ -1,6 +1,5 @@
 import styles from "./Reset.module.scss";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { NavLink } from "react-router-dom";

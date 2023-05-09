@@ -34,7 +34,7 @@ export default function Password() {
     setEye(document.querySelector(".fa-eye"));
     setEyeOff(document.querySelector(".fa-eye-slash"));
     setPasswordField(document.querySelector("#newPassword"));
-  }, [clickPasswordOn, clickPasswordOff]);
+  }, []);
 
   //If you click on the eye change the input password to text to be visible by user
   function clickPasswordOn() {

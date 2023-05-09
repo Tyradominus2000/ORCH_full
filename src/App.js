@@ -1,14 +1,13 @@
 import styles from "./App.module.scss";
 
-import { Suspense, useContext } from "react";
+import { Suspense } from "react";
 
 import Footer from "./components/Footer/Footer";
-import { ApiBackEndContext } from "./context/ApiContext";
+
 import { Outlet, useLoaderData, useLocation } from "react-router-dom";
 import FetchProvider from "./components/FetchProvider/FetchProvider";
 
 function App() {
-  const BACKEND_API = useContext(ApiBackEndContext);
   const DATA = useLoaderData();
   const location = useLocation();
   const DATA_Component = DATA.Component;

@@ -29,7 +29,8 @@ export default function Search() {
       }
     }
     handleParam();
-  }, []);
+  }, [param]);
+
   //Handle all the change to search (probably need to make it a function and make it own file)
   useEffect(() => {
     function handleSearch() {
@@ -70,7 +71,7 @@ export default function Search() {
       }
     }
     handleSearch();
-  }, [search, selectedValue]);
+  }, [DATA_Component, displaysearch, search, selectedValue]);
 
   function getComponentSpec(id, attribute) {
     for (const component of SearchComponent) {
@@ -151,9 +152,7 @@ export default function Search() {
                   alt={`image of ` + r.ComponentName}
                 />
                 <p className="ml10">{r.ComponentName}</p>
-                <div
-                  className={`${styles.ListSpec}`}
-                >
+                <div className={`${styles.ListSpec}`}>
                   <ul>
                     {r.ComponentType === "CPU" ? (
                       <>
