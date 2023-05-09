@@ -5,14 +5,20 @@ export default function Product() {
   const component = useLoaderData();
   console.log(component);
   return (
-    <div className="f-flex flex-fill flex-column">
-      <div className={`d-flex justify-content-between  ${styles.Title} my10`}>
+    <div className="f-flex flex-fill flex-column ml10 mr10">
+      <div
+        className={`d-flex justify-content-between align-items-center ${styles.Title} my10`}
+      >
         <div className="d-flex align-items-center justify-content-center">
           <img src={`${component[0].img}`} alt="product" />
-          <button className="btn btn-primary">{component[0].name}</button>
+          <button className="btn btn-primary ml10 mr10">
+            {component[0].name}
+          </button>
           <button className="btn btn-primary">Compare</button>
         </div>
-        <div>REPORT</div>
+        <div>
+          <span className={`${styles.Warning}`}>&#9888;</span>
+        </div>
       </div>
       <div className={`d-flex justify-content-between ${styles.Spec}`}>
         <div

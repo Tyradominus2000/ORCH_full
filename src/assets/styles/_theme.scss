@@ -112,12 +112,15 @@ input {
 .form {
   &-error {
     color: var(--error);
+    &-light {
+      color: var(--error-light);
+    }
   }
-  &-question{
+  &-question {
     color: var(--text-color);
     font-size: 75%;
     text-decoration: underline;
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }

@@ -35,7 +35,7 @@ export default function Change() {
     setPasswordField(document.querySelector("#password"));
     //If you click on the eye change the input password to text to be visible by user
   }, []);
-  
+
   function clickPasswordOn() {
     eye.classList.add("dnone");
     eye.classList.remove("dblock");
@@ -103,7 +103,9 @@ export default function Change() {
                 placeholder={`${username}`}
                 {...register("username")}
               />
-              {errors?.username && <p>{errors.username.message}</p>}
+              {errors?.username && (
+                <p className="form-error-light">{errors.username.message}</p>
+              )}
               <label className="mb5" htmlFor="email">
                 Email :
               </label>
@@ -114,7 +116,9 @@ export default function Change() {
                 placeholder={`${email}`}
                 {...register("email")}
               />
-              {errors?.email && <p>{errors.email.message}</p>}
+              {errors?.email && (
+                <p className="form-error-light">{errors.email.message}</p>
+              )}
               <label className="mb5" htmlFor="password">
                 Password :
               </label>
@@ -136,7 +140,9 @@ export default function Change() {
                     className="fa-regular fa-eye-slash m5"
                   ></i>
                 </div>
-                {errors?.password && <p>{errors.password.message}</p>}
+                {errors?.password && (
+                  <p className="form-error-light">{errors.password.message}</p>
+                )}
               </div>
             </div>
           </div>

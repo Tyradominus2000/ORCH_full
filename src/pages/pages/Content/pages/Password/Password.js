@@ -107,7 +107,9 @@ export default function Password() {
                   {...register("password")}
                 />
               </div>
-              {errors?.password && <p>{errors.password.message}</p>}
+              {errors?.password && (
+                <p className="form-error-light">{errors.password.message}</p>
+              )}
             </div>
             <label className="mb5" htmlFor="newPassword">
               New Password :
@@ -130,7 +132,9 @@ export default function Password() {
                   className="fa-regular fa-eye-slash m5"
                 ></i>
               </div>
-              {errors?.newPassword && <p>{errors.newPassword.message}</p>}
+              {errors?.newPassword && (
+                <p className="form-error-light">{errors.newPassword.message}</p>
+              )}
             </div>
             <label className="mb5" htmlFor="confirmPassword">
               Confirm Password :
@@ -146,7 +150,9 @@ export default function Password() {
                 />
               </div>
               {errors?.confirmPassword && (
-                <p>{errors.confirmPassword.message}</p>
+                <p className="form-error-light">
+                  {errors.confirmPassword.message}
+                </p>
               )}
             </div>
           </div>

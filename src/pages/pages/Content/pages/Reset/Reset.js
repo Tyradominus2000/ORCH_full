@@ -68,7 +68,9 @@ export default function Reset() {
                 placeholder="Email"
                 {...register("email")}
               />
-              {errors?.email && <p>{errors.email.message}</p>}
+              {errors?.email && (
+                <p className="form-error-light">{errors.email.message}</p>
+              )}
             </div>
           </div>
           <NavLink to={"/content/reset"}>

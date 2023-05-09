@@ -100,7 +100,9 @@ export default function Register() {
                 placeholder="Username"
                 {...register("username")}
               />
-              {errors?.username && <p>{errors.username.message}</p>}
+              {errors?.username && (
+                <p className="form-error-light">{errors.username.message}</p>
+              )}
               <label className="mb5" htmlFor="email">
                 Email :
               </label>
@@ -111,7 +113,9 @@ export default function Register() {
                 placeholder="Email"
                 {...register("email")}
               />
-              {errors?.email && <p>{errors.email.message}</p>}
+              {errors?.email && (
+                <p className="form-error-light">{errors.email.message}</p>
+              )}
               <label className="mb5" htmlFor="password">
                 Password :
               </label>
@@ -133,7 +137,9 @@ export default function Register() {
                     className="fa-regular fa-eye-slash m5"
                   ></i>
                 </div>
-                {errors?.password && <p>{errors.password.message}</p>}
+                {errors?.password && (
+                  <p className="form-error-light">{errors.password.message}</p>
+                )}
               </div>
               <label className="mb5" htmlFor="confirmPassword">
                 Confirm Password :
@@ -149,7 +155,9 @@ export default function Register() {
                   />
                 </div>
                 {errors?.confirmPassword && (
-                  <p>{errors.confirmPassword.message}</p>
+                  <p className="form-error-light">
+                    {errors.confirmPassword.message}
+                  </p>
                 )}
               </div>
             </div>

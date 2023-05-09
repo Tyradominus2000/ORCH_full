@@ -22,7 +22,7 @@ export default function Login() {
   const [eye, setEye] = useState();
   const [eyeoff, setEyeOff] = useState();
   const [passwordField, setPasswordField] = useState();
-  
+
   //By using useEffect im sure that the react as finish loading and actualising it every time the ClickPasswordOn/Off is call
   useEffect(() => {
     setEye(document.querySelector(".fa-eye"));
@@ -91,7 +91,9 @@ export default function Login() {
                 placeholder="Email"
                 {...register("email")}
               />
-              {errors?.email && <p>{errors.email.message}</p>}
+              {errors?.email && (
+                <p className="form-error-light">{errors.email.message}</p>
+              )}
               <label className="mb5" htmlFor="password">
                 Password :
               </label>
@@ -113,7 +115,9 @@ export default function Login() {
                     className="fa-regular fa-eye-slash m5"
                   ></i>
                 </div>
-                {errors?.password && <p>{errors.password.message}</p>}
+                {errors?.password && (
+                  <p className="form-error-light">{errors.password.message}</p>
+                )}
               </div>
             </div>
           </div>
