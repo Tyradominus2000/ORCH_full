@@ -25,6 +25,8 @@ import { AppLoader } from "../loader/AppLoader";
 import { SearchLoader } from "../loader/SearchLoader";
 import { ChangeLoader } from "../loader/ChangeLoader";
 import { PasswordLoader } from "../loader/PasswordLoader";
+import Product from "../pages/pages/Content/pages/Product/Product";
+import { ProductLoader } from "../loader/ProductLoader";
 
 export const router = createBrowserRouter([
   {
@@ -94,6 +96,11 @@ export const router = createBrowserRouter([
             path: "search/*",
             loader: SearchLoader,
             element: <Search />,
+          },
+          {
+            path: "product/*",
+            loader: ProductLoader,
+            element: <Product />,
           },
         ],
       },

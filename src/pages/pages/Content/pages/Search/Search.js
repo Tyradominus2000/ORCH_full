@@ -16,6 +16,7 @@ export default function Search() {
   const { DATA_Component } = useOutletContext();
   const [SearchComponent, setSearchComponent] = useState(useLoaderData());
   const [selectedValue, setSelectedValue] = useState("");
+  
   //First use effect only execute at the first render
   useEffect(() => {
     function handleParam() {

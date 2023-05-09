@@ -1,7 +1,6 @@
 const { API_BackendURL } = require("../context/ApiURL");
 
 export async function SearchLoader({ request }) {
-  // const queryString = window.location.search.replace("?search=", "");
   const queryParams = new URL(request.url).searchParams.get("search");
   switch (queryParams) {
     case "sort:cpu":

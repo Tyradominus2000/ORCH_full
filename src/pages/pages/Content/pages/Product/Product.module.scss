@@ -1,0 +1,32 @@
+.Title {
+  img {
+    max-width: 25%;
+    border: 3px solid var(--grey-hard);
+  }
+}
+
+.Spec {
+  box-sizing: border-box;
+  overflow-y: hidden;
+  max-height: 500px;
+  width: 100%;
+  background-color: var(--grey);
+  border: 2px solid var(--hard-blue);
+  &:hover {
+    overflow-y: auto;
+  }
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--hard-blue);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 15px;
+  }
+  .InnerSpec {
+    color: var(--text-color-2);
+    height: 100%;
+  }
+}
