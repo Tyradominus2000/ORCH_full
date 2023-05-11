@@ -8,33 +8,41 @@ export default function Profil() {
   const USER_API = useContext(ApiContext);
   const { handleFetch } = useContext(FetchContext);
   const { User } = useOutletContext();
-  const [imagesrc, setImageSrc] = useState(`${USER_API}/images/server/pp.jpg`);
+  const [imagesrc, setImageSrc] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [imageSubmit, setImageSubmit] = useState();
   const [image, setImage] = useState();
   useEffect(() => {
     if (User[0].Userimage === null) {
+      setImageSrc(`${USER_API}/images/server/pp.jpg`);
     } else {
-      setImageSrc(User[0].Userimage);
+      const uint8Array = new Uint8Array(User[0].Userimage.data);
+      const blob = new Blob([uint8Array]);
+      const urlImage = URL.createObjectURL(blob);
+      console.log(urlImage);
+      fetch(urlImage)
+        .then((response) => response.text())
+        .then((text) => {
+          console.log({ text });
+          setImageSrc(text);
+        })
+        .catch((error) => console.log(error));
     }
+    console.log(imagesrc);
   }, [User]);
 
   useEffect(() => {
     setImageSubmit(document.getElementById("image-upload"));
     setImage(document.getElementById("output"));
+
     function getInfoUser() {
       if (User) {
-        console.log({ User });
         setUsername(User[0].Username);
         setEmail(User[0].Useremail);
-        console.log(username);
-        console.log(email);
       } else {
         setUsername("Default Username");
         setEmail("Default Email");
-        console.log(username);
-        console.log(email);
       }
     }
     getInfoUser();
@@ -68,7 +76,11 @@ export default function Profil() {
             className={`${styles.ProfilInfo} d-flex flex-fill justify-content-start`}
           >
             <div>
-              <img className={``} src={imagesrc} alt="profile" id="output" />
+              <div
+                className={`${styles.ImgContainer} d-flex justify-content-center align-items-center`}
+              >
+                <img className={``} src={imagesrc} alt="profile" id="output" />
+              </div>
               <form id="image-form">
                 <input
                   type="file"
