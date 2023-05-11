@@ -12,7 +12,7 @@ export async function RegisterLoader() {
     return cookie[cookieName];
   }
   if (token) {
-    const responseAuth = await fetch(API_BackendURL + "/Auth", {
+    const responseAuth = await fetch(API_BackendURL + "/users/Auth", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

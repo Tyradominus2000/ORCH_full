@@ -49,14 +49,14 @@ export default function FetchProvider({ children }) {
     //Call Fetch
     switch (action) {
       case "AddUser":
-        if (await FetchPost(action, JsonValue)) {
+        if (await FetchPost("users/" + action, JsonValue)) {
           navigate("content/login", { replace: true });
         } else {
           return false;
         }
         break;
       case "Signin":
-        const VerifyUser = await FetchPost(action, JsonValue, true);
+        const VerifyUser = await FetchPost("users/" + action, JsonValue, true);
         console.log(VerifyUser);
         if (VerifyUser !== false) {
           navigate("content/profil", { replace: true });
@@ -66,31 +66,35 @@ export default function FetchProvider({ children }) {
         }
         break;
       case "UploadPP":
-        const UploadPP = await FetchPost(action, Jsonobj, true);
+        const UploadPP = await FetchPost("users/" + action, Jsonobj, true);
         return UploadPP;
       case "SendReport":
-        const SendReport = await FetchPost(action, JsonValue);
+        const SendReport = await FetchPost("compo/" + action, JsonValue);
         return SendReport;
       case "GetUserEmail":
-        const GetUserEmail = await FetchPost(action, JsonValue);
+        const GetUserEmail = await FetchPost("users/" + action, JsonValue);
         console.log(GetUserEmail);
         return GetUserEmail;
       case "Reset":
-        const ResetPassword = await FetchPost(action, JsonValue);
+        const ResetPassword = await FetchPost("users/" + action, JsonValue);
         console.log(ResetPassword);
         return ResetPassword;
       case "GetUser":
-        const GetUser = await FetchPost(action, Jsonobj);
+        const GetUser = await FetchPost("users/" + action, Jsonobj);
         console.log(GetUser);
         return GetUser;
       case "UpdateUser":
-        const UpdateUser = await FetchPost(action, JsonValue, true);
+        const UpdateUser = await FetchPost("users/" + action, JsonValue, true);
         if (UpdateUser === true) {
           navigate("content/profil", { replace: true });
         }
         return UpdateUser;
       case "UpdatePassword":
-        const UpdatePassword = await FetchPost(action, JsonValue, true);
+        const UpdatePassword = await FetchPost(
+          "users/" + action,
+          JsonValue,
+          true
+        );
         if (UpdatePassword === true) {
           navigate("content/profil", { replace: true });
         }

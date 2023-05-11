@@ -2,7 +2,7 @@ import { redirect } from "react-router-dom";
 import { API_BackendURL } from "../context/ApiURL";
 
 export async function LogoutLoader() {
-  const response = await fetch(API_BackendURL + "/Logout", {
+  const response = await fetch(API_BackendURL + "/users/Logout", {
     method: "DELETE",
     credentials: "include",
   });

@@ -1,8 +1,8 @@
 const { API_BackendURL } = require("../context/ApiURL");
 
 export async function AppLoader() {
-  const response = await fetch(API_BackendURL + "/GetComponent");
-  const responseAuth = await fetch(API_BackendURL + "/Auth", {
+  const response = await fetch(API_BackendURL + "/compo/GetComponent");
+  const responseAuth = await fetch(API_BackendURL + "/users/Auth", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
