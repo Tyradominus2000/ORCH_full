@@ -67,8 +67,10 @@ export default function FetchProvider({ children }) {
         break;
       case "UploadPP":
         const UploadPP = await FetchPost(action, Jsonobj, true);
-        console.log(UploadPP);
-        break;
+        return UploadPP;
+      case "SendReport":
+        const SendReport = await FetchPost(action, JsonValue);
+        return SendReport;
       case "GetUserEmail":
         const GetUserEmail = await FetchPost(action, JsonValue);
         console.log(GetUserEmail);

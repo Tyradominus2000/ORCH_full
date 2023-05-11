@@ -1,4 +1,5 @@
 .Title {
+  width: 100%;
   button {
     width: max-content;
     font-size: 120%;
@@ -8,10 +9,19 @@
     border: 3px solid var(--grey-hard);
   }
 }
-.Container{
-    input{
-        width: 100%;
-        height: 300px;
-        max-height: 300px;
-    }
+.Container {
+  display: flex;
+  justify-content: center;
+  textarea {
+    width: 100%;
+    background-color: transparent;
+    border: 3px solid var(--divider);
+    border-radius: 5px;
+    height: 300px;
+    max-height: 300px;
+  }
+}
+
+.BtnContainer{
+  width: 100%;
 }

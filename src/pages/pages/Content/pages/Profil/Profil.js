@@ -13,6 +13,7 @@ export default function Profil() {
   const [email, setEmail] = useState("");
   const [imageSubmit, setImageSubmit] = useState();
   const [image, setImage] = useState();
+
   useEffect(() => {
     if (User[0].Userimage === null) {
       setImageSrc(`${USER_API}/images/server/pp.jpg`);
@@ -47,6 +48,7 @@ export default function Profil() {
     }
     getInfoUser();
   }, [User, email, username]);
+  
   if (imageSubmit !== undefined) {
     imageSubmit.addEventListener("change", handleFiles, false);
     function handleFiles() {
@@ -87,7 +89,7 @@ export default function Profil() {
                   id="image-upload"
                   name="image"
                   className="dnone"
-                  accept="image/*"
+                  accept=".png,.jpeg,.jpg"
                 />
                 <label htmlFor="image-upload">
                   <i
