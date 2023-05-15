@@ -131,6 +131,7 @@ export default function Header({ DATA_Component, User }) {
                   <button
                     type="submit"
                     className={`fas fa-magnifying-glass ml10 mr10 btn-none`}
+                    onClick={handBlurOff}
                   ></button>
                 </NavLink>
                 {blur && result.length > 0 && (

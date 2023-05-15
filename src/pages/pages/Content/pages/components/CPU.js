@@ -1,4 +1,4 @@
-import styles from "../Product.module.scss";
+import styles from "./Styles.module.scss";
 
 export default function CPU({ component }) {
   return (

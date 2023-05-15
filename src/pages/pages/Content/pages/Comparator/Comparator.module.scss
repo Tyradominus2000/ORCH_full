@@ -1,20 +1,75 @@
 .Comparator {
-  margin: 50px;
-  .ImgComparator {
-    max-width: 50px;
-    max-height: 50px;
-  }
-  .ComparatorSelec {
-    color: var(--grey);
-    background-color: var(--text-color);
-    border: 2px solid var(--grey);
-    width: 200px;
-    height: 40px;
-    border-radius: 15px;
+  margin: 10px;
+  .ContainerTitle {
+    max-height: 100px;
+    .ImgComparator {
+      position: relative;
+      max-width: 50px;
+      max-height: 50px;
+    }
+    .ComparatorSelec {
+      color: var(--grey);
+      height: 40px;
+      border-radius: 15px;
+      img{
+        max-width: 64px;
+      }
+    }
+    .Container {
+      position: relative;
+      height: 0px;
+      width: 0px;
+      .ListContainer {
+        position: absolute;
+        top: -33px;
+        z-index: 5;
+        background-color: var(--grey);
+        color: var(--text-color-3);
+        border: 2px solid var(--divider);
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        min-width: 200px;
+        width: 200px;
+        min-height: 400px;
+        max-height: 400px;
+        overflow-y: auto;
+        .List {
+          max-height: 100%;
+        }
+        .InnerList {
+          p {
+            background-color: var(--blue-2);
+            border: 2px solid var(--divider);
+            color: var(--text-color);
+            border-radius: 15px;
+            padding: 5px;
+            width: 80%;
+            &:hover {
+              transition: 0.2s all;
+              background-color: var(--text-color);
+              color: var(--blue-2);
+            }
+          }
+        }
+        .noResult {
+          color: var(--text-color-3);
+          font-weight: 900;
+          font-size: larger;
+        }
+      }
+    }
   }
   .Spec {
     box-sizing: border-box;
     overflow-y: hidden;
+    max-height: 500px;
+    width: 90%;
+    min-width: 700px;
+    margin: 50px;
+    background-color: var(--grey);
+    border: 2px solid var(--hard-blue);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
     &:hover {
       overflow-y: auto;
     }
@@ -28,18 +83,17 @@
       background: var(--primary);
       border-radius: 15px;
     }
-    max-height: 500px;
-    width: 90%;
-    margin: 50px;
-    background-color: var(--grey);
-    border: 2px solid var(--hard-blue);
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
     .InnerSpec {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
       color: var(--text-color-2);
       height: 100%;
+      width: fit-content;
+      max-width: 300px;
     }
     .Mediant {
+      width: max-content;
       padding-left: 10px;
       padding-right: 10px;
       border-left: 1px solid var(--hard-blue);

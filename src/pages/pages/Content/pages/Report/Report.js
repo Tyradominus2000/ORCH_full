@@ -1,4 +1,4 @@
-import { NavLink, redirect, useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
 import styles from "./Report.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { FetchContext } from "../../../../../context/FetchContext";
@@ -29,6 +29,7 @@ export default function Report() {
     if (submitvalue.comment !== "") {
       fetch(submitvalue);
     }
+     // eslint-disable-next-line
   }, [submitvalue]);
 
   const handleSubmit = async (event) => {

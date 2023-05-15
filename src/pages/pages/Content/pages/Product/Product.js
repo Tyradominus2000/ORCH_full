@@ -1,6 +1,6 @@
 import styles from "./Product.module.scss";
 import { Link, useLoaderData } from "react-router-dom";
-import CPU from "./components/CPU";
+import CPU from "../components/CPU";
 
 export default function Product() {
   const component = useLoaderData();
@@ -24,7 +24,7 @@ export default function Product() {
           </div>
         </Link>
       </div>
-      <div className={`d-flex justify-content-between ${styles.Spec}`}>
+      <div className={`d-flex justify-content-between my10 ${styles.Spec}`}>
         <div
           className={`spec flex-fill d-flex flex-column justify-content-start ml10 mr10 ${styles.InnerSpec}`}
         >

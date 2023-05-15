@@ -16,7 +16,6 @@ export async function SearchLoader({ request }) {
       const resultMB = await responseMB.json();
       return resultMB;
     default:
-      console.log("Defaut");
       const responseDefault = await fetch(
         `${API_BackendURL}/compo/GetComponent/${queryParams}`
       );

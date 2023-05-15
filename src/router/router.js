@@ -30,6 +30,7 @@ import { PasswordLoader } from "../loader/PasswordLoader";
 import { ProductLoader } from "../loader/ProductLoader";
 import { ContentLoader } from "../loader/ContentLoader";
 import { ReportLoader } from "../loader/ReportLoader";
+import { ComparatorLoader } from "../loader/ComparatorLoader";
 
 export const router = createBrowserRouter([
   {
@@ -85,7 +86,8 @@ export const router = createBrowserRouter([
             element: <Password />,
           },
           {
-            path: "comparator",
+            path: "comparator/*",
+            loader: ComparatorLoader,
             element: <Comparator />,
           },
           {

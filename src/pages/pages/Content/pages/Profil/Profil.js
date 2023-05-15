@@ -21,17 +21,14 @@ export default function Profil() {
       const uint8Array = new Uint8Array(User[0].Userimage.data);
       const blob = new Blob([uint8Array]);
       const urlImage = URL.createObjectURL(blob);
-      console.log(urlImage);
       fetch(urlImage)
         .then((response) => response.text())
         .then((text) => {
-          console.log({ text });
           setImageSrc(text);
         })
         .catch((error) => console.log(error));
     }
-    console.log(imagesrc);
-  }, [User]);
+  }, [User, USER_API]);
 
   useEffect(() => {
     setImageSubmit(document.getElementById("image-upload"));
@@ -48,17 +45,17 @@ export default function Profil() {
     }
     getInfoUser();
   }, [User, email, username]);
-  
+
   if (imageSubmit !== undefined) {
-    imageSubmit.addEventListener("change", handleFiles, false);
-    function handleFiles() {
+    imageSubmit.addEventListener("change", handleFilesImage, false);
+    function handleFilesImage() {
       const fileList = this.files; /* now you can work with the file list */
-      console.log("in handle");
+      console.log("in handle video");
       const reader = new FileReader();
 
       reader.onload = async function (event) {
         const imageData = event.target.result;
-        console.log("in reader");
+        console.log("in reader image");
         image.src = imageData;
         await handleFetch("UploadPP", imageData);
         console.log({ imageData });
