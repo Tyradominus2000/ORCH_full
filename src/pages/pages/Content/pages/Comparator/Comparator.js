@@ -4,6 +4,7 @@ import { ApiContext } from "../../../../../context/ApiContext";
 import { useLoaderData, useOutletContext } from "react-router-dom";
 import CPU from "../components/CPU";
 import { API_BackendURL } from "../../../../../context/ApiURL";
+import MediantCPU from "../components/MediantCPU";
 
 export default function Comparator() {
   const componentLoader = useLoaderData();
@@ -196,8 +197,12 @@ export default function Comparator() {
             )}
           </ul>
         </div>
-        <div className={`mediant ${styles.InnerSpec} ${styles.Mediant}`}>
-          mediant
+        <div className={`mediant ${styles.Mediant}`}>
+          {component && component2 ? (
+            <MediantCPU component={component} component2={component2} />
+          ) : (
+            <>Select an other composant</>
+          )}
         </div>
         <div
           className={`mediant flex-fill d-flex justify-content-start ml10 mr10 ${styles.InnerSpec}`}

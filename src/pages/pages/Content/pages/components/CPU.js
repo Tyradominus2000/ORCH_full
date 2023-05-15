@@ -94,7 +94,7 @@ export default function CPU({ component }) {
       <li>
         <h2>Memory</h2>
       </li>
-      <li className={`d-flex ${styles.InnerList}`}>
+      <li className={`d-flex ${styles.InnerList} ${styles.MemoryType}`}>
         Memory Type :{" "}
         <>
           {component[0].CPUtypeMemory === ""
