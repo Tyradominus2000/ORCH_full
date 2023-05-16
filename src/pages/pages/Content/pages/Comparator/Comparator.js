@@ -20,6 +20,28 @@ export default function Comparator() {
   const [component, setComponent] = useState("");
   const [component2, setComponent2] = useState("");
 
+  const [blur, setBlur] = useState(false);
+  const [blur2, setBlur2] = useState(false);
+
+  const handBlurOff = () => {
+    setTimeout(() => {
+      setBlur(false);
+      setSearch("");
+    }, 100);
+  };
+  const handBlurOn = () => {
+    setBlur(true);
+  };
+
+  const handBlurOff2 = () => {
+    setTimeout(() => {
+      setBlur(false);
+      setSearch2("");
+    }, 100);
+  };
+  const handBlurOn2 = () => {
+    setBlur(true);
+  };
   useEffect(() => {
     setComponent(componentLoader);
     console.log(component);
@@ -92,20 +114,22 @@ export default function Comparator() {
           <div
             className={`d-flex flex-fill justify-content-start align-items-center ${styles.ComparatorSelec}`}
           >
-            {component ? (
-              <img
-                src={component[0].img}
-                alt={component[0].name}
-                className="mr10"
-              />
-            ) : (
-              <></>
-            )}
             <input
               type="text"
               placeholder="Product 1"
               onChange={handleChange}
+              onBlur={handBlurOff}
+              onFocus={handBlurOn}
             />
+            {component ? (
+              <img
+                src={component[0].img}
+                alt={component[0].name}
+                className="ml10"
+              />
+            ) : (
+              <></>
+            )}
           </div>
           <div className={`${styles.Container}`}>
             <div
@@ -113,7 +137,7 @@ export default function Comparator() {
               id="search_1"
             >
               <ul className={`${styles.List} flex-fill d-flex flex-column`}>
-                {result.length ? (
+                {result.length && blur ? (
                   result.map((r, i) => (
                     <li
                       className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
@@ -148,6 +172,8 @@ export default function Comparator() {
               type="text"
               placeholder="Product 2"
               onChange={handleChange2}
+              onBlur={handBlurOff2}
+              onFocus={handBlurOn2}
             />
             {component2 ? (
               <img
@@ -165,7 +191,7 @@ export default function Comparator() {
               id="search_2"
             >
               <ul className={`${styles.List} flex-fill d-flex flex-column`}>
-                {result2.length ? (
+                {result2.length && blur2 ? (
                   result2.map((r, i) => (
                     <li
                       className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
