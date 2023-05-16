@@ -45,7 +45,6 @@ export default function Comparator() {
 
   useEffect(() => {
     setComponent(componentLoader);
-    console.log(component);
   }, [componentLoader]);
 
   useEffect(() => {
@@ -64,7 +63,6 @@ export default function Comparator() {
           .replace("™", "")
           .startsWith(search.toLowerCase())
       );
-      console.log(filtered);
       setResult(filtered);
     } else {
       searchInput.classList.add("dnone");
@@ -122,6 +120,7 @@ export default function Comparator() {
               onChange={handleChange}
               onBlur={handBlurOff}
               onFocus={handBlurOn}
+              value={search}
             />
             {component ? (
               <img
@@ -180,6 +179,7 @@ export default function Comparator() {
               onChange={handleChange2}
               onBlur={handBlurOff2}
               onFocus={handBlurOn2}
+              value={search2}
             />
             {component2 ? (
               <img
@@ -234,14 +234,18 @@ export default function Comparator() {
           </ul>
         </div>
         <div className={`mediant ${styles.Mediant}`}>
-          {component && component2 ? (
-            <MediantCPU component={component} component2={component2} />
+          {component ? (
+            component2 ? (
+              <MediantCPU component={component} component2={component2} />
+            ) : (
+              <>Select an other composant</>
+            )
           ) : (
             <>Select an other composant</>
           )}
         </div>
         <div
-          className={`mediant flex-fill d-flex justify-content-start ml10 mr10 ${styles.InnerSpec}`}
+          className={`spec flex-fill d-flex justify-content-start ml10 mr10 ${styles.InnerSpec}`}
         >
           <ul>
             {component2 ? (
