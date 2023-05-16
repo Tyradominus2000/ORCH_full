@@ -20,8 +20,8 @@ export default function Comparator() {
   const [component, setComponent] = useState("");
   const [component2, setComponent2] = useState("");
 
-  const [blur, setBlur] = useState(false);
-  const [blur2, setBlur2] = useState(false);
+  const [blur, setBlur] = useState(true);
+  const [blur2, setBlur2] = useState(true);
 
   const handBlurOff = () => {
     setTimeout(() => {
@@ -35,13 +35,14 @@ export default function Comparator() {
 
   const handBlurOff2 = () => {
     setTimeout(() => {
-      setBlur(false);
+      setBlur2(false);
       setSearch2("");
     }, 100);
   };
   const handBlurOn2 = () => {
     setBlur(true);
   };
+
   useEffect(() => {
     setComponent(componentLoader);
     console.log(component);
@@ -63,6 +64,7 @@ export default function Comparator() {
           .replace("™", "")
           .startsWith(search.toLowerCase())
       );
+      console.log(filtered);
       setResult(filtered);
     } else {
       searchInput.classList.add("dnone");
@@ -137,20 +139,24 @@ export default function Comparator() {
               id="search_1"
             >
               <ul className={`${styles.List} flex-fill d-flex flex-column`}>
-                {result.length && blur ? (
-                  result.map((r, i) => (
-                    <li
-                      className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
-                      key={r.idComponent}
-                      onClick={() => handleClick(r.idComponent, 1)}
-                    >
-                      <p className="ml10">{r.ComponentName}</p>
+                {blur ? (
+                  result.length ? (
+                    result.map((r, i) => (
+                      <li
+                        className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
+                        key={r.idComponent}
+                        onClick={() => handleClick(r.idComponent, 1)}
+                      >
+                        <p className="ml10">{r.ComponentName}</p>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="d-flex justify-content-center align-items-center flex-fill">
+                      <p className={`${styles.Noresult}`}>Pas de résulat</p>
                     </li>
-                  ))
+                  )
                 ) : (
-                  <li className="d-flex justify-content-center align-items-center flex-fill">
-                    <p className={`${styles.Noresult}`}>Pas de résulat</p>
-                  </li>
+                  <></>
                 )}
               </ul>
             </div>
@@ -191,20 +197,24 @@ export default function Comparator() {
               id="search_2"
             >
               <ul className={`${styles.List} flex-fill d-flex flex-column`}>
-                {result2.length && blur2 ? (
-                  result2.map((r, i) => (
-                    <li
-                      className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
-                      key={r.idComponent}
-                      onClick={() => handleClick(r.idComponent, 2)}
-                    >
-                      <p className="ml10">{r.ComponentName}</p>
+                {blur2 ? (
+                  result2.length ? (
+                    result2.map((r, i) => (
+                      <li
+                        className={`ml10 my10 d-flex align-items-centers ${styles.InnerList}`}
+                        key={r.idComponent}
+                        onClick={() => handleClick(r.idComponent, 2)}
+                      >
+                        <p className="ml10">{r.ComponentName}</p>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="d-flex justify-content-center align-items-center flex-fill">
+                      <p className={`${styles.noResult}`}>Pas de résulat</p>
                     </li>
-                  ))
+                  )
                 ) : (
-                  <li className="d-flex justify-content-center align-items-center flex-fill">
-                    <p className={`${styles.noResult}`}>Pas de résulat</p>
-                  </li>
+                  <></>
                 )}
               </ul>
             </div>
