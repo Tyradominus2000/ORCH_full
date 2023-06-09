@@ -9,13 +9,11 @@ import { API_BackendURL } from "./context/ApiURL";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
     <ApiBackEndContext.Provider value={API_BackendURL}>
       <ApiContext.Provider value={window.location.origin}>
         <RouterProvider router={router}></RouterProvider>
       </ApiContext.Provider>
     </ApiBackEndContext.Provider>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

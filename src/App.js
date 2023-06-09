@@ -1,6 +1,6 @@
 import styles from "./App.module.scss";
-
-import { Suspense } from "react";
+import ReactGA from "react-ga4";
+import { Suspense, useEffect, useRef } from "react";
 
 import Footer from "./components/Footer/Footer";
 
@@ -12,6 +12,27 @@ function App() {
   const location = useLocation();
   const DATA_Component = DATA.Component;
   const User = DATA.User;
+
+  ReactGA.initialize("G-9ERCN2TPHH");
+
+  // GA on location change
+  useEffect(() => {
+    console.log("Change location");
+    ReactGA.send({
+      hitType: "pageview",
+      page: location.pathname,
+      title: "ORCH",
+    });
+  }, [location]);
+
+  //GA every click
+  useEffect(() => {
+    window.onclick = () => {
+      console.log(`You clicked Inside the box!`);
+      ReactGA.event({ category: "General", action: "click" });
+    };
+  }, []);
+
   return (
     <>
       <FetchProvider>
